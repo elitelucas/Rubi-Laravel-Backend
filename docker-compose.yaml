@@ -1,0 +1,22 @@
+version: "3.8"
+
+services:
+
+    app:
+        build:
+          context: .
+          dockerfile: ./Dockerfile
+        volumes:
+            - ./:/var/www/app
+        environment:
+            - APP_ENV=local
+        env_file:
+          - ./.env
+        restart: unless-stopped
+        ports:
+            - 8000:80
+
+networks:
+  default:
+    external: true
+    name: mac
