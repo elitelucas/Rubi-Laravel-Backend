@@ -28,7 +28,7 @@ class ModuleGeneraterController extends Controller
 
         $voice = "descriptive";
         $tone = "persuasive";
-        $language = "japan";
+        $language = "us";
 
         $assistant = "You are a kindly assistant.";
 

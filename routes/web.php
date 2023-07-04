@@ -23,8 +23,6 @@ Route::get('/', function () {
 
 //Rubi chatbot
 Route::get('/openai', [OpenAIController::class, 'open_ai']);
-Route::get('/openai/http', [OpenAIController::class, 'open_ai_http']);
-Route::get('/openai/codex', [OpenAIController::class, 'open_ai_http_codex']);
 
 //Admin module generater
 Route::get('/admin/moduleGenerater', [ModuleGeneraterController::class, 'getOpenAIResponse']);
