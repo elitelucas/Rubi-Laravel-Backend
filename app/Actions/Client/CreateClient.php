@@ -18,6 +18,7 @@ class CreateClient
             'password' => Hash::make($data->password),
         ]);
 
+        
         $user->assignRole(RoleEnum::CLIENT_ADMIN);
 
         return $user;
