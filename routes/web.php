@@ -1,6 +1,10 @@
 <?php
 
+use App\Http\Controllers\ManageApifyController;
+use App\Http\Controllers\ModuleGeneraterController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\OpenAIController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -16,3 +20,15 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+//Rubi chatbot
+Route::get('/openai', [OpenAIController::class, 'open_ai']);
+Route::get('/openai/http', [OpenAIController::class, 'open_ai_http']);
+Route::get('/openai/codex', [OpenAIController::class, 'open_ai_http_codex']);
+
+//Admin module generater
+Route::get('/admin/moduleGenerater', [ModuleGeneraterController::class, 'getOpenAIResponse']);
+
+//Apfiy
+Route::get('/admin/apify', [ManageApifyController::class, 'settingApify']);
+Route::get('/admin/getAllStore', [ManageApifyController::class, 'getAllApifyStoreApps']);
