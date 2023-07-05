@@ -8,12 +8,10 @@ spec:
   selector:
     matchLabels:
       app: rubi-api
-      env: staging
   template:
     metadata:
       labels:
         app: rubi-api
-        env: staging
     spec:
       containers:
         - name: rubi-api

@@ -46,6 +46,7 @@ phases:
       # Apply changes to our Application using kubectl
       - echo "Apply changes to kube manifests"
       # get the namespace based on branch
+      - echo $BRANCH
       - |
         if [[ $BRANCH == "development" ]] ;
         then
