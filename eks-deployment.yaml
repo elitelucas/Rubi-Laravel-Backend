@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rubi-api
+  namespace: rubi-stg
+spec:
+  replicas: 1
+  revisionHistoryLimit: 0
+  selector:
+    matchLabels:
+      app: rubi-api
+      env: staging
+  template:
+    metadata:
+      labels:
+        app: rubi-api
+        env: staging
+    spec:
+      containers:
+        - name: rubi-api
+          image: CONTAINER_IMAGE
+          imagePullPolicy: Always
+          envFrom:
+          - configMapRef:
+              name: rubi-stg
+#          env:
+#            - name: POSTGRES_DB
+#              value: rubi-ai
+          ports:
+            - containerPort: 80
