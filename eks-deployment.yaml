@@ -2,7 +2,6 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: rubi-api
-  namespace: rubi-stg
 spec:
   replicas: 1
   revisionHistoryLimit: 0
@@ -22,7 +21,7 @@ spec:
           imagePullPolicy: Always
           envFrom:
           - configMapRef:
-              name: rubi-stg
+              name: CONFIG_MAP
 #          env:
 #            - name: POSTGRES_DB
 #              value: rubi-ai

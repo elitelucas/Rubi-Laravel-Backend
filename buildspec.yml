@@ -33,9 +33,6 @@ phases:
       - echo "Pushing the Docker image to ECR Repository"
       - docker push $REPOSITORY_URI:$TAG
       - echo "Docker Image Push to ECR Completed -  $REPOSITORY_URI:$TAG"
-      # Update Image tag in our Kubernetes Deployment Manifest
-      - echo "Update Image tag in kube-manifest..."
-      - sed -i 's@CONTAINER_IMAGE@'"$REPOSITORY_URI:$TAG"'@' eks-deployment.yaml
       # Extracting AWS Credential Information using STS Assume Role for kubectl
       - echo "Setting Environment Variables related to AWS CLI for Kube Config Setup"
       - CREDENTIALS=$(aws sts assume-role --role-arn $EKS_KUBECTL_ROLE_ARN --role-session-name codebuild-eks --duration-seconds 900)
@@ -48,10 +45,29 @@ phases:
       - aws eks update-kubeconfig --name $EKS_CLUSTER_NAME
       # Apply changes to our Application using kubectl
       - echo "Apply changes to kube manifests"
-      - kubectl apply -f eks-deployment.yaml -nrubi-stg
+      # get the namespace based on branch
+      - |
+        if [[ $BRANCH == "development" ]] ;
+        then
+          NAMESPACE=rubi-dev;
+        elif [[ $BRANCH == "staging" ]] ;
+        then
+          NAMESPACE=rubi-stg;
+        else
+          NAMESPACE=rubi-zzzzzzz;
+        fi
+      # Update Image tag in our Kubernetes Deployment Manifest
+      - echo "Update Image tag in kube-manifest..."
+      - sed -i 's@CONTAINER_IMAGE@'"$REPOSITORY_URI:$TAG"'@' eks-deployment.yaml
+      # Update ConfigMap in our Kubernetes Deployment Manifest
+      - echo "Update ConfigMap in kube-manifest..."
+      - sed -i 's@CONFIG_MAP@'$NAMESPACE'@' eks-deployment.yaml
+      # Update Kubernetes Deployment Manifest
+      - echo "Update EKS Deployment..."
+      - kubectl apply -f eks-deployment.yaml -n $NAMESPACE
       - echo "Completed applying changes to Kubernetes Objects"
       # Create Artifacts which we can use if we want to continue our pipeline for other stages
-      - printf '[{"name":"01-DEVOPS-Nginx-Deployment.yml","imageUri":"%s"}]' $REPOSITORY_URI:$TAG > build.json
+      - printf '[{"name":"eks-deployment.yaml","imageUri":"%s"}]' $REPOSITORY_URI:$TAG > build.json
       # Additional Commands to view your credentials
       #- echo "Credentials Value is..  ${CREDENTIALS}"
       #- echo "AWS_ACCESS_KEY_ID...  ${AWS_ACCESS_KEY_ID}"
