@@ -11,6 +11,12 @@ class ManageApifyController extends Controller
     //
     public function settingApify(Request $request)
     {
+        $actor_name = "web scraper";
+        $actor_id = "apify~web-scraper";
+        $run_endpoint = "";
+        $personal_api_token = "";
+        $organ_api_token = "";
+        $params = [];
         try {
             $apiUrl = 'https://api.apify.com/v2/acts/apify~web-scraper/runs';
             $apiToken = env('APIFY_API_TOKEN');
