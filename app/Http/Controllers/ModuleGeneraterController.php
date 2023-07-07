@@ -32,7 +32,7 @@ class ModuleGeneraterController extends Controller
 
         $assistant = "You are a kindly assistant.";
 
-        $system_prompt = " Give me good write with descriptive ".$voice." and tone of ".$tone." persuasive include special description. you can translate to ".$language." language result";
+        $system_prompt = " Give me good write with descriptive " . $voice . " and tone of " . $tone . " persuasive include special description. you can translate to " . $language . " language result";
 
         $system_prompt1 = "you can write with descriptive voice and tone of persuasive include Special Description.";
 
@@ -40,8 +40,8 @@ class ModuleGeneraterController extends Controller
             'base_uri' => 'https://api.openai.com/'
         ]);
         $message = [
-            ["role" => "system", "content" => $assistant], 
-            ["role" => "user", "content" => $prompt."\n".$system_prompt]
+            ["role" => "system", "content" => $assistant],
+            ["role" => "user", "content" => $prompt . "\n" . $system_prompt]
         ];
 
         try {
@@ -60,7 +60,7 @@ class ModuleGeneraterController extends Controller
 
             $data = json_decode($response->getBody(), true);
 
-            echo $data['choices'][0]['message']['content'];
+            return response($data['choices'][0]['message']['content'])->header('Access-Control-Allow-Origin', '*');
 
         } catch (\Exception $e) {
             Log::error($e->getMessage());
