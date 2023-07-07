@@ -13,8 +13,7 @@ class PermissionSeeder extends Seeder
      */
     public function run(): void
     {
-        // reset cached roles and permissions
-        app()[\Spatie\Permission\PermissionRegistrar::class]->forgetCachedPermissions();
+        Permission::truncate();
 
         # super admin can do everything
         Permission::create(['name' => 'create-super-admin']);

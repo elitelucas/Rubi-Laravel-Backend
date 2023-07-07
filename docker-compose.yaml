@@ -1,0 +1,25 @@
+version: "3.8"
+
+services:
+
+    app:
+      container_name: rubi-api
+      restart: unless-stopped
+      build:
+        context: .
+        dockerfile: ./Dockerfile-stg
+      image: rubi/api/stg
+#        volumes:
+#            - ./:/var/www/app
+      environment:
+          - APP_ENV=production
+      env_file:
+        - ./.env
+
+      ports:
+          - 8000:80
+
+networks:
+  default:
+    external: true
+    name: mac
