@@ -23,7 +23,6 @@ return new class extends Migration
             $table->string('role')->nullable();
             $table->enum('status', ['active', 'inactive', 'suspended', 'terminated', 'on_hold'])->nullable();
             $table->integer('country_id')->nullable();
-            $table->integer('phone_country_code')->nullable();
             $table->integer('created_by_user_id')->nullable();
             $table->boolean('2fa_verified')->nullable();
             $table->rememberToken();

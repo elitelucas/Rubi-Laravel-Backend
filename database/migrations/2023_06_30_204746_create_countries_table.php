@@ -14,10 +14,13 @@ return new class extends Migration
     public function up()
     {
         Schema::create('countries', function (Blueprint $table) {
-            $table->integer('id')->primary();
-            $table->string('code');
-            $table->string('name');
-            $table->enum('status', ['active', 'inactive', 'suspended'])->nullable();
+            $table->id();
+            $table->char('iso', 2);
+            $table->string('name', 80);
+            $table->char('iso3', 3)->nullable();
+            $table->smallinteger('numcode')->nullable();
+            $table->integer('phonecode');
+            $table->enum('status', ['active', 'inactive', 'suspended'])->default('active');
         });
     }
 
