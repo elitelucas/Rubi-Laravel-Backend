@@ -3,6 +3,7 @@
 namespace App\Actions\User;
 
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 
@@ -13,8 +14,7 @@ class CreateUser
         $userData = collect($data)
             ->merge([
                 'uuid' => Str::uuid()->toString(),
-                // TODO: change to Auth::user()->id when auth comes
-                'created_by_user_id' => 1,
+                'created_by_user_id' => Auth::user()->id,
                 'password' => Hash::make($data['password']),
             ])
             ->toArray();
