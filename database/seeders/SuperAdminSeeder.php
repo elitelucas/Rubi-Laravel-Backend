@@ -2,10 +2,12 @@
 
 namespace Database\Seeders;
 
+use App\Enums\RoleEnum;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 
 class SuperAdminSeeder extends Seeder
 {
@@ -16,7 +18,8 @@ class SuperAdminSeeder extends Seeder
     {
         User::truncate();
 
-        User::create([
+        $superAdmin = User::create([
+            'uuid' => Str::uuid()->toString(),
             'firstname' => 'Super',
             'lastname' => 'Admin',
             'email' => 'root1@bitjarlab.com',
@@ -27,5 +30,7 @@ class SuperAdminSeeder extends Seeder
             'country_id' => 1,
             'created_by_user_id' => 1,
         ]);
+        /** @var User $superAdmin */
+        $superAdmin->assignRole(RoleEnum::SUPER_ADMIN->value);
     }
 }

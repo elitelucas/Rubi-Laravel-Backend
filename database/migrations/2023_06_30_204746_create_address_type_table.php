@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('address_type', function (Blueprint $table) {
-            $table->integer('id')->primary();
+            $table->id();
             $table->string('name')->nullable();
             $table->string('created_by_user_id')->nullable();
             $table->boolean('is_active')->nullable();

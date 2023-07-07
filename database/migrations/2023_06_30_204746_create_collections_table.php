@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('collections', function (Blueprint $table) {
-            $table->integer('id')->primary();
+            $table->id();
             $table->integer('name')->nullable();
             $table->string('short_description')->nullable();
             $table->integer('managed_by')->nullable();
