@@ -2,9 +2,11 @@
 
 namespace Database\Seeders;
 
+use App\Enums\RoleEnum;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Permission;
+use Spatie\Permission\Models\Role;
 
 class PermissionSeeder extends Seeder
 {
@@ -14,9 +16,6 @@ class PermissionSeeder extends Seeder
     public function run(): void
     {
         Permission::truncate();
-
-        // reset cached roles and permissions
-        app()[\Spatie\Permission\PermissionRegistrar::class]->forgetCachedPermissions();
 
         # super admin can do everything
         Permission::create(['name' => 'create-super-admin']);
@@ -43,6 +42,11 @@ class PermissionSeeder extends Seeder
         Permission::create(['name' => 'update-order']);
         Permission::create(['name' => 'delete-order']);
         Permission::create(['name' => 'list-order']);
+
+
+        $superAdmin = Role::findByName(RoleEnum::SUPER_ADMIN->value);
+        $superAdmin->givePermissionTo('create-client-admin');
+        $superAdmin->givePermissionTo('create-client-customer');
 
     }
 }

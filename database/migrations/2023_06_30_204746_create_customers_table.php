@@ -14,10 +14,11 @@ return new class extends Migration
     public function up()
     {
         Schema::create('customers', function (Blueprint $table) {
-            $table->integer('id')->primary();
+            $table->id();
             $table->integer('user_id')->nullable();
             $table->integer('client_id')->nullable();
             $table->integer('sponsor_id')->nullable();
+            $table->timestamps();
 
             $table->unique(['user_id', 'client_id'], 'customers_user_id_client_id_idx');
         });
