@@ -4,22 +4,23 @@ namespace App\Actions\Client;
 
 use App\Enums\RoleEnum;
 use App\Models\User;
-use Database\Seeders\RoleSeeder;
-use Illuminate\Support\Facades\Hash;
+use Illuminate\Database\Eloquent\Model;
 
 class CreateClient
 {
-    public function handle($data): User
+    /**
+     * Creates a client.
+     * The User model for the client must be created before.
+     *
+     * @param User $clientUser
+     * @param array $data
+     * @return Model
+     */
+    public function handle(User $clientUser, array $data): Model
     {
-        $user = User::create([
-            'firstname' => $data->firstname,
-            'lastname' => $data->lastname,
-            'email' => $data->email,
-            'password' => Hash::make($data->password),
-        ]);
-
-        $user->assignRole(RoleEnum::CLIENT_ADMIN);
-
-        return $user;
+        // Assign the role
+        $clientUser->assignRole(RoleEnum::CLIENT_ADMIN->value);
+        // Create the client
+        return $clientUser->client()->create($data);
     }
 }
