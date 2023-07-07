@@ -26,6 +26,7 @@ class User extends Authenticatable
         'username',
         'role',
         'status',
+        'password',
         'country_id',
         'phone_country_code',
         'created_by_user_id',

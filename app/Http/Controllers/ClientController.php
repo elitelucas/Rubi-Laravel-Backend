@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Http\Controllers\Client;
+namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
+use App\Enums\RoleEnum;
+use App\Http\Controllers\Client\CreateClient;
 use App\Http\Requests\StoreClientRequest;
 use Illuminate\Http\Request;
 
@@ -22,6 +23,16 @@ class ClientController extends Controller
     public function store(StoreClientRequest $request, CreateClient $action)
     {
         $user = $action->handle($request->all());
+
+        if ($user) {
+
+            $user->assignRole(RoleEnum::CLIENT_ADMIN);
+
+            return response()->json([
+                'message' => 'Client created successfully',
+                'data' => $user,
+            ], 201);
+        }
     }
 
     /**

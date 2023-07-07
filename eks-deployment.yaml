@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rubi-api
+spec:
+  replicas: 1
+  revisionHistoryLimit: 0
+  selector:
+    matchLabels:
+      app: rubi-api
+  template:
+    metadata:
+      labels:
+        app: rubi-api
+    spec:
+      containers:
+        - name: rubi-api
+          image: CONTAINER_IMAGE
+          imagePullPolicy: Always
+          envFrom:
+          - configMapRef:
+              name: CONFIG_MAP
+#          env:
+#            - name: POSTGRES_DB
+#              value: rubi-ai
+          ports:
+            - containerPort: 80

@@ -1,0 +1,40 @@
+FROM webdevops/php-nginx:8.1
+
+# Install Laravel framework system requirements
+# (https://laravel.com/docs/10.x/deployment#server-requirements)
+
+
+RUN apt-get update && apt-get install -y libpq-dev \
+    #&& pecl install redis \
+    && docker-php-ext-install  pdo pdo_pgsql \
+    && docker-php-ext-enable redis
+
+
+#ENV PHP_DISMOD=bz2,calendar,exiif,ffi,intl,gettext,\
+#ldap,mysqli,imap,soap,sockets,sysvmsg,sysvsm,sysvshm,\
+#shmop,xsl,zip,gd,apcu,vips,yaml,imagick,mongodb,amqp
+
+# Copy Composer binary from the Composer official Docker image
+COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+
+
+ENV WEB_DOCUMENT_ROOT /app/public
+ENV APP_ENV production
+WORKDIR /app
+COPY . .
+
+
+
+RUN composer install --no-interaction --optimize-autoloader --no-dev
+# Optimizing Configuration loading
+RUN php artisan config:cache
+# Optimizing Route loading
+RUN php artisan route:cache
+# Optimizing View loading
+RUN php artisan view:cache
+
+RUN chown -R application:application .
+
+
+COPY init-rubi.sh /opt/docker/provision/entrypoint.d/
+RUN chmod +x /opt/docker/provision/entrypoint.d/init-rubi.sh
