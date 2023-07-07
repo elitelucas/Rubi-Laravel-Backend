@@ -12,16 +12,19 @@ class SuperAdminSeeder extends Seeder
     /**
      * Run the database seeds.
      */
-    public function run(): void
+    public function run()
     {
-        $superAdmin = User::create([
+        User::truncate();
+
+        User::create([
             'firstname' => 'Super',
             'lastname' => 'Admin',
-            'email' => 'root@bitjarlab.com',
+            'email' => 'root1@bitjarlab.com',
             'username' => 'root',
-            'password' => Hash::make('123456'),
             'role' => 'super-admin',
             'status' => 'active',
+            'password' => Hash::make('123456'),
+            'country_id' => 1
         ]);
     }
 }
