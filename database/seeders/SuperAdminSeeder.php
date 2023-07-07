@@ -24,7 +24,8 @@ class SuperAdminSeeder extends Seeder
             'role' => 'super-admin',
             'status' => 'active',
             'password' => Hash::make('123456'),
-            'country_id' => 1
+            'country_id' => 1,
+            'created_by_user_id' => 1,
         ]);
     }
 }
