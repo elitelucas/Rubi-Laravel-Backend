@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('module_components', function (Blueprint $table) {
-            $table->integer('id')->primary();
+            $table->id();
             $table->integer('module_id')->nullable();
             $table->integer('component_id')->nullable();
             $table->string('prompt_command')->nullable();

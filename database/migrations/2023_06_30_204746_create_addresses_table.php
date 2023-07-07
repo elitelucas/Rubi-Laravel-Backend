@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('addresses', function (Blueprint $table) {
-            $table->integer('id')->primary();
+            $table->id();
             $table->integer('address_type_id')->nullable();
             $table->integer('user_id')->nullable();
             $table->string('address_line1')->nullable();
