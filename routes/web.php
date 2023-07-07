@@ -25,7 +25,7 @@ Route::get('/', function () {
 Route::get('/openai', [OpenAIController::class, 'open_ai']);
 
 //Admin module generater
-Route::get('/admin/moduleGenerater', [ModuleGeneraterController::class, 'getOpenAIResponse']);
+Route::post('/admin/moduleGenerater', [ModuleGeneraterController::class, 'getOpenAIResponse']);
 
 //Apfiy
 Route::get('/admin/apify', [ManageApifyController::class, 'settingApify']);
