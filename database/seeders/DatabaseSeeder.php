@@ -16,6 +16,7 @@ class DatabaseSeeder extends Seeder
             RoleSeeder::class,
             PermissionSeeder::class,
             SuperAdminSeeder::class,
+            CountrySeeder::class,
             // UserSeeder::class,
             // PostSeeder::class,
             // CommentSeeder::class,
