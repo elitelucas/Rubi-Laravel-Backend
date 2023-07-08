@@ -25,13 +25,13 @@ COPY . .
 
 
 
-RUN composer install --no-interaction --optimize-autoloader --no-dev
+RUN composer install --no-interaction --optimize-autoloader --no-dev --no-scripts
 # Optimizing Configuration loading
-RUN php artisan config:cache
+#RUN php artisan config:cache
 # Optimizing Route loading
-RUN php artisan route:cache
+#RUN php artisan route:cache
 # Optimizing View loading
-RUN php artisan view:cache
+#RUN php artisan view:cache
 
 RUN chown -R application:application .
 
