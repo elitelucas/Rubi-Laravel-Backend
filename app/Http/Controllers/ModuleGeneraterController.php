@@ -48,7 +48,7 @@ class ModuleGeneraterController extends Controller
             $response = $client->request('POST', 'v1/chat/completions', [
                 'headers' => [
                     'Content-Type' => 'application/json',
-                    'Authorization' => 'Bearer ' . env('OPEN_AI_TOKEN')
+                    'Authorization' => 'Bearer ' . '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'
                 ],
                 'json' => [
                     'model' => "gpt-3.5-turbo",
