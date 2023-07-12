@@ -13,6 +13,8 @@ class ModuleGeneraterController extends Controller
     public function getOpenAIResponse(Request $request)
     {
         // $prompt = $request->provider();
+        $prompt = $request->input('prompt');
+        echo $prompt;
         $prompt = "The listing should be well-written and enticing, highlighting the unique aspects of the property to attract potential buyers.
         Type of Listing: Rent - Lease - Sale
         Type of Property:  Single-family, Condo, Townhouse, etc
