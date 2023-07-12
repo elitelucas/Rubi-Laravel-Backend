@@ -17,7 +17,7 @@ class OpenAIController extends Controller
 
     public function open_ai(Request $request)
     {
-        $client = OpenAI::client(env('OPEN_AI_TOKEN'));
+        $client = OpenAI::client('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');
 
         $prompt = " Rubi, can you recommend a good podcast for comedy lovers?";
 
