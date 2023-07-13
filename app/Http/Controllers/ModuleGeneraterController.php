@@ -12,29 +12,34 @@ class ModuleGeneraterController extends Controller
 
     public function getOpenAIResponse(Request $request)
     {
-        // $prompt = $request->provider();
         $prompt = $request->input('prompt');
-        echo $prompt;
-        $prompt = "The listing should be well-written and enticing, highlighting the unique aspects of the property to attract potential buyers.
-        Type of Listing: Rent - Lease - Sale
-        Type of Property:  Single-family, Condo, Townhouse, etc
-        3. Features of the Property: sparkling swimming pool, relaxing hot tub, ideal for entertaining family and friends, a chef's delight, boasting high-end appliances, ample counter space, and stylish finishes.
-        4. Living Space Size (in square feet): 3200 square feet
-        5. Lot Size (in square feet): Half an acre Bathrooms
-        6. Number of Bathrooms: 2 full bathrooms
-        7. Number of Half Bathrooms: 2 half bathrooms Bedrooms
-        8. Number of Bedrooms: 4 spacious bedrooms
-        9. Asking Price: $500,000
-        10. Annual Property Tax: $4,500
-        Special Description: Nestled by a serene lake, this property offers breathtaking views of early morning sunrises and tranquil surroundings. Explore the nearby hiking trails and embrace the beauty of nature.";
+        $voice = $request->input('voice');
+        $tone = $request->input('tone');
+        $language = $request->input('language');
+        $persona = $request->input('persona');
 
-        $voice = "descriptive";
-        $tone = "persuasive";
-        $language = "us";
+        $prompt = 'The listing should be well-written and enticing, highlighting the unique aspects of the property to attract potential buyers.\n'.$prompt;
+        
+        // $prompt = "The listing should be well-written and enticing, highlighting the unique aspects of the property to attract potential buyers.
+        // Type of Listing: Rent - Lease - Sale
+        // Type of Property:  Single-family, Condo, Townhouse, etc
+        // 3. Features of the Property: sparkling swimming pool, relaxing hot tub, ideal for entertaining family and friends, a chef's delight, boasting high-end appliances, ample counter space, and stylish finishes.
+        // 4. Living Space Size (in square feet): 3200 square feet
+        // 5. Lot Size (in square feet): Half an acre Bathrooms
+        // 6. Number of Bathrooms: 2 full bathrooms
+        // 7. Number of Half Bathrooms: 2 half bathrooms Bedrooms
+        // 8. Number of Bedrooms: 4 spacious bedrooms
+        // 9. Asking Price: $500,000
+        // 10. Annual Property Tax: $4,500
+        // Special Description: Nestled by a serene lake, this property offers breathtaking views of early morning sunrises and tranquil surroundings. Explore the nearby hiking trails and embrace the beauty of nature.";
+
+        // $voice = "descriptive";
+        // $tone = "persuasive";
+        // $language = "us";
 
         $assistant = "You are a kindly assistant.";
 
-        $system_prompt = " Give me good write with descriptive ".$voice." and tone of ".$tone." persuasive include special description. you can translate to ".$language." language result";
+        $system_prompt = " Give me good write with descriptive ".$voice." and tone of ".$tone." persuasive and Audience Interests ".$persona." include special description. you can translate to ".$language." language result";
 
         $system_prompt1 = "you can write with descriptive voice and tone of persuasive include Special Description.";
 
