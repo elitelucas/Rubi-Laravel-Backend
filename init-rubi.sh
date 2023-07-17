@@ -2,9 +2,6 @@
 
 set -e
 
-
-/usr/local/bin/php /app/artisan migrate --force
-
 composer dump-autoload
 
 /usr/local/bin/php /app/artisan optimize
@@ -13,4 +10,4 @@ composer dump-autoload
 /usr/local/bin/php /app/artisan view:cache
 /usr/local/bin/php /app/artisan view:clear
 
-
+/usr/local/bin/php /app/artisan migrate --force
