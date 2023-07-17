@@ -6,6 +6,7 @@ namespace App\Models;
 use App\Enums\RoleEnum;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Passport\HasApiTokens;
@@ -102,4 +103,24 @@ class User extends Authenticatable
             get: fn() => $this->firstname . ' ' . $this->lastname
         );
     }
+
+    /**
+     * Get the country that owns the User
+     *
+     * @return BelongsTo
+     */
+    public function country(): BelongsTo
+    {
+        return $this->belongsTo(Country::class);
+    }
+
+    /**
+     * Get the addresses for the user.
+     *
+     */
+    public function addresses()
+    {
+        return $this->hasMany(AddressUser::class);
+    }
+
 }

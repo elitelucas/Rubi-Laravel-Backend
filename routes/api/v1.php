@@ -1,7 +1,7 @@
 <?php
 
-use App\Http\Controllers\ClientsController;
-use App\Http\Controllers\CustomersController;
+use App\Http\Controllers\ClientController;
+use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\CountryController;
 use App\Models\Client;
 use App\Models\Customer;
@@ -32,11 +32,11 @@ Route::middleware('auth:api')->get('/me', function (Request $request) {
     return $request->user();
 });
 
-Route::post('/clients', [ClientsController::class, 'store'])
+Route::post('/clients', [ClientController::class, 'store'])
     ->name('clients.store')
     ->can('create', Client::class);
 
-Route::post('/customers', [CustomersController::class, 'store'])
+Route::post('/customers', [CustomerController::class, 'store'])
     ->name('customers.store')
     ->can('create', Customer::class);
 
