@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreCustomerRequest extends FormRequest
+class CustomerStoreRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -21,11 +21,15 @@ class StoreCustomerRequest extends FormRequest
      */
     public function rules(): array
     {
-        return collect((new StoreUserRequest())->rules())
-            ->merge([
-                "client_id" => ['required', 'integer', 'exists:users,id'],
-                "sponsor_id" => ["required", "integer"],
-            ])
-            ->toArray();
+        $rules = [
+            "client_id" => ['required', 'integer', 'exists:users,id'],
+            "sponsor_id" => ["nullable", "integer"],
+        ];
+
+        return array_merge(
+            $rules,
+            (new UserStoreRequest())->rules(),
+            (new AddressUserStoreRequest())->rules(),
+        );
     }
 }

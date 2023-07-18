@@ -42,11 +42,5 @@ class PermissionSeeder extends Seeder
         Permission::create(['name' => 'update-order']);
         Permission::create(['name' => 'delete-order']);
         Permission::create(['name' => 'list-order']);
-
-
-        $superAdmin = Role::findByName(RoleEnum::SUPER_ADMIN->value);
-        $superAdmin->givePermissionTo('create-client-admin');
-        $superAdmin->givePermissionTo('create-client-customer');
-
     }
 }

@@ -6,7 +6,7 @@ use App\Enums\RoleEnum;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rules\Enum;
 
-class StoreUserRequest extends FormRequest
+class UserStoreRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -33,6 +33,9 @@ class StoreUserRequest extends FormRequest
             'role' => ['required', 'string', new Enum(RoleEnum::class)],
             'country_id' => ['required', 'integer', 'exists:countries,id'],
             '2fa_verified' => ['required', 'boolean'],
+            'preferred_language_id' => ['required', 'integer', 'exists:languages,id'],
+            'date_of_birth' => ['required', 'date'],
+            'ip_address' => ['required', 'ip']
         ];
     }
 }

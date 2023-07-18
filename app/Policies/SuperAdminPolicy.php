@@ -2,10 +2,10 @@
 
 namespace App\Policies;
 
-use App\Models\Client;
+use App\Models\SuperAdmin;
 use App\Models\User;
 
-class ClientPolicy
+class SuperAdminPolicy
 {
     /**
      * Determine whether the user can view any models.
@@ -18,7 +18,7 @@ class ClientPolicy
     /**
      * Determine whether the user can view the model.
      */
-    public function view(User $user, Client $client): bool
+    public function view(User $user, SuperAdmin $superAdmin): bool
     {
         return false;
     }
@@ -28,13 +28,13 @@ class ClientPolicy
      */
     public function create(User $user): bool
     {
-        return $user->can('create-client-admin');
+        return false;
     }
 
     /**
      * Determine whether the user can update the model.
      */
-    public function update(User $user, Client $client): bool
+    public function update(User $user, SuperAdmin $superAdmin): bool
     {
         return false;
     }
@@ -42,7 +42,7 @@ class ClientPolicy
     /**
      * Determine whether the user can delete the model.
      */
-    public function delete(User $user, Client $client): bool
+    public function delete(User $user, SuperAdmin $superAdmin): bool
     {
         return false;
     }
@@ -50,7 +50,7 @@ class ClientPolicy
     /**
      * Determine whether the user can restore the model.
      */
-    public function restore(User $user, Client $client): bool
+    public function restore(User $user, SuperAdmin $superAdmin): bool
     {
         return false;
     }
@@ -58,7 +58,7 @@ class ClientPolicy
     /**
      * Determine whether the user can permanently delete the model.
      */
-    public function forceDelete(User $user, Client $client): bool
+    public function forceDelete(User $user, SuperAdmin $superAdmin): bool
     {
         return false;
     }
