@@ -13,7 +13,7 @@ return new class extends Migration {
         Schema::table("users", function (Blueprint $table) {
             $table
                 ->foreignId("preferred_language_id")
-                ->nullable()
+                ->default(1)
                 ->references("id")
                 ->on("languages");
         });

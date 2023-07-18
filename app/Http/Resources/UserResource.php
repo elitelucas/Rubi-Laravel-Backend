@@ -23,7 +23,11 @@ class UserResource extends JsonResource
             'role' => $this->role,
             'status' => $this->status,
             'country_id' => $this->country_id,
-            'created_by' => $this->creator()->fullName,
+            'created_by' => $this->when($this->creator, $this->creator->fullName),
+            'addresses' => AddressResource::collection($this->whenLoaded('addresses')),
+            'date_of_birth'  => $this->date_of_birth,
+            'preferred_language' => LanguageResource::make($this->whenLoaded('preferredLanguage')),
+            'ip_address' => $this->ip_address
         ];
     }
 }

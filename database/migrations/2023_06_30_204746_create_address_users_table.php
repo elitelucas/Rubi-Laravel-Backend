@@ -17,13 +17,13 @@ return new class extends Migration
             $table->id();
             $table->integer('address_type_id')->nullable();
             $table->integer('user_id')->nullable();
-            $table->string('address_line1')->nullable();
-            $table->string('address_line2')->nullable();
+            $table->string('address_line_1')->nullable();
+            $table->string('address_line_2')->nullable();
             $table->string('city')->nullable();
             $table->string('state')->nullable();
             $table->string('postal_code')->nullable();
             $table->integer('country_id')->nullable();
-            $table->boolean('archived')->nullable();
+            $table->boolean('archived')->default(false);
             $table->timestamps();
         });
     }
