@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('address_user', function (Blueprint $table) {
+        Schema::table('address_users', function (Blueprint $table) {
             $table->foreign(['address_type_id'], 'addresses_address_type_id_fkey')->references(['id'])->on('address_types');
             $table->foreign(['user_id'], 'addresses_user_id_fkey')->references(['id'])->on('users');
             $table->foreign(['country_id'], 'addresses_country_id_fkey')->references(['id'])->on('countries');
