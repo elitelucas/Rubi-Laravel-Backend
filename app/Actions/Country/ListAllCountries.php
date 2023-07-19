@@ -14,8 +14,6 @@ class ListAllCountries
      */
     public function handle(): Collection
     {
-        $contries = Country::orderBy('name')->get();
-
-        return $contries;
+        return Country::orderBy('name')->get();
     }
 }

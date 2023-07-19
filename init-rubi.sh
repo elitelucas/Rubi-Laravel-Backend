@@ -10,4 +10,7 @@ composer dump-autoload
 /usr/local/bin/php /app/artisan view:cache
 /usr/local/bin/php /app/artisan view:clear
 
-/usr/local/bin/php /app/artisan migrate --force
+# moment
+/usr/local/bin/php /app/artisan migrate:fresh --seed
+
+# /usr/local/bin/php /app/artisan migrate:fresh --seed

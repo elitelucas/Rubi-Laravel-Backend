@@ -2,21 +2,22 @@
 
 namespace App\Http\Controllers;
 
-use App\Actions\Country\ListAllCountries;
-use App\Http\Resources\CountryResource;
+use App\Actions\Language\ListAllLanguages;
+use App\Http\Resources\LanguageResource;
+use App\Models\Language;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
-class CountryController extends Controller
+class LanguageController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index(ListAllCountries $listAllCountries): AnonymousResourceCollection
+    public function index(ListAllLanguages $listAllLanguages): AnonymousResourceCollection
     {
-        $countries = $listAllCountries->handle();
+        $languages = $listAllLanguages->handle();
 
-        return CountryResource::collection($countries);
+        return LanguageResource::collection($languages);
     }
 
     /**
@@ -30,7 +31,7 @@ class CountryController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Language $language)
     {
         //
     }
@@ -38,7 +39,7 @@ class CountryController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Language $language)
     {
         //
     }
@@ -46,7 +47,7 @@ class CountryController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Language $language)
     {
         //
     }
