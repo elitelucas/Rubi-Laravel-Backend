@@ -11,6 +11,6 @@ composer dump-autoload
 /usr/local/bin/php /app/artisan view:clear
 
 # moment
-/usr/local/bin/php /app/artisan migrate:fresh --seed
+/usr/local/bin/php /app/artisan migrate:fresh --seed --force
 
 # /usr/local/bin/php /app/artisan migrate:fresh --seed
