@@ -3,7 +3,9 @@
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\CountryController;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\SuperAdminController;
+use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -19,8 +21,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// temporarily forcing super admin login
-Auth::loginUsingId(1);
+// temporarily forcing non-superadmin login
+Auth::loginUsingId(2);
 
 # usa as rotas de autenticacao do passport
 //Route::post('/login', [AuthorizationController::class, 'login'])->name('login');
@@ -35,3 +37,5 @@ Route::resource('clients', ClientController::class)->only('store');
 Route::resource('customers', CustomerController::class)->only('store');
 Route::resource('countries', CountryController::class)->only('index');
 Route::resource('super-admins', SuperAdminController::class)->only('store');
+Route::resource('users', UserController::class)->only('update');
+Route::resource('languages', LanguageController::class)->only('index');
