@@ -8,28 +8,28 @@ return new class extends Migration
 {
     /**
      * Run the migrations.
-     *
-     * @return void
      */
-    public function up()
+    public function up(): void
     {
+        Schema::disableForeignKeyConstraints();
+
         Schema::create('collections', function (Blueprint $table) {
             $table->id();
-            $table->integer('name')->nullable();
-            $table->string('short_description')->nullable();
-            $table->integer('managed_by')->nullable();
-            $table->integer('created_by')->nullable();
-            $table->string('icon')->nullable();
+            $table->string('name');
+            $table->string('short_description');
+            $table->foreignId('managed_by')->constrained('users');
+            $table->foreignId('created_by')->constrained('users');
+            $table->string('icon');
             $table->timestamps();
         });
+
+        Schema::enableForeignKeyConstraints();
     }
 
     /**
      * Reverse the migrations.
-     *
-     * @return void
      */
-    public function down()
+    public function down(): void
     {
         Schema::dropIfExists('collections');
     }
