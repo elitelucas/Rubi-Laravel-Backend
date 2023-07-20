@@ -23,8 +23,8 @@ class OrderFactory extends Factory
     public function definition(): array
     {
         return [
-            'user_id' => User::factory(),
-            'client_id' => Client::factory(),
+            'user_id' => User::find(1),
+            'client_id' => Client::find(1),
             'words_qty' => $this->faker->randomNumber(),
             'credit_qty' => $this->faker->randomNumber(),
             'storage_qty' => $this->faker->randomNumber(),
