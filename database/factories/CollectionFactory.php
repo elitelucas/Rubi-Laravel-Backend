@@ -24,8 +24,8 @@ class CollectionFactory extends Factory
         return [
             'name' => $this->faker->name,
             'short_description' => $this->faker->word,
-            'managed_by' => User::factory(),
-            'created_by' => User::factory(),
+            'managed_by' => User::find(1),
+            'created_by' => User::find(1),
             'icon' => $this->faker->word,
         ];
     }
