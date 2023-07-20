@@ -39,7 +39,7 @@ class ModuleGeneraterController extends Controller
 
         $assistant = "You are a kindly assistant.";
 
-        $system_prompt = " Give me good write with descriptive ".$voice." and tone of ".$tone." persuasive and Audience Interests ".$persona." include special description. you can translate to ".$language." language result";
+        $system_prompt = " Give me good write with descriptive ".$voice." and tone of ".$tone." persuasive and Audience Interests ".$persona." include special description. you can translate to china language result";
 
         $system_prompt1 = "you can write with descriptive voice and tone of persuasive include Special Description.";
 
