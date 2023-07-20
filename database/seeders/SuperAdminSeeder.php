@@ -29,6 +29,8 @@ class SuperAdminSeeder extends Seeder
             'password' => Hash::make('123456'),
             'country_id' => 1,
             'created_by_user_id' => 1,
+            'date_of_birth' => '1970-01-01',
+            'ip_address' => '1.1.1.1'
         ]);
         /** @var User $superAdmin */
         $superAdmin->assignRole(RoleEnum::SUPER_ADMIN->value);

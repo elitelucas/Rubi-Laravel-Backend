@@ -16,8 +16,8 @@ class CustomerResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'name' => $this->user->fullName,
-            'client' => $this->client->fullName,
+            'user' => UserResource::make($this->whenLoaded('user')),
+            'client' => UserResource::make($this->whenLoaded('client')),
             'sponsor_id' => $this->sponsor_id,
         ];
     }

@@ -6,9 +6,11 @@ namespace App\Models;
 use App\Enums\RoleEnum;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Laravel\Sanctum\HasApiTokens;
+use Laravel\Passport\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
@@ -34,6 +36,9 @@ class User extends Authenticatable
         'phone_country_code',
         'created_by_user_id',
         '2fa_verified',
+        'preferred_language_id',
+        'date_of_birth',
+        'ip_address'
     ];
 
     /**
@@ -51,6 +56,7 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
+        'date_of_birth' => 'date'
     ];
 
     /**
@@ -102,4 +108,29 @@ class User extends Authenticatable
             get: fn() => $this->firstname . ' ' . $this->lastname
         );
     }
+
+    /**
+     * Get the country that owns the User
+     *
+     * @return BelongsTo
+     */
+    public function country(): BelongsTo
+    {
+        return $this->belongsTo(Country::class);
+    }
+
+    /**
+     * Get the addresses for the user.
+     *
+     */
+    public function addresses(): HasMany
+    {
+        return $this->hasMany(AddressUser::class);
+    }
+
+    public function preferredLanguage(): BelongsTo
+    {
+        return $this->belongsTo(Language::class, 'preferred_language_id');
+    }
+
 }
