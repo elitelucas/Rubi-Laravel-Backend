@@ -21,9 +21,9 @@ return new class extends Migration
             $table->foreignId('category_id')->constrained('product_categories');
             $table->boolean('active')->default(true);
             $table->decimal('affiliate_price', 8, 2)->nullable();
-            $table->decimal('retail_price', 8, 2)->nullable();
             $table->decimal('affiliate_monthly_price', 8, 2)->nullable();
             $table->decimal('affiliate_annual_price', 8, 2)->nullable();
+            $table->decimal('retail_price', 8, 2)->nullable();
             $table->decimal('retail_monthly_price', 8, 2)->nullable();
             $table->decimal('retail_annual_price', 8, 2)->nullable();
             $table->boolean('recurring')->default(true);
