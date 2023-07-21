@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminModuleGeneratorController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\CollectionController;
 use App\Http\Controllers\CountryController;
@@ -45,3 +46,7 @@ Route::resource('languages', LanguageController::class)->only('index');
 Route::resource('collections', CollectionController::class);
 Route::resource('subscriptions', SubscriptionController::class);
 Route::resource('orders', OrderController::class);
+
+//Admin API
+
+Route::resource('admin-moduleGenerator', AdminModuleGeneratorController::class)->only('store');
