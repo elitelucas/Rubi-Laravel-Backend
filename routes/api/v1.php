@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminModuleGeneratorController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\CountryController;
 use App\Http\Controllers\CustomerController;
@@ -22,7 +23,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 // temporarily forcing non-superadmin login
-Auth::loginUsingId(2);
+Auth::loginUsingId(1);
 
 # usa as rotas de autenticacao do passport
 //Route::post('/login', [AuthorizationController::class, 'login'])->name('login');
@@ -39,3 +40,10 @@ Route::resource('countries', CountryController::class)->only('index');
 Route::resource('super-admins', SuperAdminController::class)->only('store');
 Route::resource('users', UserController::class)->only('update');
 Route::resource('languages', LanguageController::class)->only('index');
+Route::resource('collections', CollectionController::class);
+Route::resource('subscriptions', SubscriptionController::class);
+Route::resource('orders', OrderController::class);
+
+//Admin API
+
+Route::resource('admin-moduleGenerator', AdminModuleGeneratorController::class)->only('store');
