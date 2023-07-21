@@ -17,11 +17,10 @@ class DatabaseSeeder extends Seeder
             RoleSeeder::class,
             LanguageSeeder::class,
             CountrySeeder::class,
+            UserSeeder::class,
             SuperAdminSeeder::class,
-
-            // UserSeeder::class,
-            // PostSeeder::class,
-            // CommentSeeder::class,
+            ProductCategorySeeder::class,
+            ProductSeeder::class,
         ]);
     }
 }

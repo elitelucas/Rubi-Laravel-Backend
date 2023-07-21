@@ -13,14 +13,14 @@ return new class extends Migration {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->uuid()->index();
-            $table->string('firstname')->nullable();
-            $table->string('lastname')->nullable();
-            $table->integer('mobile')->nullable();
+            $table->string('firstname');
+            $table->string('lastname');
+            $table->string('mobile');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('username');
             $table->string('password');
-            $table->string('role')->nullable();
+            $table->string('role');
             $table
                 ->enum('status', [
                     'active',
@@ -29,11 +29,10 @@ return new class extends Migration {
                     'terminated',
                     'on_hold',
                 ])
-                ->default('active')
-                ->nullable();
-            $table->integer('country_id')->nullable();
-            $table->integer('created_by_user_id')->nullable();
-            $table->boolean('2fa_verified')->nullable();
+                ->default('active');
+            $table->unsignedBigInteger('country_id')->nullable();
+            $table->unsignedBigInteger('created_by_user_id')->nullable();
+            $table->boolean('2fa_verified')->default(false);
             $table->rememberToken();
             $table->timestamps();
         });
