@@ -1,7 +1,7 @@
 <?php
 
+use App\Http\Controllers\AdminModuleGeneratorController;
 use App\Http\Controllers\ClientController;
-use App\Http\Controllers\CollectionController;
 use App\Http\Controllers\CountryController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\LanguageController;

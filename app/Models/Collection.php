@@ -42,11 +42,11 @@ class Collection extends Model
 
     public function managedBy(): BelongsTo
     {
-        return $this->belongsTo(User::class, 'managed_by');
+        return $this->belongsTo(User::class);
     }
 
     public function createdBy(): BelongsTo
     {
-        return $this->belongsTo(User::class, 'created_by');
+        return $this->belongsTo(User::class);
     }
 }

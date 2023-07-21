@@ -8,19 +8,17 @@ return new class extends Migration
 {
     /**
      * Run the migrations.
-     *
-     * @return void
      */
-    public function up()
+    public function up(): void
     {
         Schema::create('modules', function (Blueprint $table) {
             $table->id();
-            $table->integer('collection_id')->nullable();
-            $table->integer('name')->nullable();
+            $table->foreignId('collection_id')->constrained('collections');
+            $table->string('name')->nullable();
             $table->string('short_description')->nullable();
             $table->string('long_description')->nullable();
-            $table->integer('admin_contact')->nullable();
-            $table->integer('created_by')->nullable();
+            $table->unsignedInteger('admin_contact')->nullable();
+            $table->unsignedInteger('created_by')->nullable();
             $table->string('icon')->nullable();
             $table->string('version')->nullable();
             $table->timestamps();
@@ -29,10 +27,8 @@ return new class extends Migration
 
     /**
      * Reverse the migrations.
-     *
-     * @return void
      */
-    public function down()
+    public function down(): void
     {
         Schema::dropIfExists('modules');
     }

@@ -8,27 +8,24 @@ return new class extends Migration
 {
     /**
      * Run the migrations.
-     *
-     * @return void
      */
-    public function up()
+    public function up(): void
     {
         Schema::create('components', function (Blueprint $table) {
-            $table->id();
-            $table->integer('name')->nullable();
+            $table->id()->primary();
+            $table->string('name')->nullable();
             $table->string('short_description')->nullable();
             $table->string('component_type')->nullable();
-            $table->integer('created_by')->nullable();
+            $table->unsignedInteger('created_by')->nullable();
+            $table->string('icon')->nullable();
             $table->timestamps();
         });
     }
 
     /**
      * Reverse the migrations.
-     *
-     * @return void
      */
-    public function down()
+    public function down(): void
     {
         Schema::dropIfExists('components');
     }

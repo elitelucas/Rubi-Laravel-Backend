@@ -53,8 +53,8 @@ class Subscription extends Model
         return $this->hasMany(SubscriptionCollection::class);
     }
 
-    public function createdBy(): BelongsTo
+    public function createdByUser(): BelongsTo
     {
-        return $this->belongsTo(User::class, 'created_by_user_id');
+        return $this->belongsTo(User::class);
     }
 }

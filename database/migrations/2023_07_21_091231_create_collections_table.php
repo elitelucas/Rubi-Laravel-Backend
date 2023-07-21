@@ -11,19 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::disableForeignKeyConstraints();
-
         Schema::create('collections', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
-            $table->string('short_description');
-            $table->foreignId('managed_by')->constrained('users');
-            $table->foreignId('created_by')->constrained('users');
-            $table->string('icon');
+            $table->id()->primary();
+            $table->string('name')->nullable();
+            $table->string('short_description')->nullable();
+            $table->unsignedInteger('managed_by')->nullable();
+            $table->unsignedInteger('created_by')->nullable();
+            $table->string('icon')->nullable();
             $table->timestamps();
         });
-
-        Schema::enableForeignKeyConstraints();
     }
 
     /**

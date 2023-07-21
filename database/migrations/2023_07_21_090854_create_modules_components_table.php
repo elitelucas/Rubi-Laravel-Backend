@@ -8,19 +8,17 @@ return new class extends Migration
 {
     /**
      * Run the migrations.
-     *
-     * @return void
      */
-    public function up()
+    public function up(): void
     {
-        Schema::create('module_components', function (Blueprint $table) {
+        Schema::create('modules_components', function (Blueprint $table) {
             $table->id();
-            $table->integer('module_id')->nullable();
-            $table->integer('component_id')->nullable();
+            $table->foreignId('module_id')->constrained('modules');
+            $table->foreignId('component_id')->constrained('components');
             $table->string('prompt_command')->nullable();
             $table->string('long_description')->nullable();
-            $table->integer('created_by')->nullable();
-            $table->integer('layout_section_number')->nullable();
+            $table->unsignedInteger('created_by')->nullable();
+            $table->unsignedInteger('layout_section_number')->nullable();
             $table->string('section_title')->nullable();
             $table->string('icon')->nullable();
             $table->string('version')->nullable();
@@ -30,11 +28,9 @@ return new class extends Migration
 
     /**
      * Reverse the migrations.
-     *
-     * @return void
      */
-    public function down()
+    public function down(): void
     {
-        Schema::dropIfExists('module_components');
+        Schema::dropIfExists('modules_components');
     }
 };

@@ -9,12 +9,6 @@ use Illuminate\Support\Str;
 
 class CreateUser
 {
-    /**
-     * Create a new user.
-     *
-     * @param array $data
-     * @return mixed
-     */
     public function handle(array $data)
     {
         $userData = collect($data)
