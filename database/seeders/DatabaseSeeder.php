@@ -21,6 +21,7 @@ class DatabaseSeeder extends Seeder
             SuperAdminSeeder::class,
             ProductCategorySeeder::class,
             ProductSeeder::class,
+            OrderStatusSeeder::class
         ]);
     }
 }

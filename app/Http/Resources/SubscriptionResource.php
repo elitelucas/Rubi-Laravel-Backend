@@ -17,10 +17,11 @@ class SubscriptionResource extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
+            'description' => $this->description,
             'created_by' => UserResource::make($this->whenLoaded('createdBy')),
-            'whlse_price_monthly' => $this->whlse_price_monthly,
+            'affiliate_price_monthly' => $this->affiliate_price_monthly,
             'retail_price_monthly' => $this->retail_price_monthly,
-            'whsle_annual' => $this->whsle_annual,
+            'affiliate_annual' => $this->affiliate_annual,
             'retail_annual' => $this->retail_annual,
             'workspaces' => $this->workspaces,
             'collaborators' => $this->collaborators,
