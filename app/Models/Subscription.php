@@ -47,13 +47,15 @@ class Subscription extends Model
         'credits' => 'integer',
     ];
 
+    protected $with = ['createdBy'];
+
     public function subscriptionCollections(): HasMany
     {
         return $this->hasMany(SubscriptionCollection::class);
     }
 
-    public function createdByUser(): BelongsTo
+    public function createdBy(): BelongsTo
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'created_by_user_id');
     }
 }

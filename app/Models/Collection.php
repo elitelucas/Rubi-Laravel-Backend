@@ -35,6 +35,16 @@ class Collection extends Model
         'created_by' => 'integer',
     ];
 
+    /**
+     * Eager load relations
+     *
+     * @var string[]
+     */
+    protected $with = [
+        'createdBy',
+        'managedBy'
+    ];
+
     public function subscriptionCollections(): HasMany
     {
         return $this->hasMany(SubscriptionCollection::class);
@@ -42,11 +52,11 @@ class Collection extends Model
 
     public function managedBy(): BelongsTo
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'managed_by');
     }
 
     public function createdBy(): BelongsTo
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'created_by');
     }
 }
