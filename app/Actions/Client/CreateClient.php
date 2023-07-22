@@ -18,16 +18,9 @@ class CreateClient
      */
     public function handle(User $clientUser, array $data): Model
     {
-        $user = User::create([
-            'firstname' => $data->firstname,
-            'lastname' => $data->lastname,
-            'email' => $data->email,
-            'password' => Hash::make($data->password),
-        ]);
-
-        
-        $user->assignRole(RoleEnum::CLIENT_ADMIN);
-
-        return $user;
+        // Assign the role
+        $clientUser->assignRole(RoleEnum::CLIENT_ADMIN->value);
+        // Create the client
+        return $clientUser->client()->create($data);
     }
 }
