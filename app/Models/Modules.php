@@ -35,15 +35,5 @@ class Modules extends Model
         'id' => 'integer',
         'collection_id' => 'integer',
     ];
-
-    public function orderItems(): HasMany
-    {
-        return $this->hasMany(Collection::class);
-    }
-
-    public function category(): BelongsTo
-    {
-        return $this->belongsTo(ProductCategory::class);
-    }
 }
 

@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ModuleUpdateRequest extends FormRequest
+class BoostInputStoreRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -21,6 +21,8 @@ class ModuleUpdateRequest extends FormRequest
      */
     public function rules(): array
     {
-        return (new ModuleStoreRequest())->rules();
+        return [
+            //
+        ];
     }
 }
