@@ -18,6 +18,10 @@ class OrderItem extends Model
     protected $fillable = [
         'order_id',
         'product_id',
+        'subscription_id',
+        'quantity',
+        'tax',
+        'discount',
     ];
 
     /**
@@ -29,6 +33,10 @@ class OrderItem extends Model
         'id' => 'integer',
         'order_id' => 'integer',
         'product_id' => 'integer',
+        'subscription_id' => 'integer',
+        'quantity' => 'integer',
+        'tax' => 'decimal:2',
+        'discount' => 'decimal:2',
     ];
 
     public function order(): BelongsTo
@@ -39,5 +47,10 @@ class OrderItem extends Model
     public function product(): BelongsTo
     {
         return $this->belongsTo(Product::class);
+    }
+
+    public function subscription(): BelongsTo
+    {
+        return $this->belongsTo(Subscription::class);
     }
 }

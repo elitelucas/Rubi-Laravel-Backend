@@ -60,6 +60,13 @@ class User extends Authenticatable
     ];
 
     /**
+     * Attributes to append on resources
+     *
+     * @var string[]
+     */
+    protected $appends = ['name'];
+
+    /**
      * Client relationship if the current user is a client.
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasOne|null
@@ -102,7 +109,7 @@ class User extends Authenticatable
      *
      * @return Attribute
      */
-    public function fullName(): Attribute
+    public function name(): Attribute
     {
         return new Attribute(
             get: fn() => $this->firstname . ' ' . $this->lastname

@@ -18,10 +18,11 @@ class Subscription extends Model
      */
     protected $fillable = [
         'name',
+        'description',
         'created_by_user_id',
-        'whlse_price_monthly',
+        'affiliate_price_monthly',
         'retail_price_monthly',
-        'whsle_annual',
+        'affiliate_annual',
         'retail_annual',
         'workspaces',
         'collaborators',
@@ -37,9 +38,9 @@ class Subscription extends Model
     protected $casts = [
         'id' => 'integer',
         'created_by_user_id' => 'integer',
-        'whlse_price_monthly' => 'decimal:2',
+        'affiliate_price_monthly' => 'decimal:2',
         'retail_price_monthly' => 'decimal:2',
-        'whsle_annual' => 'decimal:2',
+        'affiliate_annual' => 'decimal:2',
         'retail_annual' => 'decimal:2',
         'workspaces' => 'integer',
         'collaborators' => 'integer',
@@ -47,15 +48,13 @@ class Subscription extends Model
         'credits' => 'integer',
     ];
 
-    protected $with = ['createdBy'];
-
     public function subscriptionCollections(): HasMany
     {
         return $this->hasMany(SubscriptionCollection::class);
     }
 
-    public function createdBy(): BelongsTo
+    public function createdByUser(): BelongsTo
     {
-        return $this->belongsTo(User::class, 'created_by_user_id');
+        return $this->belongsTo(User::class);
     }
 }
