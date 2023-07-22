@@ -16,17 +16,19 @@ class SuperAdminSeeder extends Seeder
      */
     public function run()
     {
-        $superAdmin = User::factory()->state([
+        $superAdmin = User::create([
+            'uuid' => Str::uuid(),
             'firstname' => 'Super',
             'lastname' => 'Admin',
-            'email' => 'root1@bitjarlab.com',
+            'mobile' => '9186050328',
+            'email' => 'root@bitjarlab.com',
             'username' => 'root',
             'role' => 'super-admin',
             'status' => 'active',
-            'password' => Hash::make('1234567'),
+            'password' => Hash::make('123456'),
             'date_of_birth' => '1970-01-01',
             'ip_address' => '1.1.1.1'
-        ])->create();
+        ]);
         /** @var User $superAdmin */
         $superAdmin->assignRole(RoleEnum::SUPER_ADMIN->value);
     }

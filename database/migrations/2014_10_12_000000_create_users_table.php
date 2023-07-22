@@ -15,7 +15,7 @@ return new class extends Migration {
             $table->uuid()->index();
             $table->string('firstname');
             $table->string('lastname');
-            $table->string('mobile');
+            $table->string('mobile')->nullable();
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('username');

@@ -14,7 +14,7 @@ class OrderStatusSeeder extends Seeder
     public function run(): void
     {
         // Pending, Processing, Confirmed, In Transit, Out for Delivery, Delivered, On Hold, Cancelled, Returned, Completed, Failed
-        OrderStatus::factory(11)->sequence(
+        OrderStatus::insert([
             ['name' => 'Pending'],
             ['name' => 'Processing'],
             ['name' => 'Confirmed'],
@@ -26,6 +26,6 @@ class OrderStatusSeeder extends Seeder
             ['name' => 'Returned'],
             ['name' => 'Completed'],
             ['name' => 'Failed'],
-        )->create();
+        ]);
     }
 }
