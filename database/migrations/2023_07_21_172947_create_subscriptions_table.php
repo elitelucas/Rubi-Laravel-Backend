@@ -11,8 +11,6 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::disableForeignKeyConstraints();
-
         Schema::create('subscriptions', function (Blueprint $table) {
             $table->id();
             $table->string('name');
@@ -28,8 +26,6 @@ return new class extends Migration
             $table->unsignedInteger('credits');
             $table->timestamps();
         });
-
-        Schema::enableForeignKeyConstraints();
     }
 
     /**

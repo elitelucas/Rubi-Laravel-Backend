@@ -11,8 +11,6 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::disableForeignKeyConstraints();
-
         Schema::create('subscription_collections', function (Blueprint $table) {
             $table->id();
             $table->foreignId('subscription_id')->constrained();
@@ -20,8 +18,6 @@ return new class extends Migration
             $table->boolean('active')->default(true);
             $table->timestamps();
         });
-
-        Schema::enableForeignKeyConstraints();
     }
 
     /**
