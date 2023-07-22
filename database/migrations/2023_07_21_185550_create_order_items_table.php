@@ -13,11 +13,14 @@ return new class extends Migration
     {
         Schema::disableForeignKeyConstraints();
 
-        Schema::create('subscription_collections', function (Blueprint $table) {
+        Schema::create('order_items', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('order_id')->constrained();
+            $table->foreignId('product_id')->constrained();
             $table->foreignId('subscription_id')->constrained();
-            $table->foreignId('collection_id')->constrained();
-            $table->boolean('active')->default(true);
+            $table->unsignedInteger('quantity');
+            $table->decimal('tax', 8, 2);
+            $table->decimal('discount');
             $table->timestamps();
         });
 
@@ -29,6 +32,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('subscription_collections');
+        Schema::dropIfExists('order_items');
     }
 };

@@ -23,7 +23,7 @@ class SubscriptionFactory extends Factory
     {
         return [
             'name' => $this->faker->name,
-            'created_by_user_id' => User::find(1),
+            'created_by_user_id' => User::factory(),
             'whlse_price_monthly' => $this->faker->randomFloat(2, 0, 999999.99),
             'retail_price_monthly' => $this->faker->randomFloat(2, 0, 999999.99),
             'whsle_annual' => $this->faker->randomFloat(2, 0, 999999.99),

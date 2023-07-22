@@ -21,10 +21,11 @@ class SubscriptionStoreRequest extends FormRequest
     {
         return [
             'name' => ['required', 'string'],
+            'description' => ['required', 'string'],
             'created_by_user_id' => ['required', 'integer', 'exists:users,id'],
-            'whlse_price_monthly' => ['required', 'numeric'],
+            'affiliate_price_monthly' => ['required', 'numeric'],
             'retail_price_monthly' => ['required', 'numeric'],
-            'whsle_annual' => ['required', 'numeric'],
+            'affiliate_annual' => ['required', 'numeric'],
             'retail_annual' => ['required', 'numeric'],
             'workspaces' => ['required', 'integer'],
             'collaborators' => ['required', 'integer'],

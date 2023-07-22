@@ -17,7 +17,7 @@ class ListAllOrders
     public function handle(Request $request): mixed
     {
         $perPage = $request->input('per_page');
-        $query = Order::with(['user', 'client', 'client.user'])->latest();
+        $query = Order::with(['user', 'status', 'items'])->latest();
         return $perPage ? $query->paginate($perPage) : $query->get();
     }
 }

@@ -16,11 +16,11 @@ return new class extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained();
-            $table->foreignId('client_id')->constrained();
-            $table->unsignedInteger('words_qty');
-            $table->unsignedInteger('credit_qty');
-            $table->unsignedInteger('storage_qty');
-            $table->unsignedInteger('total');
+            $table->decimal('tax_total', 8, 2);
+            $table->decimal('discount_total', 8, 2);
+            $table->decimal('subtotal', 8, 2);
+            $table->decimal('total', 8, 2);
+            $table->foreignId('order_status_id')->constrained();
             $table->timestamps();
         });
 

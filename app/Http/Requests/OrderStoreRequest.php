@@ -21,11 +21,11 @@ class OrderStoreRequest extends FormRequest
     {
         return [
             'user_id' => ['required', 'integer', 'exists:users,id'],
-            'client_id' => ['required', 'integer', 'exists:clients,id'],
-            'words_qty' => ['required', 'integer'],
-            'credit_qty' => ['required', 'integer'],
-            'storage_qty' => ['required', 'integer'],
-            'total' => ['required', 'integer'],
+            'tax_total' => ['required', 'numeric'],
+            'discount_total' => ['required', 'numeric'],
+            'subtotal' => ['required', 'numeric'],
+            'total' => ['required', 'numeric'],
+            'order_status_id' => ['required', 'integer', 'exists:order_statuses,id']
         ];
     }
 }

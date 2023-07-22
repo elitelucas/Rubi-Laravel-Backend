@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('components', function (Blueprint $table) {
-            $table->id()->primary();
+            $table->id();
             $table->string('name')->nullable();
             $table->string('short_description')->nullable();
             $table->string('component_type')->nullable();

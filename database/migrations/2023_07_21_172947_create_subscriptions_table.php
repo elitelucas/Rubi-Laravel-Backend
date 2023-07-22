@@ -11,15 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::disableForeignKeyConstraints();
-
         Schema::create('subscriptions', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->text('description');
             $table->foreignId('created_by_user_id')->constrained('users');
-            $table->decimal('whlse_price_monthly', 8, 2);
+            $table->decimal('affiliate_price_monthly', 8, 2);
             $table->decimal('retail_price_monthly', 8, 2);
-            $table->decimal('whsle_annual', 8, 2);
+            $table->decimal('affiliate_annual', 8, 2);
             $table->decimal('retail_annual', 8, 2);
             $table->unsignedInteger('workspaces');
             $table->unsignedInteger('collaborators');
@@ -27,8 +26,6 @@ return new class extends Migration
             $table->unsignedInteger('credits');
             $table->timestamps();
         });
-
-        Schema::enableForeignKeyConstraints();
     }
 
     /**
