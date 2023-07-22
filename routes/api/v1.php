@@ -2,12 +2,14 @@
 
 use App\Http\Controllers\AdminModuleGeneratorController;
 use App\Http\Controllers\ClientController;
+use App\Http\Controllers\CollectionController;
 use App\Http\Controllers\CountryController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\OrderItemController;
 use App\Http\Controllers\OrderStatusController;
+use App\Http\Controllers\ProductCategoryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SubscriptionController;
 use App\Http\Controllers\SuperAdminController;
@@ -50,4 +52,5 @@ Route::apiResource('subscriptions', SubscriptionController::class);
 Route::apiResource('orders', OrderController::class);
 Route::apiResource('products', ProductController::class);
 Route::apiResource('orders.items', OrderItemController::class)->scoped();
-Route::apiResource('order_statuses', OrderStatusController::class);
+Route::apiResource('order-statuses', OrderStatusController::class);
+Route::apiResource('product-categories', ProductCategoryController::class);
