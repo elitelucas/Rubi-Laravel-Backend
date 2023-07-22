@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Http\Requests\ModuleGenerateRequest;
 use GuzzleHttp\Client;
 
 use Illuminate\Http\Request;
@@ -27,15 +28,17 @@ class AdminModuleGeneratorController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(ModuleGenerateRequest $request)
     {
-        //
-        $prompt = $request->input('prompt');
-        $voice = $request->input('voice');
-        $tone = $request->input('tone');
-        $language = $request->input('language');
-        $persona = $request->input('persona');
+        $prompt = $request->safe()->toArray()['prompt'];
+        $voice = $request->safe()->toArray()['voice'];
+        $tone = $request->safe()->toArray()['tone'];
+        $language = $request->safe()->toArray()['language'];
+        $persona = $request->safe()->toArray()['persona'];
+        return $this->getAnswerFromOpenAI($prompt, $voice, $tone, $language, $persona);
+    }
 
+    public function getAnswerFromOpenAI($prompt, $voice, $tone, $language, $persona) {
         $prompt = 'The listing should be well-written and enticing, highlighting the unique aspects of the property to attract potential buyers.\n'.$prompt;
         
         // $prompt = "The listing should be well-written and enticing, highlighting the unique aspects of the property to attract potential buyers.
@@ -86,7 +89,7 @@ class AdminModuleGeneratorController extends Controller
 
             $data = json_decode($response->getBody(), true);
 
-            echo $data['choices'][0]['message']['content'];
+            return $data['choices'][0]['message']['content'];
 
         } catch (\Exception $e) {
             Log::error($e->getMessage());

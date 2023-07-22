@@ -1,12 +1,14 @@
 <?php
 
 use App\Http\Controllers\AdminModuleGeneratorController;
+use App\Http\Controllers\AdminSaveModulesController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\CollectionController;
 use App\Http\Controllers\CountryController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SubscriptionController;
 use App\Http\Controllers\SuperAdminController;
 use App\Http\Controllers\UserController;
@@ -46,7 +48,10 @@ Route::resource('languages', LanguageController::class)->only('index');
 Route::resource('collections', CollectionController::class);
 Route::resource('subscriptions', SubscriptionController::class);
 Route::resource('orders', OrderController::class);
+Route::resource('products', ProductController::class);
 
 //Admin API
 
-Route::resource('admin-moduleGenerator', AdminModuleGeneratorController::class)->only('store');
+Route::resource('admin/module-generator', AdminModuleGeneratorController::class);
+Route::resource('admin/save-modules', AdminSaveModulesController::class);
+
