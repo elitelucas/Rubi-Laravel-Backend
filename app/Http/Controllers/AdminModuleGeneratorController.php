@@ -38,7 +38,7 @@ class AdminModuleGeneratorController extends Controller
         return $this->getAnswerFromOpenAI($prompt, $voice, $tone, $language, $persona);
     }
 
-    public function getAnswerFromOpenAI($prompt, $voice, $tone, $language, $persona) {
+    public function getAnswerFromOpenAI(string $prompt, string $voice, string $tone, string $language, string $persona) {
         $prompt = 'The listing should be well-written and enticing, highlighting the unique aspects of the property to attract potential buyers.\n'.$prompt;
         
         // $prompt = "The listing should be well-written and enticing, highlighting the unique aspects of the property to attract potential buyers.

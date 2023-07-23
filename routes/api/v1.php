@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminModuleComponentController;
 use App\Http\Controllers\AdminModuleGeneratorController;
 use App\Http\Controllers\AdminSaveModulesController;
 use App\Http\Controllers\ClientController;
@@ -10,6 +11,7 @@ use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\OrderItemController;
 use App\Http\Controllers\OrderStatusController;
+use App\Http\Controllers\PersonasController;
 use App\Http\Controllers\ProductCategoryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SubscriptionController;
@@ -59,4 +61,6 @@ Route::apiResource('product-categories', ProductCategoryController::class);
 //Admin API
 Route::resource('admin/module-generator', AdminModuleGeneratorController::class);
 Route::resource('admin/save-modules', AdminSaveModulesController::class);
+Route::resource('admin/save-module-components', AdminModuleComponentController::class);
+Route::resource('admin/persona', PersonasController::class);
 

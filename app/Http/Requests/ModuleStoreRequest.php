@@ -30,7 +30,9 @@ class ModuleStoreRequest extends FormRequest
             'admin_contact' => ['required', 'integer'],
             'created_by' => ['required', 'integer'],
             'icon' => ['required', 'string'],
-            'version' => ['required', 'string']
+            'version' => ['required', 'string'],
+            'prompt' => ['required', 'string'],
+            'include_persona' => ['required', 'boolean']
         ];
     }
 }

@@ -4,14 +4,14 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class MoudleComponentStoreRequest extends FormRequest
+class ModuleComponentRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
      */
     public function authorize(): bool
     {
-        return true;
+        return false;
     }
 
     /**
@@ -22,7 +22,9 @@ class MoudleComponentStoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'module_id' => ['required', 'integer'],
+            'component_count' => ['required', 'integer'],
+            'items' => ['required', 'array'],
         ];
     }
 }
