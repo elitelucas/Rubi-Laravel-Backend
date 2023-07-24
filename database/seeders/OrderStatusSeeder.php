@@ -15,17 +15,17 @@ class OrderStatusSeeder extends Seeder
     {
         // Pending, Processing, Confirmed, In Transit, Out for Delivery, Delivered, On Hold, Cancelled, Returned, Completed, Failed
         OrderStatus::insert([
-            ['name' => 'Pending'],
-            ['name' => 'Processing'],
-            ['name' => 'Confirmed'],
-            ['name' => 'In Transit'],
-            ['name' => 'Out for Delivery'],
-            ['name' => 'Delivered'],
-            ['name' => 'On Hold'],
-            ['name' => 'Cancelled'],
-            ['name' => 'Returned'],
-            ['name' => 'Completed'],
-            ['name' => 'Failed'],
+            ['name' => 'Pending', 'created_at' => now(), 'updated_at' => now()],
+            ['name' => 'Processing', 'created_at' => now(), 'updated_at' => now()],
+            ['name' => 'Confirmed', 'created_at' => now(), 'updated_at' => now()],
+            ['name' => 'In Transit', 'created_at' => now(), 'updated_at' => now()],
+            ['name' => 'Out for Delivery', 'created_at' => now(), 'updated_at' => now()],
+            ['name' => 'Delivered', 'created_at' => now(), 'updated_at' => now()],
+            ['name' => 'On Hold', 'created_at' => now(), 'updated_at' => now()],
+            ['name' => 'Cancelled', 'created_at' => now(), 'updated_at' => now()],
+            ['name' => 'Returned', 'created_at' => now(), 'updated_at' => now()],
+            ['name' => 'Completed', 'created_at' => now(), 'updated_at' => now()],
+            ['name' => 'Failed', 'created_at' => now(), 'updated_at' => now()],
         ]);
     }
 }
