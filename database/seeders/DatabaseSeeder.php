@@ -20,7 +20,7 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             SuperAdminSeeder::class,
             ProductSeeder::class,
-            OrderStatusSeeder::class
+            OrderStatusSeeder::class,
         ]);
     }
 }

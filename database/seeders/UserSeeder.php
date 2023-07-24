@@ -16,68 +16,126 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
-        $robert = User::create([
+        User::create([
             'uuid' => Str::uuid(),
             'firstname' => 'Robert',
             'lastname' => 'Sacco',
             'mobile' => '9186050328',
             'email' => 'robert.sacco@bitjarlabs.com',
+            'email_verified_at' => now(),
             'username' => 'bitjarlabs',
             'password' => Hash::make('123456'),
             'role' => 'super-admin',
             'status' => 'active',
+            'country_id' => 1,
             '2fa_verified' => true,
             'date_of_birth' => '1970-10-02',
             'ip_address' => '72.100.90.263',
-        ]);
-        $robert->assignRole(RoleEnum::SUPER_ADMIN->value);
+        ])->assignRole(RoleEnum::SUPER_ADMIN->value);
 
-        $flex = User::create([
+        User::create([
             'uuid' => Str::uuid(),
             'firstname' => 'Flex',
             'lastname' => 'Sacco',
             'email' => 'admin@myflex.ai',
+            'email_verified_at' => now(),
             'username' => 'flex',
             'password' => Hash::make('123456'),
             'role' => 'client-admin',
             'mobile' => '9186050328',
             'status' => 'active',
+            'country_id' => 1,
             '2fa_verified' => true,
             'date_of_birth' => '1970-10-02',
             'ip_address' => '72.100.90.263',
-        ]);
-        $flex->assignRole(RoleEnum::CLIENT_ADMIN->value);
+        ])->assignRole(RoleEnum::CLIENT_ADMIN->value);
 
-        $corey = User::create([
+        User::create([
             'uuid' => Str::uuid(),
             'firstname' => 'Corey',
             'lastname' => 'Davidson',
             'mobile' => '5122896014',
             'email' => 'corey.davidson@bitjarlabs.com',
+            'email_verified_at' => now(),
             'username' => 'corey',
             'password' => Hash::make('123456'),
             'role' => 'client-customer',
             'status' => 'active',
+            'country_id' => 1,
             '2fa_verified' => false,
             'date_of_birth' => '1970-03-05',
             'ip_address' => '72.102.23.234',
-        ]);
-        $corey->assignRole(RoleEnum::CUSTOMER->value);
+        ])->assignRole(RoleEnum::CUSTOMER->value);
 
-        $jay = User::create([
+        User::create([
             'uuid' => Str::uuid(),
             'firstname' => 'Jay',
             'lastname' => 'Dixon',
             'mobile' => '9188985542',
             'email' => 'jay.dixon@bitjarlabs.com',
+            'email_verified_at' => now(),
             'username' => 'jay',
             'password' => Hash::make('123456'),
             'role' => 'client-customer',
             'status' => 'active',
+            'country_id' => 1,
             '2fa_verified' => false,
             'date_of_birth' => '1989-08-23',
             'ip_address' => '74.292.213.12',
-        ]);
-        $jay->assignRole(RoleEnum::CUSTOMER->value);
+        ])->assignRole(RoleEnum::CUSTOMER->value);
+
+        User::create([
+            'uuid' => Str::uuid(),
+            'firstname' => 'Aimee',
+            'lastname' => 'Sacco',
+            'mobile' => '9186070673',
+            'email' => 'aimeesacco@hotmail.com',
+            'email_verified_at' => now(),
+            'username' => 'aimee',
+            'password' => Hash::make('1234567'),
+            'role' => 'collaborator',
+            'status' => 'active',
+            'country_id' => 1,
+            '2fa_verified' => false,
+            'date_of_birth' => '1970-10-02',
+            'preferred_language_id' => 1,
+            'ip_address' => '1.1.1.1',
+        ])->assignRole(RoleEnum::COLLABORATOR->value);
+
+        User::create([
+            'uuid' => Str::uuid(),
+            'firstname' => 'Sally',
+            'lastname' => 'Sacco',
+            'mobile' => '9188985542',
+            'email' => 'sally@bitjarlabs.com',
+            'email_verified_at' => now(),
+            'username' => 'sally',
+            'password' => Hash::make('1234567'),
+            'role' => 'collaborator',
+            'status' => 'active',
+            'country_id' => 1,
+            '2fa_verified' => false,
+            'date_of_birth' => '1970-10-02',
+            'preferred_language_id' => '1',
+            'ip_address' => '1.1.1.1',
+        ])->assignRole(RoleEnum::COLLABORATOR->value);
+
+        User::create([
+            'uuid' => Str::uuid(),
+            'firstname' => 'Luc',
+            'lastname' => 'Sacco',
+            'mobile' => '9186070673',
+            'email' => 'luc@bitjarlabs.com',
+            'email_verified_at' => now(),
+            'username' => 'luc',
+            'password' => '1234567',
+            'role' => 'collaborator',
+            'status' => 'active',
+            'country_id' => 1,
+            '2fa_verified' => false,
+            'date_of_birth' => '1970-10-02',
+            'preferred_language_id' => '1',
+            'ip_address' => '1.1.1.1',
+        ])->assignRole(RoleEnum::COLLABORATOR->value);
     }
 }

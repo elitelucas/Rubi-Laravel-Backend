@@ -42,5 +42,10 @@ class PermissionSeeder extends Seeder
         Permission::create(['name' => 'update-order']);
         Permission::create(['name' => 'delete-order']);
         Permission::create(['name' => 'list-order']);
+
+        Permission::create(['name' => 'create-workspace']);
+        Permission::create(['name' => 'update-workspace']);
+        Permission::create(['name' => 'delete-workspace']);
+        Permission::create(['name' => 'list-workspace']);
     }
 }

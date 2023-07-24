@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('workspace_keywords', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained();
-            $table->foreignId('workspace_id')->constrained();
+            $table->foreignId('workspace_id')->constrained()->cascadeOnDelete();
             $table->string('keyword');
             $table->timestamps();
         });

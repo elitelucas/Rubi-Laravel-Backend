@@ -23,7 +23,7 @@ class UserSubscriptionFactory extends Factory
     public function definition(): array
     {
         return [
-            'user_id' => User::factory(),
+            'user_id' => User::find(1),
             'subscription_id' => Subscription::factory(),
             'nickname' => $this->faker->word,
             'short_description' => $this->faker->word,

@@ -23,8 +23,8 @@ class WorkspaceKeywordFactory extends Factory
     public function definition(): array
     {
         return [
-            'user_id' => User::factory(),
-            'workspace_id' => Workspace::factory(),
+            'user_id' => User::findOrFail(3),
+            'workspace_id' => Workspace::findOrFail(1),
             'keyword' => $this->faker->word,
         ];
     }

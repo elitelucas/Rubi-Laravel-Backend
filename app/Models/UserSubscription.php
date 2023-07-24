@@ -36,9 +36,9 @@ class UserSubscription extends Model
         'id' => 'integer',
         'user_id' => 'integer',
         'subscription_id' => 'integer',
-        'activation_date' => 'timestamp',
-        'expiration_date' => 'timestamp',
-        'renewal_date' => 'timestamp',
+        'activation_date' => 'datetime',
+        'expiration_date' => 'datetime',
+        'renewal_date' => 'datetime',
         'active' => 'boolean',
     ];
 
