@@ -17,7 +17,7 @@ class WorkspaceResource extends JsonResource
         return [
             'id' => $this->id,
             'customer' => UserResource::make($this->whenLoaded('customer')),
-            'subscription' => SubscriptionResource::make($this->whenLoaded('subscription')),
+            'subscription' => UserSubscriptionResource::make($this->whenLoaded('userSubscription')),
             'nickname' => $this->nickname,
             'short_description' => $this->short_description,
             'active' => $this->active

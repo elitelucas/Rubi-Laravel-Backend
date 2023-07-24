@@ -39,7 +39,7 @@ class WorkspaceController extends Controller
      */
     public function show(Workspace $workspace): WorkspaceResource
     {
-        return WorkspaceResource::make($workspace);
+        return WorkspaceResource::make($workspace->load(['customer', 'userSubscription', 'userSubscription.subscription']));
     }
 
     /**

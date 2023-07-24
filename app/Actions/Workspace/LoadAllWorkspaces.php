@@ -15,7 +15,7 @@ class LoadAllWorkspaces
     {
         return $this->addPaginationAndSearch(
             request: $request,
-            query: $user->workspaces()->getQuery(),
+            query: $user->workspaces()->with(['customer', 'userSubscription'])->getQuery(),
             fieldsToSearch: ['nickname', 'short_description']
         );
     }

@@ -17,7 +17,7 @@ class SuperAdminSeeder extends Seeder
     public function run()
     {
         $superAdmin = User::create([
-            'uuid' => Str::uuid(),
+            'uuid' => 'e5b49222-b4d9-48b0-b41f-5ec3b80be7a0',
             'firstname' => 'Super',
             'lastname' => 'Admin',
             'mobile' => '9186050328',
