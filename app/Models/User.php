@@ -38,7 +38,8 @@ class User extends Authenticatable
         '2fa_verified',
         'preferred_language_id',
         'date_of_birth',
-        'ip_address'
+        'ip_address',
+        'tin'
     ];
 
     /**
