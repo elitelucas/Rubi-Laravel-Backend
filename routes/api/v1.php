@@ -14,6 +14,7 @@ use App\Http\Controllers\OrderStatusController;
 use App\Http\Controllers\PersonasController;
 use App\Http\Controllers\ProductCategoryController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\SpiAuditController;
 use App\Http\Controllers\SubscriptionController;
 use App\Http\Controllers\SuperAdminController;
 use App\Http\Controllers\UserController;
@@ -57,6 +58,7 @@ Route::apiResource('products', ProductController::class);
 Route::apiResource('orders.items', OrderItemController::class)->scoped();
 Route::apiResource('order-statuses', OrderStatusController::class);
 Route::apiResource('product-categories', ProductCategoryController::class);
+Route::apiResource('spi-audit', SpiAuditController::class);
 
 //Admin API
 Route::resource('admin/module-generator', AdminModuleGeneratorController::class);

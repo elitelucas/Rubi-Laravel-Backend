@@ -31,7 +31,8 @@ class ManageApifyController extends Controller
             if ($response->failed()) {
                 echo 'Error: ' . $response->body();
             } else {
-                echo 'Scrape job started successfully!';
+                echo $response;
+                // echo 'Scrape job started successfully!';
             }
         } catch (\Exception $e) {
             Log::error($e->getMessage());
