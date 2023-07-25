@@ -11,6 +11,7 @@ use App\Http\Requests\WorkspaceKeywordUpdateRequest;
 use App\Http\Resources\WorkspaceKeywordResource;
 use App\Models\Workspace;
 use App\Models\WorkspaceKeyword;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
@@ -50,7 +51,7 @@ class WorkspaceKeywordController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Workspace $workspace, WorkspaceKeyword $keyword, RemoveWorkspaceKeyword $workspaceKeywordRemover)
+    public function destroy(Workspace $workspace, WorkspaceKeyword $keyword, RemoveWorkspaceKeyword $workspaceKeywordRemover): JsonResponse
     {
         if ($workspaceKeywordRemover->handle($keyword)) {
             return response()->json([

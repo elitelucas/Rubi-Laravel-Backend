@@ -154,4 +154,9 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Workspace::class);
     }
+
+    public function invitations(): hasMany
+    {
+        return $this->hasMany(Invitation::class);
+    }
 }

@@ -7,6 +7,7 @@ use App\Http\Controllers\ClientController;
 use App\Http\Controllers\CollectionController;
 use App\Http\Controllers\CountryController;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\InvitationController;
 use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\OrderItemController;
@@ -63,8 +64,8 @@ Route::apiResource('product-categories', ProductCategoryController::class);
 Route::apiResource('spi-audit', SpiAuditController::class);
 Route::apiResource('user.workspaces', WorkspaceController::class)->scoped();
 Route::apiResource('workspace.keywords', WorkspaceKeywordController::class)->scoped();
+Route::apiResource('user.invitations', InvitationController::class)->scoped();
 
-//Admin API
 Route::prefix('admin')->group(function () {
     Route::apiResource('/module-generator', AdminModuleGeneratorController::class);
     Route::apiResource('/save-modules', AdminSaveModulesController::class);

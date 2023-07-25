@@ -47,5 +47,10 @@ class PermissionSeeder extends Seeder
         Permission::create(['name' => 'update-workspace']);
         Permission::create(['name' => 'delete-workspace']);
         Permission::create(['name' => 'list-workspace']);
+
+        Permission::create(['name' => 'create-invitation']);
+        Permission::create(['name' => 'update-invitation']);
+        Permission::create(['name' => 'delete-invitation']);
+        Permission::create(['name' => 'list-invitation']);
     }
 }
