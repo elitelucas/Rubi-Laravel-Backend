@@ -15,19 +15,16 @@ class CollaboratorSeeder extends Seeder
     {
         collect([
             [
-                'id' => '1',
                 'user_id' => '4',
                 'customer_user_id' => '2',
                 'active' => true,
             ],
             [
-                'id' => '2',
                 'user_id' => '5',
                 'customer_user_id' => '3',
                 'active' => true,
             ],
             [
-                'id' => '3',
                 'user_id' => '6',
                 'customer_user_id' => '3',
                 'active' => true,

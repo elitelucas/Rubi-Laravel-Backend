@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use App\Models\WorkspaceKeyword;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -25,7 +24,8 @@ class DatabaseSeeder extends Seeder
             SubscriptionSeeder::class,
             UserSubscriptionSeeder::class,
             WorkspaceSeeder::class,
-            UserWorkspaceSeeder::class
+            UserWorkspaceSeeder::class,
+            WorkspaceKeywordSeeder::class
         ]);
     }
 }

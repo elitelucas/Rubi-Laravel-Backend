@@ -19,6 +19,7 @@ use App\Http\Controllers\SubscriptionController;
 use App\Http\Controllers\SuperAdminController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\WorkspaceController;
+use App\Http\Controllers\WorkspaceKeywordController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -60,6 +61,8 @@ Route::apiResource('orders.items', OrderItemController::class)->scoped();
 Route::apiResource('order-statuses', OrderStatusController::class);
 Route::apiResource('product-categories', ProductCategoryController::class);
 Route::apiResource('spi-audit', SpiAuditController::class);
+Route::apiResource('user.workspaces', WorkspaceController::class)->scoped();
+Route::apiResource('workspace.keywords', WorkspaceKeywordController::class)->scoped();
 
 //Admin API
 Route::prefix('admin')->group(function () {
