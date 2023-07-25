@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('organ_user_id');
             $table->string('personal_api_token');
             $table->string('organ_api_token');
-            $table->json('params')->default(new Expression('(JSON_ARRAY())'));
+            $table->json('params')->default(new Expression(value: "'{}'::json"));
             $table->timestamps();
         });
     }
