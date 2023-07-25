@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('components_items', function (Blueprint $table) {
-            $table->id()->primary();
+            $table->id();
             $table->foreignId('module_id')->constrained('modules');
             $table->foreignId('component_id')->constrained('components');
             $table->string('item')->nullable()->nullable();

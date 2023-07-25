@@ -7,6 +7,7 @@ use Illuminate\Support\Str;
 use App\Models\Order;
 use App\Models\OrderItem;
 use App\Models\Product;
+use App\Models\Subscription;
 
 class OrderItemFactory extends Factory
 {
@@ -25,6 +26,10 @@ class OrderItemFactory extends Factory
         return [
             'order_id' => Order::factory(),
             'product_id' => Product::factory(),
+            'subscription_id' => Subscription::factory(),
+            'quantity' => $this->faker->randomNumber(),
+            'tax' => $this->faker->randomFloat(2, 0, 999999.99),
+            'discount' => $this->faker->randomFloat(0, 0, 9999999999.),
         ];
     }
 }

@@ -18,11 +18,11 @@ class Order extends Model
      */
     protected $fillable = [
         'user_id',
-        'client_id',
-        'words_qty',
-        'credit_qty',
-        'storage_qty',
+        'tax_total',
+        'discount_total',
+        'subtotal',
         'total',
+        'order_status_id',
     ];
 
     /**
@@ -33,25 +33,25 @@ class Order extends Model
     protected $casts = [
         'id' => 'integer',
         'user_id' => 'integer',
-        'client_id' => 'integer',
-        'words_qty' => 'integer',
-        'credit_qty' => 'integer',
-        'storage_qty' => 'integer',
-        'total' => 'integer',
+        'tax_total' => 'decimal:2',
+        'discount_total' => 'decimal:2',
+        'subtotal' => 'decimal:2',
+        'total' => 'decimal:2',
+        'order_status_id' => 'integer',
     ];
-
-    public function orderItems(): HasMany
-    {
-        return $this->hasMany(OrderItem::class);
-    }
 
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }
 
-    public function client(): BelongsTo
+    public function status(): BelongsTo
     {
-        return $this->belongsTo(Client::class);
+        return $this->belongsTo(OrderStatus::class);
+    }
+
+    public function items(): HasMany
+    {
+        return $this->hasMany(OrderItem::class);
     }
 }

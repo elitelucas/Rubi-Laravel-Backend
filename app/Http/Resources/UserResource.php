@@ -16,18 +16,19 @@ class UserResource extends JsonResource
     {
         return [
             'uuid' => $this->uuid,
-            'name' => $this->firstname . ' ' .  $this->lastname,
+            'name' => $this->name,
             'mobile' => $this->mobile,
             'email' => $this->email,
             'username' => $this->username,
             'role' => $this->role,
             'status' => $this->status,
             'country_id' => $this->country_id,
-            'created_by' => $this->when($this->creator, $this->creator->fullName),
+            'created_by' => UserResource::make($this->whenLoaded('createdBy')),
             'addresses' => AddressResource::collection($this->whenLoaded('addresses')),
             'date_of_birth'  => $this->date_of_birth,
             'preferred_language' => LanguageResource::make($this->whenLoaded('preferredLanguage')),
-            'ip_address' => $this->ip_address
+            'ip_address' => $this->ip_address,
+            'tin' => $this->tin,
         ];
     }
 }

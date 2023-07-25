@@ -4,8 +4,8 @@ namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
-use App\Models\Client;
 use App\Models\Order;
+use App\Models\OrderStatus;
 use App\Models\User;
 
 class OrderFactory extends Factory
@@ -23,12 +23,12 @@ class OrderFactory extends Factory
     public function definition(): array
     {
         return [
-            'user_id' => User::find(1),
-            'client_id' => Client::find(1),
-            'words_qty' => $this->faker->randomNumber(),
-            'credit_qty' => $this->faker->randomNumber(),
-            'storage_qty' => $this->faker->randomNumber(),
-            'total' => $this->faker->randomNumber(),
+            'user_id' => User::factory(),
+            'tax_total' => $this->faker->randomFloat(2, 0, 999999.99),
+            'discount_total' => $this->faker->randomFloat(2, 0, 999999.99),
+            'subtotal' => $this->faker->randomFloat(2, 0, 999999.99),
+            'total' => $this->faker->randomFloat(2, 0, 999999.99),
+            'order_status_id' => OrderStatus::factory(),
         ];
     }
 }

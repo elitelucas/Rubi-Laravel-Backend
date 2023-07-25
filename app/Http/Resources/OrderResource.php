@@ -17,11 +17,11 @@ class OrderResource extends JsonResource
         return [
             'id' => $this->id,
             'user' => UserResource::make($this->whenLoaded('user')),
-            'client' => ClientResource::make($this->whenLoaded('client')),
-            'words_qty' => $this->words_qty,
-            'credit_qty' => $this->credit_qty,
-            'storage_qty' => $this->storage_qty,
-            'total' => $this->total
+            'tax_total' => $this->tax_total,
+            'discount_total' => $this->discount_total,
+            'subtotal' => $this->subtotal,
+            'total' => $this->total,
+            'status' => OrderStatusResource::make($this->whenLoaded('status'))
         ];
     }
 }

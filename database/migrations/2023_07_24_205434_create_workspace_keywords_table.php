@@ -13,11 +13,11 @@ return new class extends Migration
     {
         Schema::disableForeignKeyConstraints();
 
-        Schema::create('subscription_collections', function (Blueprint $table) {
+        Schema::create('workspace_keywords', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('subscription_id')->constrained();
-            $table->foreignId('collection_id')->constrained();
-            $table->boolean('active')->default(true);
+            $table->foreignId('user_id')->constrained();
+            $table->foreignId('workspace_id')->constrained()->cascadeOnDelete();
+            $table->string('keyword');
             $table->timestamps();
         });
 
@@ -29,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('subscription_collections');
+        Schema::dropIfExists('workspace_keywords');
     }
 };

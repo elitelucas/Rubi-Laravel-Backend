@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\WorkspaceKeyword;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -13,14 +14,18 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         $this->call([
-            PermissionSeeder::class,
             RoleSeeder::class,
+            PermissionSeeder::class,
             LanguageSeeder::class,
             CountrySeeder::class,
             UserSeeder::class,
             SuperAdminSeeder::class,
-            ProductCategorySeeder::class,
             ProductSeeder::class,
+            OrderStatusSeeder::class,
+            SubscriptionSeeder::class,
+            UserSubscriptionSeeder::class,
+            WorkspaceSeeder::class,
+            UserWorkspaceSeeder::class
         ]);
     }
 }
