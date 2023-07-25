@@ -27,7 +27,7 @@ return new class extends Migration
             $table->string('values');
             $table->string('motivation');
             $table->string('media_consumption');
-            $table->foreignId('submission_id')->constrained('submission');
+            // $table->foreignId('submission_id')->constrained('submission');
             $table->timestamps();
         });
     }
