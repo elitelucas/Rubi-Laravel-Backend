@@ -7,6 +7,7 @@ use App\Enums\RoleEnum;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -38,7 +39,8 @@ class User extends Authenticatable
         '2fa_verified',
         'preferred_language_id',
         'date_of_birth',
-        'ip_address'
+        'ip_address',
+        'tin',
     ];
 
     /**
@@ -56,7 +58,7 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
-        'date_of_birth' => 'date'
+        'date_of_birth' => 'date',
     ];
 
     /**
@@ -65,6 +67,16 @@ class User extends Authenticatable
      * @var string[]
      */
     protected $appends = ['name'];
+
+    /**
+     * Get the route key for the model.
+     *
+     * @return string
+     */
+    public function getRouteKeyName(): string
+    {
+        return 'uuid';
+    }
 
     /**
      * Client relationship if the current user is a client.
@@ -111,9 +123,7 @@ class User extends Authenticatable
      */
     public function name(): Attribute
     {
-        return new Attribute(
-            get: fn() => $this->firstname . ' ' . $this->lastname
-        );
+        return new Attribute(get: fn() => $this->firstname . ' ' . $this->lastname);
     }
 
     /**
@@ -140,4 +150,8 @@ class User extends Authenticatable
         return $this->belongsTo(Language::class, 'preferred_language_id');
     }
 
+    public function workspaces(): BelongsToMany
+    {
+        return $this->belongsToMany(Workspace::class);
+    }
 }

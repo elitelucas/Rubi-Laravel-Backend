@@ -33,7 +33,7 @@ class ProductCategoryController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(ProductCategoryStoreRequest $request, CreateProductCategory $productCategoryCreator): ProductResource
+    public function store(ProductCategoryStoreRequest $request, CreateProductCategory $productCategoryCreator): ProductCategoryResource
     {
         $productCategory = $productCategoryCreator->handle($request->safe()->toArray());
         return ProductCategoryResource::make($productCategory);
@@ -42,7 +42,7 @@ class ProductCategoryController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(ProductCategory $productCategory): ProductResource
+    public function show(ProductCategory $productCategory): ProductCategoryResource
     {
         return ProductCategoryResource::make($productCategory);
     }
@@ -50,7 +50,7 @@ class ProductCategoryController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(ProductCategoryStoreRequest $request, ProductCategory $productCategory, UpdateProductCategory $productCategoryUpdater): ProductResource
+    public function update(ProductCategoryStoreRequest $request, ProductCategory $productCategory, UpdateProductCategory $productCategoryUpdater): ProductCategoryResource
     {
         $updatedProduct = $productCategoryUpdater->handle(product: $productCategory, data: $request->safe()->toArray());
         return ProductCategoryResource::make($updatedProduct);
@@ -63,12 +63,12 @@ class ProductCategoryController extends Controller
     {
         if ($productCategoryRemover->handle($product)) {
             return response()->json([
-                'message' => 'Product removed sucessfully.',
+                'message' => 'Product category removed sucessfully.',
             ]);
         }
 
         return response()->json([
-            'error' => 'An error occurred removing product.'
+            'error' => 'An error occurred removing product category.'
         ]);
     }
 }

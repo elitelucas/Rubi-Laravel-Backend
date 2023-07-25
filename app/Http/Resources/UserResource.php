@@ -27,7 +27,8 @@ class UserResource extends JsonResource
             'addresses' => AddressResource::collection($this->whenLoaded('addresses')),
             'date_of_birth'  => $this->date_of_birth,
             'preferred_language' => LanguageResource::make($this->whenLoaded('preferredLanguage')),
-            'ip_address' => $this->ip_address
+            'ip_address' => $this->ip_address,
+            'tin' => $this->tin,
         ];
     }
 }
