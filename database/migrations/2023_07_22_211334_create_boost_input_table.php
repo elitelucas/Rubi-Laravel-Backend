@@ -14,14 +14,14 @@ return new class extends Migration
     {
         Schema::create('boost_inputs', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('boost_id')->constrained('boost');
+            $table->foreignId('boost_id')->constrained('boosts');
             $table->string('actor_name');
             $table->string('actor_id');
             $table->integer('api_endpoint');
             $table->string('organ_user_id');
             $table->string('personal_api_token');
             $table->string('organ_api_token');
-            $table->json('params')->default(new Expression('(JSON_ARRAY())'));
+            $table->json('params')->default(new Expression(value: "'{}'::json"));
             $table->timestamps();
         });
     }

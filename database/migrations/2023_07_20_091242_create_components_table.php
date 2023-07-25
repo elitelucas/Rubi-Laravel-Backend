@@ -16,7 +16,7 @@ return new class extends Migration
             $table->id();
             $table->string('name')->nullable();
             $table->string('short_description')->nullable();
-            $table->json('items')->default(new Expression('(JSON_ARRAY())'));
+            $table->json('items')->default(new Expression(value: "'{}'::json"));
             $table->unsignedInteger('created_by')->nullable();
             $table->string('icon')->nullable();
             $table->timestamps();
