@@ -62,8 +62,9 @@ Route::apiResource('product-categories', ProductCategoryController::class);
 Route::apiResource('spi-audit', SpiAuditController::class);
 
 //Admin API
-Route::resource('admin/module-generator', AdminModuleGeneratorController::class);
-Route::resource('admin/save-modules', AdminSaveModulesController::class);
-Route::resource('admin/save-module-components', AdminModuleComponentController::class);
-Route::resource('admin/persona', PersonasController::class);
-
+Route::prefix('admin')->group(function () {
+    Route::resource('/module-generator', AdminModuleGeneratorController::class);
+    Route::resource('/save-modules', AdminSaveModulesController::class);
+    Route::resource('/save-module-components', AdminModuleComponentController::class);
+    Route::resource('/persona', PersonasController::class);
+});

@@ -18,8 +18,8 @@ class ManageApifyController extends Controller
         $organ_api_token = "";
         $params = [];
         try {
-            $apiUrl = 'https://api.apify.com/v2/acts/apify~web-scraper/runs';
-            $apiToken = env('APIFY_API_TOKEN');
+            $apiUrl = config('apify.base_url').'/acts/apify~web-scraper/runs';
+            $apiToken = config('apify.apify_api_key');
 
             $inputData = file_get_contents('input.json');
 
@@ -44,12 +44,12 @@ class ManageApifyController extends Controller
     {
         try {
 
-            $token = env('APIFY_API_TOKEN');
+            $token = config('apify.apify_api_key');
 
             // Make a GET request to the Apify API with the authentication token
             $response = Http::withHeaders([
                 'Authorization' => 'Bearer ' . $token,
-            ])->get('https://api.apify.com/v2/acts?limit=10000');
+            ])->get(config('apify.base_url').'/acts?limit=10000');
 
             // Get the JSON response body
             if ($response->successful()) {

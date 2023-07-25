@@ -2,13 +2,13 @@
 
 namespace App\Actions\ModuleComponents;
 
-use App\Models\Components;
+use App\Models\Component;
 use Illuminate\Database\Eloquent\Collection;
 
 class CreateModuleComponent
 {
-    public function handle(array $data): Components
+    public function handle(array $data): Component
     {
-        return Components::create($data);
+        return Component::create($data);
     }
 }

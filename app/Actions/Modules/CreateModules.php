@@ -2,12 +2,12 @@
 
 namespace App\Actions\Modules;
 
-use App\Models\Modules;
+use App\Models\Module;
 
 class CreateModules
 {
-    public function handle(array $data): Modules
+    public function handle(array $data): Module
     {
-        return Modules::create($data);
+        return Module::create($data);
     }
 }

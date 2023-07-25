@@ -2,13 +2,13 @@
 
 namespace App\Actions\Voice;
 
-use App\Models\Voices;
+use App\Models\Voice;
 use Illuminate\Database\Eloquent\Collection;
 
 class CreateVoice
 {
-    public function handle(array $data): Voices
+    public function handle(array $data): Voice
     {
-        return Voices::create($data);
+        return Voice::create($data);
     }
 }

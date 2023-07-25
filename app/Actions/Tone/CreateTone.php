@@ -2,13 +2,13 @@
 
 namespace App\Actions\Tone;
 
-use App\Models\Tones;
+use App\Models\Tone;
 use Illuminate\Database\Eloquent\Collection;
 
 class CreateTone
 {
-    public function handle(array $data): Tones
+    public function handle(array $data): Tone
     {
-        return Tones::create($data);
+        return Tone::create($data);
     }
 }

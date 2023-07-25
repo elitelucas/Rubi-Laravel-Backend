@@ -12,7 +12,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('boost_input', function (Blueprint $table) {
+        Schema::create('boost_inputs', function (Blueprint $table) {
             $table->id();
             $table->foreignId('boost_id')->constrained('boost');
             $table->string('actor_name');
@@ -31,6 +31,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('boost_input');
+        Schema::dropIfExists('boost_inputs');
     }
 };

@@ -30,15 +30,18 @@ class AdminModuleGeneratorController extends Controller
      */
     public function store(ModuleGenerateRequest $request)
     {
-        $prompt = $request->safe()->toArray()['prompt'];
-        $voice = $request->safe()->toArray()['voice'];
-        $tone = $request->safe()->toArray()['tone'];
-        $language = $request->safe()->toArray()['language'];
-        $persona = $request->safe()->toArray()['persona'];
-        return $this->getAnswerFromOpenAI($prompt, $voice, $tone, $language, $persona);
+        $data = $request->only(['prompt', 'voice', 'tone', 'language', 'persona']);
+        return $this->getAnswerFromOpenAI(request: $data);
     }
 
-    public function getAnswerFromOpenAI(string $prompt, string $voice, string $tone, string $language, string $persona) {
+    public function getAnswerFromOpenAI(array $request) {
+
+        $prompt = $request['prompt'];
+        $voice = $request['voice'];
+        $tone = $request['tone'];
+        $language = $request['language'];
+        $persona = $request['persona'];
+
         $prompt = 'The listing should be well-written and enticing, highlighting the unique aspects of the property to attract potential buyers.\n'.$prompt;
         
         // $prompt = "The listing should be well-written and enticing, highlighting the unique aspects of the property to attract potential buyers.
@@ -59,14 +62,14 @@ class AdminModuleGeneratorController extends Controller
         // $language = "us";
         // $persona = 'Audience';
 
-        $assistant = "You are a kindly assistant.";
+        $assistant = "You are a kind writer.";
 
         $system_prompt = " Give me good write with descriptive ".$voice." and tone of ".$tone." persuasive and Audience Interests ".$persona." include special description. you can translate to ".$language." language result";
 
-        $system_prompt1 = "you can write with descriptive voice and tone of persuasive include Special Description.";
+        // $system_prompt1 = "you can write with descriptive voice and tone of persuasive include Special Description.";
 
         $client = new Client([
-            'base_uri' => 'https://api.openai.com/'
+            'base_uri' => config('openai.base_url')
         ]);
         $message = [
             ["role" => "system", "content" => $assistant], 
@@ -77,13 +80,13 @@ class AdminModuleGeneratorController extends Controller
             $response = $client->request('POST', 'v1/chat/completions', [
                 'headers' => [
                     'Content-Type' => 'application/json',
-                    'Authorization' => 'Bearer ' . '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'
+                    'Authorization' => 'Bearer ' . config('openai.open_api_key')
                 ],
                 'json' => [
-                    'model' => "gpt-3.5-turbo",
+                    'model' => config('openai.model'),
                     "messages" => $message,
-                    'max_tokens' => 800,
-                    'temperature' => 0.4,
+                    'max_tokens' => config('openai.max_tokens'),
+                    'temperature' => config('openai.temperature'),
                 ]
             ]);
 

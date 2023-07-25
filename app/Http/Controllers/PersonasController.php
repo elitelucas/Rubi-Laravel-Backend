@@ -38,20 +38,19 @@ class PersonasController extends Controller
             $persona = $createpersona->handle($personas->personas);
             $voice = $createVoice->handle($personas->voice);
             $tone = $createTone->handle($personas->tone);
-            return [];
+            return true;
         }
     }
 
     public function getPersona(string $prompt)
     {
 
-        $prompt = "You are distributor for [Company/Product] [Objective]. [Product focus] is the main product focus. You are looking to create a target audience where you will market your services. Create [Number of Audiences] personas that you will target and give detailed information about each audience and why you have chosen them. Name the persona. Include the hobbies and interests most likely to be reflected in these audience profiles. Include in the audience profile, Age range, gender, ethnicity if applicable, education level, family household structure, number of children living at home, income level, urban or rural area, interests and hobbies, values to the audience, media consumption, motivation to the audience, how they prefer to communicate and what strongly influences their decisions. Create 3 Voice and 3 Tone profiles. Shorten the voice and tone to just include the prompting descriptions. [Company/Product] RUBI AI [Objective] 1 Million Paid subscribers in 12 months [Product Focus] Leader in EXO AI content generation and Research data collection [Number of Audiences] 1";
+        // $prompt = "You are distributor for [Company/Product] [Objective]. [Product focus] is the main product focus. You are looking to create a target audience where you will market your services. Create [Number of Audiences] personas that you will target and give detailed information about each audience and why you have chosen them. Name the persona. Include the hobbies and interests most likely to be reflected in these audience profiles. Include in the audience profile, Age range, gender, ethnicity if applicable, education level, family household structure, number of children living at home, income level, urban or rural area, interests and hobbies, values to the audience, media consumption, motivation to the audience, how they prefer to communicate and what strongly influences their decisions. Create 3 Voice and 3 Tone profiles. Shorten the voice and tone to just include the prompting descriptions. [Company/Product] RUBI AI [Objective] 1 Million Paid subscribers in 12 months [Product Focus] Leader in EXO AI content generation and Research data collection [Number of Audiences] 1";
 
-        $assistant = "You are persona creater.Give me data As Json Formatting is {audiences: {
-            name, description,educationLevel,familyHouseholdStructure,incomeLevel,area,communicationPreference,influences,interestsAndHobbies,values,motivation,mediaConsumption}, voice: [], tone: []}";
+        $assistant = config('openai.assistant');
 
         $client = new Client([
-            'base_uri' => 'https://api.openai.com/'
+            'base_uri' => config('openai.base_url')
         ]);
 
         $message = [
@@ -63,13 +62,13 @@ class PersonasController extends Controller
             $response = $client->request('POST', 'v1/chat/completions', [
                 'headers' => [
                     'Content-Type' => 'application/json',
-                    'Authorization' => 'Bearer ' . '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'
+                    'Authorization' => 'Bearer ' . config('openai.open_api_key')
                 ],
                 'json' => [
-                    'model' => "gpt-3.5-turbo",
+                    'model' => config('openai.model'),
                     "messages" => $message,
-                    'max_tokens' => 800,
-                    'temperature' => 0.6,
+                    'max_tokens' => config('openai.max_tokens'),
+                    'temperature' => config('openai.temperature'),
                 ]
             ]);
 

@@ -2,14 +2,13 @@
 
 namespace App\Actions\Modules;
 
-use App\Models\Modules;
+use App\Models\Module;
 
 class UpdateModule
 {
-    public function handle(Modules $module, array $data): bool|Modules
+    public function handle(Module $module, array $data): bool|Module
     {
-        $module->forceFill($data);
-        if ($module->save()) {
+        if ($module->update($data)) {
             return $module->refresh();
         }
 

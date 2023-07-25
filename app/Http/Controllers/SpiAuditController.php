@@ -51,7 +51,7 @@ class SpiAuditController extends Controller
         $curl = curl_init();
 
         curl_setopt_array($curl, [
-            CURLOPT_URL => "https://api.originality.ai/api/v1/scan/ai",
+            CURLOPT_URL => config('originality.ai_detection_api'),
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_ENCODING => "",
             CURLOPT_MAXREDIRS => 10,
@@ -61,7 +61,7 @@ class SpiAuditController extends Controller
             CURLOPT_POSTFIELDS => $prompt,
             CURLOPT_HTTPHEADER => [
                 "Accept: application/json",
-                "X-OAI-API-KEY: " . env('ORIGINALITY_API_KEY')
+                "X-OAI-API-KEY: " . config('originality.originality_api_key')
             ],
         ]);
 
@@ -87,7 +87,7 @@ class SpiAuditController extends Controller
         $curl = curl_init();
 
         curl_setopt_array($curl, [
-            CURLOPT_URL => "https://api.originality.ai/api/v1/scan/plag",
+            CURLOPT_URL => config('originality.plag_api'),
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_ENCODING => "",
             CURLOPT_MAXREDIRS => 10,
@@ -123,8 +123,8 @@ class SpiAuditController extends Controller
 
     public function getDatafromScraper(string $url)
     {
-        $apiUrl = 'https://api.apify.com/v2/acts/apify~web-scraper/runs';
-        $apiToken = env('APIFY_API_TOKEN');
+        $apiUrl = config('apify.base_url') . '/acts/apify~web-scraper/runs';
+        $apiToken = config('apify.apify_api_key');
 
         $inputData = file_get_contents(__DIR__ . '/input.json');
 
@@ -146,7 +146,7 @@ class SpiAuditController extends Controller
     public function getDatasetItem(string $dataset_id)
     {
         try {
-            $url = 'https://api.apify.com/v2/datasets/' . $dataset_id . '/items';
+            $url = config('apify.base_url') . '/datasets/' . $dataset_id . '/items';
 
             $response = Http::get($url);
 
@@ -173,8 +173,8 @@ class SpiAuditController extends Controller
     public function getDatasetStatus(string $dataset_id, string $actor_id)
     {
         try {
-            $apiUrl = 'https://api.apify.com/v2/acts/' . $actor_id . '/runs/last';
-            $apiToken = env('APIFY_API_TOKEN');
+            $apiUrl = config('apify.base_url') . '/acts/' . $actor_id . '/runs/last';
+            $apiToken = config('apify.apify_api_key');
 
             $response = Http::withHeaders([
                 'Content-Type' => 'application/json',
