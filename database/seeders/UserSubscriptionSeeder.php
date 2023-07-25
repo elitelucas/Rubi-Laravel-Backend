@@ -15,7 +15,6 @@ class UserSubscriptionSeeder extends Seeder
     {
         collect([
             [
-                'id' => '1',
                 'user_id' => '2',
                 'subscription_id' => '1',
                 'nickname' => 'BitJar - RUBI',
@@ -26,7 +25,6 @@ class UserSubscriptionSeeder extends Seeder
                 'active' => true,
             ],
             [
-                'id' => '2',
                 'user_id' => '2',
                 'subscription_id' => '3',
                 'nickname' => 'BitJar - Onyx',
@@ -37,7 +35,6 @@ class UserSubscriptionSeeder extends Seeder
                 'active' => true,
             ],
             [
-                'id' => '3',
                 'user_id' => '3',
                 'subscription_id' => '2',
                 'nickname' => 'Dixon 1',
