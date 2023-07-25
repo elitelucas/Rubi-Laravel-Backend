@@ -14,7 +14,7 @@ return new class extends Migration
     {
         Schema::create('boost_inputs', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('boost_id')->constrained('boost');
+            $table->foreignId('boost_id')->constrained('boosts');
             $table->string('actor_name');
             $table->string('actor_id');
             $table->integer('api_endpoint');
