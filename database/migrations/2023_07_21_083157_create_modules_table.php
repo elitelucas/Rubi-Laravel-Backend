@@ -21,6 +21,8 @@ return new class extends Migration
             $table->unsignedInteger('created_by')->nullable();
             $table->string('icon')->nullable();
             $table->string('version')->nullable();
+            $table->string('prompt')->nullable();
+            $table->boolean('include_persona')->nullable();
             $table->timestamps();
         });
     }

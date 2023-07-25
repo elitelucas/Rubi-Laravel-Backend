@@ -11,14 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::disableForeignKeyConstraints();
-
-        Schema::create('user_workspaces', function (Blueprint $table) {
-            $table->foreignId('user_id');
-            $table->foreignId('workspace_id');
+        Schema::create('tones', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('personas_id')->constrained('personas');
+            $table->string('tone_1');
+            $table->string('tone_2');
+            $table->string('tone_3');
+            $table->timestamps();
         });
-
-        Schema::enableForeignKeyConstraints();
     }
 
     /**
@@ -26,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('user_workspaces');
+        Schema::dropIfExists('tones');
     }
 };

@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Query\Expression;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
@@ -15,7 +16,7 @@ return new class extends Migration
             $table->id();
             $table->string('name')->nullable();
             $table->string('short_description')->nullable();
-            $table->string('component_type')->nullable();
+            $table->json('items')->default(new Expression('(JSON_ARRAY())'));
             $table->unsignedInteger('created_by')->nullable();
             $table->string('icon')->nullable();
             $table->timestamps();

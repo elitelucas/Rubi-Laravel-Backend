@@ -11,9 +11,15 @@ class ManageApifyController extends Controller
     //
     public function settingApify(Request $request)
     {
+        $actor_name = "web scraper";
+        $actor_id = "apify~web-scraper";
+        $run_endpoint = "";
+        $personal_api_token = "";
+        $organ_api_token = "";
+        $params = [];
         try {
-            $apiUrl = 'https://api.apify.com/v2/acts/apify~web-scraper/runs';
-            $apiToken = env('APIFY_API_TOKEN');
+            $apiUrl = config('apify.base_url').'/acts/apify~web-scraper/runs';
+            $apiToken = config('apify.apify_api_key');
 
             $inputData = file_get_contents('input.json');
 
@@ -25,7 +31,8 @@ class ManageApifyController extends Controller
             if ($response->failed()) {
                 echo 'Error: ' . $response->body();
             } else {
-                echo 'Scrape job started successfully!';
+                echo $response;
+                // echo 'Scrape job started successfully!';
             }
         } catch (\Exception $e) {
             Log::error($e->getMessage());
@@ -37,12 +44,12 @@ class ManageApifyController extends Controller
     {
         try {
 
-            $token = env('APIFY_API_TOKEN');
+            $token = config('apify.apify_api_key');
 
             // Make a GET request to the Apify API with the authentication token
             $response = Http::withHeaders([
                 'Authorization' => 'Bearer ' . $token,
-            ])->get('https://api.apify.com/v2/acts?limit=10000');
+            ])->get(config('apify.base_url').'/acts?limit=10000');
 
             // Get the JSON response body
             if ($response->successful()) {

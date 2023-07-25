@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\AdminModuleComponentController;
 use App\Http\Controllers\AdminModuleGeneratorController;
+use App\Http\Controllers\AdminSaveModulesController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\CollectionController;
 use App\Http\Controllers\CountryController;
@@ -9,8 +11,10 @@ use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\OrderItemController;
 use App\Http\Controllers\OrderStatusController;
+use App\Http\Controllers\PersonasController;
 use App\Http\Controllers\ProductCategoryController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\SpiAuditController;
 use App\Http\Controllers\SubscriptionController;
 use App\Http\Controllers\SuperAdminController;
 use App\Http\Controllers\UserController;
@@ -56,5 +60,14 @@ Route::apiResource('products', ProductController::class);
 Route::apiResource('orders.items', OrderItemController::class)->scoped();
 Route::apiResource('order-statuses', OrderStatusController::class);
 Route::apiResource('product-categories', ProductCategoryController::class);
+Route::apiResource('spi-audit', SpiAuditController::class);
 Route::apiResource('user.workspaces', WorkspaceController::class)->scoped();
 Route::apiResource('workspace.keywords', WorkspaceKeywordController::class)->scoped();
+
+//Admin API
+Route::prefix('admin')->group(function () {
+    Route::apiResource('/module-generator', AdminModuleGeneratorController::class);
+    Route::apiResource('/save-modules', AdminSaveModulesController::class);
+    Route::apiResource('/save-module-components', AdminModuleComponentController::class);
+    Route::apiResource('/persona', PersonasController::class);
+});
