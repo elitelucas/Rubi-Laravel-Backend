@@ -63,8 +63,8 @@ Route::apiResource('spi-audit', SpiAuditController::class);
 
 //Admin API
 Route::prefix('admin')->group(function () {
-    Route::resource('/module-generator', AdminModuleGeneratorController::class);
-    Route::resource('/save-modules', AdminSaveModulesController::class);
-    Route::resource('/save-module-components', AdminModuleComponentController::class);
-    Route::resource('/persona', PersonasController::class);
+    Route::apiResource('/module-generator', AdminModuleGeneratorController::class);
+    Route::apiResource('/save-modules', AdminSaveModulesController::class);
+    Route::apiResource('/save-module-components', AdminModuleComponentController::class);
+    Route::apiResource('/persona', PersonasController::class);
 });

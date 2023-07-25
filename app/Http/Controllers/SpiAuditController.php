@@ -48,32 +48,42 @@ class SpiAuditController extends Controller
             'title' => 'optional title'
         ];
 
-        $curl = curl_init();
+        // $curl = curl_init();
 
-        curl_setopt_array($curl, [
-            CURLOPT_URL => config('originality.ai_detection_api'),
-            CURLOPT_RETURNTRANSFER => true,
-            CURLOPT_ENCODING => "",
-            CURLOPT_MAXREDIRS => 10,
-            CURLOPT_TIMEOUT => 30,
-            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-            CURLOPT_CUSTOMREQUEST => "POST",
-            CURLOPT_POSTFIELDS => $prompt,
-            CURLOPT_HTTPHEADER => [
-                "Accept: application/json",
-                "X-OAI-API-KEY: " . config('originality.originality_api_key')
-            ],
-        ]);
+        // curl_setopt_array($curl, [
+        //     CURLOPT_URL => config('originality.ai_detection_api'),
+        //     CURLOPT_RETURNTRANSFER => true,
+        //     CURLOPT_ENCODING => "",
+        //     CURLOPT_MAXREDIRS => 10,
+        //     CURLOPT_TIMEOUT => 30,
+        //     CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+        //     CURLOPT_CUSTOMREQUEST => "POST",
+        //     CURLOPT_POSTFIELDS => $prompt,
+        //     CURLOPT_HTTPHEADER => [
+        //         "Accept: application/json",
+        //         "X-OAI-API-KEY: " . config('originality.originality_api_key')
+        //     ],
+        // ]);
 
-        $response = curl_exec($curl);
-        $err = curl_error($curl);
+        // $response = curl_exec($curl);
+        // $err = curl_error($curl);
 
-        curl_close($curl);
+        // curl_close($curl);
 
-        if ($err) {
+        // if ($err) {
+        //     $this->getAIDetection($prompts);
+        // } else {
+        //     return json_decode($response);
+        // }
+        $response = Http::withHeaders([
+            'Accept' => 'application/json',
+            'X-OAI-API-KEY' => config('originality.originality_api_key')
+        ])->post(config('originality.ai_detection_api'), $prompt);
+        
+        if ($response->failed()) {
             $this->getAIDetection($prompts);
         } else {
-            return json_decode($response);
+            return $response->json();
         }
     }
 
@@ -84,32 +94,15 @@ class SpiAuditController extends Controller
             'title' => 'optional title'
         ];
 
-        $curl = curl_init();
-
-        curl_setopt_array($curl, [
-            CURLOPT_URL => config('originality.plag_api'),
-            CURLOPT_RETURNTRANSFER => true,
-            CURLOPT_ENCODING => "",
-            CURLOPT_MAXREDIRS => 10,
-            CURLOPT_TIMEOUT => 30,
-            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-            CURLOPT_CUSTOMREQUEST => "POST",
-            CURLOPT_POSTFIELDS => $prompt,
-            CURLOPT_HTTPHEADER => [
-                "Accept: application/json",
-                "X-OAI-API-KEY: " . env('ORIGINALITY_API_KEY')
-            ],
-        ]);
-
-        $response = curl_exec($curl);
-        $err = curl_error($curl);
-
-        curl_close($curl);
-
-        if ($err) {
+        $response = Http::withHeaders([
+            'Accept' => 'application/json',
+            'X-OAI-API-KEY' => config('originality.originality_api_key')
+        ])->post(config('originality.plag_api'), $prompt);
+        
+        if ($response->failed()) {
             $this->getPlag($prompts);
         } else {
-            return json_decode($response);
+            return $response->json();
         }
     }
 

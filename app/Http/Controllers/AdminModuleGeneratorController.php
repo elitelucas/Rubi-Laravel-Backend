@@ -18,19 +18,11 @@ class AdminModuleGeneratorController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      */
     public function store(ModuleGenerateRequest $request)
     {
-        $data = $request->only(['prompt', 'voice', 'tone', 'language', 'persona']);
+        $data = $request->safe()->only(['prompt', 'voice', 'tone', 'language', 'persona']);
         return $this->getAnswerFromOpenAI(request: $data);
     }
 
@@ -104,14 +96,6 @@ class AdminModuleGeneratorController extends Controller
      * Display the specified resource.
      */
     public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
     {
         //
     }

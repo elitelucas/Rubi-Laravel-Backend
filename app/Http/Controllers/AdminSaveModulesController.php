@@ -7,7 +7,7 @@ use App\Actions\Modules\UpdateModule;
 use App\Http\Requests\ModuleStoreRequest;
 use App\Http\Requests\ModuleUpdateRequest;
 use App\Http\Resources\ModuleResource;
-use App\Models\Modules;
+use App\Models\Module;
 use Illuminate\Http\Request;
 
 class AdminSaveModulesController extends Controller
@@ -16,14 +16,6 @@ class AdminSaveModulesController extends Controller
      * Display a listing of the resource.
      */
     public function index()
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
     {
         //
     }
@@ -47,17 +39,9 @@ class AdminSaveModulesController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
      * Update the specified resource in storage.
      */
-    public function update(ModuleUpdateRequest $request, Modules $modules, UpdateModule $moduleUpdater):ModuleResource
+    public function update(ModuleUpdateRequest $request, Module $modules, UpdateModule $moduleUpdater):ModuleResource
     {
         $updatedModule = $moduleUpdater->handle(module: $modules, data: $request->safe()->toArray());
         return ModuleResource::make($updatedModule);
