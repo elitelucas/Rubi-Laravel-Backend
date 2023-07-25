@@ -15,7 +15,6 @@ class SubscriptionSeeder extends Seeder
     {
         collect([
             [
-                'id' => '1',
                 'name' => 'Basic',
                 'description' => '10,000 words | 1 Workspace | 1 Collaborator | 3 Personas | 25 Credits',
                 'created_by_user_id' => '1',
@@ -29,7 +28,6 @@ class SubscriptionSeeder extends Seeder
                 'credits' => '25',
             ],
             [
-                'id' => '2',
                 'name' => 'Pro',
                 'description' => '25,000 words | 3 Workspace | 3 Collaborator | 10 Personas | 50 Credits',
                 'created_by_user_id' => '1',
@@ -43,7 +41,6 @@ class SubscriptionSeeder extends Seeder
                 'credits' => '50',
             ],
             [
-                'id' => '3',
                 'name' => 'Premium',
                 'description' =>
                     '50,000 words | 5 Workspace | 5 Collaborator | UNLIMITED Personas | 100 Credits',

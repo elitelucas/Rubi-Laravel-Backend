@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Actions\Workspace\CreateWorkspace;
-use App\Actions\Workspace\LoadAllWorkspaces;
+use App\Actions\Workspace\ListAllWorkspaces;
 use App\Actions\Workspace\RemoveWorkspace;
 use App\Actions\Workspace\UpdateWorkspace;
 use App\Http\Requests\WorkspaceStoreRequest;
@@ -20,9 +20,9 @@ class WorkspaceController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(User $user, Request $request, LoadAllWorkspaces $loadAllWorkspaces): AnonymousResourceCollection
+    public function index(User $user, Request $request, ListAllWorkspaces $listAllWorkspaces): AnonymousResourceCollection
     {
-        return WorkspaceResource::collection($loadAllWorkspaces->handle(user: $user, request: $request));
+        return WorkspaceResource::collection($listAllWorkspaces->handle(user: $user, request: $request));
     }
 
     /**
@@ -54,7 +54,7 @@ class WorkspaceController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Workspace $workspace, RemoveWorkspace $workspaceRemover): JsonResponse
+    public function destroy(User $user, Workspace $workspace, RemoveWorkspace $workspaceRemover): JsonResponse
     {
         if ($workspaceRemover->handle($workspace)) {
             return response()->json([

@@ -15,7 +15,6 @@ class WorkspaceSeeder extends Seeder
     {
         collect([
             [
-                'id' => '1',
                 'customer_user_id' => '2',
                 'user_subscription_id' => '1',
                 'nickname' => 'BitJar Labs',
@@ -23,7 +22,6 @@ class WorkspaceSeeder extends Seeder
                 'active' => true,
             ],
             [
-                'id' => '2',
                 'customer_user_id' => '2',
                 'user_subscription_id' => '2',
                 'nickname' => 'Nike',
@@ -31,7 +29,6 @@ class WorkspaceSeeder extends Seeder
                 'active' => true,
             ],
             [
-                'id' => '3',
                 'customer_user_id' => '3',
                 'user_subscription_id' => '3',
                 'nickname' => 'Adidas',
