@@ -19,6 +19,8 @@ class DatabaseSeeder extends Seeder
             CountrySeeder::class,
             UserSeeder::class,
             SuperAdminSeeder::class,
+            PriceTypeSeeder::class,
+            ProductCategorySeeder::class,
             ProductSeeder::class,
             OrderStatusSeeder::class,
             SubscriptionSeeder::class,
