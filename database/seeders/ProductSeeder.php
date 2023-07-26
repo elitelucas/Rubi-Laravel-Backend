@@ -19,21 +19,21 @@ class ProductSeeder extends Seeder
                 'description' => '10.000 will be added to users word bank account.',
                 'category_id' => 1,
                 'active' => true,
-                'recurring' => false,
+                'is_service' => false,
             ],
             [
                 'name' => 'Credits',
                 'description' => '25 credits will be added to users credit account',
                 'category_id' => 1,
                 'active' => true,
-                'recurring' => false,
+                'is_service' => false,
             ],
             [
                 'name' => 'Storage',
                 'description' => '2GB additional Storage to hold saved content and media.',
                 'category_id' => 1,
                 'active' => true,
-                'recurring' => true,
+                'is_service' => false,
             ]
         ]);
     }
