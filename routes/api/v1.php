@@ -21,6 +21,7 @@ use App\Http\Controllers\SuperAdminController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\WorkspaceController;
 use App\Http\Controllers\WorkspaceKeywordController;
+use App\Http\Middleware\ValidateSignature;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -65,6 +66,10 @@ Route::apiResource('spi-audit', SpiAuditController::class);
 Route::apiResource('user.workspaces', WorkspaceController::class)->scoped();
 Route::apiResource('workspace.keywords', WorkspaceKeywordController::class)->scoped();
 Route::apiResource('user.invitations', InvitationController::class)->scoped();
+
+Route::middleware(ValidateSignature::class)->post('register', function (Request $request) {
+    dd($request);
+})->name('register');
 
 Route::prefix('admin')->group(function () {
     Route::apiResource('/module-generator', AdminModuleGeneratorController::class);

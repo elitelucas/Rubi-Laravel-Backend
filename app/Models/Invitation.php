@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -15,15 +16,7 @@ class Invitation extends Model
      *
      * @var array
      */
-    protected $fillable = [
-        'user_id',
-        'firstname',
-        'lastname',
-        'email',
-        'mobile',
-        'workspace_id',
-        'accepted',
-    ];
+    protected $fillable = ['user_id', 'firstname', 'lastname', 'email', 'mobile', 'workspace_id', 'accepted'];
 
     /**
      * The attributes that should be cast to native types.
@@ -45,5 +38,10 @@ class Invitation extends Model
     public function workspace(): BelongsTo
     {
         return $this->belongsTo(Workspace::class);
+    }
+
+    public function name(): Attribute
+    {
+        return new Attribute(get: fn() => $this->firstname . ' ' . $this->lastname);
     }
 }
