@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::disableForeignKeyConstraints();
 
-        Schema::create('user_workspaces', function (Blueprint $table) {
+        Schema::create('user_workspace', function (Blueprint $table) {
             $table->foreignId('user_id');
             $table->foreignId('workspace_id');
         });
