@@ -13,6 +13,7 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\OrderItemController;
 use App\Http\Controllers\OrderStatusController;
 use App\Http\Controllers\PersonasController;
+use App\Http\Controllers\PriceTypeController;
 use App\Http\Controllers\ProductCategoryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SpiAuditController;
@@ -66,6 +67,8 @@ Route::apiResource('spi-audit', SpiAuditController::class);
 Route::apiResource('user.workspaces', WorkspaceController::class)->scoped();
 Route::apiResource('workspace.keywords', WorkspaceKeywordController::class)->scoped();
 Route::apiResource('user.invitations', InvitationController::class)->scoped();
+Route::apiResource('price-types', PriceTypeController::class);
+
 
 Route::middleware(ValidateSignature::class)->post('register', function (Request $request) {
     dd($request);
