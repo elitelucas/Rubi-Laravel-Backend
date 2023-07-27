@@ -11,6 +11,7 @@ class CreateSuperAdmin
     {
         // Assign the role
         $superAdmin->assignRole(RoleEnum::SUPER_ADMIN->value);
+
         // Simply return the user
         return $superAdmin;
     }

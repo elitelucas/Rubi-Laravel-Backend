@@ -52,5 +52,20 @@ class PermissionSeeder extends Seeder
         Permission::create(['name' => 'update-invitation']);
         Permission::create(['name' => 'delete-invitation']);
         Permission::create(['name' => 'list-invitation']);
+
+        Permission::create(['name' => 'create-product-category']);
+        Permission::create(['name' => 'update-product-category']);
+        Permission::create(['name' => 'delete-product-category']);
+        Permission::create(['name' => 'list-product-category']);
+
+        Permission::create(['name' => 'create-product']);
+        Permission::create(['name' => 'update-product']);
+        Permission::create(['name' => 'delete-product']);
+        Permission::create(['name' => 'list-product']);
+
+        Permission::create(['name' => 'create-price-type']);
+        Permission::create(['name' => 'update-price-type']);
+        Permission::create(['name' => 'delete-price-type']);
+        Permission::create(['name' => 'list-price-type']);
     }
 }

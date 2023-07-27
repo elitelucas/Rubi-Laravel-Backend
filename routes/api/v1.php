@@ -26,6 +26,7 @@ use App\Http\Middleware\ValidateSignature;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use Laravel\Passport\Http\Controllers\AuthorizationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,36 +40,34 @@ use Illuminate\Support\Facades\Route;
 */
 
 // temporarily forcing non-superadmin login
-Auth::loginUsingId(1);
+//Auth::loginUsingId(37);
 
-# usa as rotas de autenticacao do passport
-//Route::post('/login', [AuthorizationController::class, 'login'])->name('login');
-//Route::post('/register', [AuthController::class, 'register'])->name('register');
-# cria a rota /me
+# All routes in this group will be protected
+Route::middleware('auth:api')->group(function () {
+    Route::apiResource('clients', ClientController::class)->only('store');
+    Route::apiResource('customers', CustomerController::class)->only('store');
+    Route::apiResource('countries', CountryController::class)->only('index');
+    Route::apiResource('super-admins', SuperAdminController::class)->only('store');
+    Route::apiResource('users', UserController::class)->only('update');
+    Route::apiResource('languages', LanguageController::class)->only('index');
+    Route::apiResource('collections', CollectionController::class);
+    Route::apiResource('subscriptions', SubscriptionController::class);
+    Route::apiResource('orders', OrderController::class);
+    Route::apiResource('products', ProductController::class);
+    Route::apiResource('orders.items', OrderItemController::class)->scoped();
+    Route::apiResource('order-statuses', OrderStatusController::class);
+    Route::apiResource('product-categories', ProductCategoryController::class);
+    Route::apiResource('spi-audit', SpiAuditController::class);
+    Route::apiResource('user.workspaces', WorkspaceController::class)->scoped();
+    Route::apiResource('workspace.keywords', WorkspaceKeywordController::class)->scoped();
+    Route::apiResource('user.invitations', InvitationController::class)->scoped();
+    Route::apiResource('price-types', PriceTypeController::class);
 
-Route::middleware('auth:api')->get('/me', function (Request $request) {
-    return $request->user();
+    // test route for user details
+    Route::get('/me', function (Request $request) {
+        return $request->user();
+    });
 });
-
-Route::apiResource('clients', ClientController::class)->only('store');
-Route::apiResource('customers', CustomerController::class)->only('store');
-Route::apiResource('countries', CountryController::class)->only('index');
-Route::apiResource('super-admins', SuperAdminController::class)->only('store');
-Route::apiResource('users', UserController::class)->only('update');
-Route::apiResource('languages', LanguageController::class)->only('index');
-Route::apiResource('collections', CollectionController::class);
-Route::apiResource('subscriptions', SubscriptionController::class);
-Route::apiResource('orders', OrderController::class);
-Route::apiResource('products', ProductController::class);
-Route::apiResource('orders.items', OrderItemController::class)->scoped();
-Route::apiResource('order-statuses', OrderStatusController::class);
-Route::apiResource('product-categories', ProductCategoryController::class);
-Route::apiResource('spi-audit', SpiAuditController::class);
-Route::apiResource('user.workspaces', WorkspaceController::class)->scoped();
-Route::apiResource('workspace.keywords', WorkspaceKeywordController::class)->scoped();
-Route::apiResource('user.invitations', InvitationController::class)->scoped();
-Route::apiResource('price-types', PriceTypeController::class);
-
 
 Route::middleware(ValidateSignature::class)->post('register', function (Request $request) {
     dd($request);

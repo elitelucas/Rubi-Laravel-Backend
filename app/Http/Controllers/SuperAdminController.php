@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Actions\AddressUser\CreateAddressUser;
 use App\Actions\SuperAdmin\CreateSuperAdmin;
 use App\Actions\User\CreateUser;
+use App\Http\Requests\SuperAdminStoreRequest;
 use App\Http\Requests\UserStoreRequest;
 use App\Http\Resources\UserResource;
 use App\Models\SuperAdmin;
@@ -18,7 +19,7 @@ class SuperAdminController extends Controller
         // Authorize the resource
         $this->authorizeResource(SuperAdmin::class);
     }
-    public function store(UserStoreRequest $request, CreateUser $userCreator, CreateAddressUser $addressUserCreator, CreateSuperAdmin $superAdminCreator)
+    public function store(SuperAdminStoreRequest $request, CreateUser $userCreator, CreateAddressUser $addressUserCreator, CreateSuperAdmin $superAdminCreator)
     {
         return DB::transaction(function () use ($request, $userCreator, $addressUserCreator, $superAdminCreator) {
             $user = $userCreator->handle(data: $request->safe()->toArray());

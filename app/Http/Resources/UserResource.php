@@ -31,8 +31,8 @@ class UserResource extends JsonResource
             'tin' => $this->tin,
             // adiciona ao array as credenciais do passport
             'api_token' => [
-                'client_id' => $this->clients()->first()->id,
-                'client_secret' => $this->clients()->first()->secret,
+                'client_id' => $this->clients()->first()->id ?? null,
+                'client_secret' => $this->clients()->first()->secret ?? null,
             ],
         ];
     }

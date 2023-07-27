@@ -21,6 +21,6 @@ class CreatePassportClient
 
     public function handle($user, $client_url)
     {
-        return $this->clientRepository->create($user->id, $user->client->business_name, $client_url);
+        return $this->clientRepository->create($user->id, $user->client->business_name, $client_url, 'users', true);
     }
 }
