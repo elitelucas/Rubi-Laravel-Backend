@@ -38,8 +38,8 @@ class Collaborator extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function customerUser(): BelongsTo
+    public function customer(): BelongsTo
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'customer_user_id');
     }
 }

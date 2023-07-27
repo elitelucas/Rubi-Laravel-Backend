@@ -9,7 +9,7 @@ use Illuminate\Support\Str;
 
 class CreateUser
 {
-    public function handle(array $data)
+    public function handle(array $data): User
     {
         $userData = collect($data)
             ->merge([
