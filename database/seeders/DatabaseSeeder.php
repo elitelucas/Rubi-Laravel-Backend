@@ -25,6 +25,7 @@ class DatabaseSeeder extends Seeder
             OrderStatusSeeder::class,
             SubscriptionSeeder::class,
             UserSubscriptionSeeder::class,
+            CollectionSeeder::class,
             WorkspaceSeeder::class,
             UserWorkspaceSeeder::class,
             WorkspaceKeywordSeeder::class
