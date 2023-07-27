@@ -107,6 +107,20 @@ class User extends Authenticatable
     }
 
     /**
+     * Collaborator relationship if the current user is a collaborator.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne|null
+     */
+    public function collaborator(): ?\Illuminate\Database\Eloquent\Relations\HasOne
+    {
+        if ($this->hasRole(RoleEnum::COLLABORATOR->value)) {
+            return $this->hasOne(Collaborator::class);
+        }
+
+        return null;
+    }
+
+    /**
      * Self relationship - creator
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo

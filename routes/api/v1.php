@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminModuleComponentController;
 use App\Http\Controllers\AdminModuleGeneratorController;
 use App\Http\Controllers\AdminSaveModulesController;
 use App\Http\Controllers\ClientController;
+use App\Http\Controllers\CollaboratorRegisterController;
 use App\Http\Controllers\CollectionController;
 use App\Http\Controllers\CountryController;
 use App\Http\Controllers\CustomerController;
@@ -69,9 +70,9 @@ Route::middleware('auth:api')->group(function () {
     });
 });
 
-Route::middleware(ValidateSignature::class)->post('register', function (Request $request) {
-    dd($request);
-})->name('register');
+Route::middleware(ValidateSignature::class)
+    ->post('register', CollaboratorRegisterController::class)
+    ->name('register');
 
 Route::prefix('admin')->group(function () {
     Route::apiResource('/module-generator', AdminModuleGeneratorController::class);
@@ -79,3 +80,4 @@ Route::prefix('admin')->group(function () {
     Route::apiResource('/save-module-components', AdminModuleComponentController::class);
     Route::apiResource('/persona', PersonasController::class);
 });
+
