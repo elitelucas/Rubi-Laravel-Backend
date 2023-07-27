@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Actions\AddressUser\CreateAddressUser;
 use App\Actions\Client\CreateClient;
+use App\Actions\Passport\CreatePassportClient;
 use App\Actions\User\CreateUser;
 use App\Http\Requests\ClientStoreRequest;
 use App\Http\Resources\ClientResource;
@@ -17,12 +18,13 @@ class ClientController extends Controller
         $this->authorizeResource(Client::class);
     }
 
-    public function store(ClientStoreRequest $request, CreateUser $userCreator, CreateClient $clientCreator, CreateAddressUser $addressUserCreator)
+    public function store(ClientStoreRequest $request, CreateUser $userCreator, CreateClient $clientCreator, CreateAddressUser $addressUserCreator, CreatePassportClient $createPassportClient)
     {
-        return DB::transaction(function () use ($request, $userCreator, $clientCreator, $addressUserCreator) {
+        return DB::transaction(function () use ($request, $userCreator, $clientCreator, $addressUserCreator, $createPassportClient) {
             $user = $userCreator->handle(data: $request->safe()->toArray());
             $addressUserCreator->handle(user: $user, data: $request->safe()->toArray()['address']);
             $client = $clientCreator->handle(clientUser: $user, data: $request->safe()->toArray());
+            $createPassportClient->handle($user, $request->redirect_url);
             return ClientResource::make($client->load(['user', 'user.addresses', 'user.preferredLanguage']));
         });
     }

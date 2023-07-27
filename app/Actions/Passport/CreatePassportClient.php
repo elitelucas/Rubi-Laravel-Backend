@@ -21,8 +21,6 @@ class CreatePassportClient
 
     public function handle($user, $client_url)
     {
-        // Cria um novo cliente no passport usando os dados do usuário recem criado
-        $client = $this->clientRepository->create($user->id, $user->client->business_name, $client_url);
-        return $client;
+        return $this->clientRepository->create($user->id, $user->client->business_name, $client_url);
     }
 }
