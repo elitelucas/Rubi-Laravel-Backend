@@ -37,9 +37,10 @@ class InvitationMail extends Mailable
     public function content(): Content
     {
         return new Content(
-            markdown: 'mail.invitation-mail',
+            html: 'mail.invitation-mail',
             with: [
                 'invited' => $this->invitation->name,
+                'inviter' => $this->invitation->user->name,
                 'workspace' => $this->invitation->workspace->nickname,
                 'url' => URL::signedRoute('register', ['invitation' => $this->invitation->id])
             ]
