@@ -2,15 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Actions\ProductCategory\CreateProductCategory;
-use App\Actions\ProductCategory\RemoveProductCategory;
-use App\Actions\ProductCategory\UpdateProductCategory;
-use App\Actions\ProductCategory\ListAllProductsCategory;
-use App\Http\Requests\ProductCategoryStoreRequest;
+use App\Actions\ProductPrice\CreateProductPrice;
+use App\Actions\ProductPrice\RemoveProductPrice;
+use App\Actions\ProductPrice\UpdateProductPrice;
+use App\Actions\ProductPrice\ListAllProductsCategory;
+use App\Http\Requests\ProductPriceStoreRequest;
 use App\Http\Requests\ProductStoreRequest;
-use App\Http\Resources\ProductCategoryResource;
+use App\Http\Resources\ProductPriceResource;
 use App\Http\Resources\ProductResource;
-use App\Models\ProductCategory;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
@@ -27,48 +26,48 @@ class ProductPriceController extends Controller
      */
     public function index(Request $request, ListAllProductsCategory $listAllProductCategories): AnonymousResourceCollection
     {
-        return ProductCategoryResource::collection($listAllProductCategories->handle(request: $request));
+        return ProductPriceResource::collection($listAllProductCategories->handle(request: $request));
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(ProductCategoryStoreRequest $request, CreateProductCategory $productCategoryCreator): ProductCategoryResource
+    public function store(ProductPriceStoreRequest $request, CreateProductPrice $productPriceCreator): ProductPriceResource
     {
-        $productCategory = $productCategoryCreator->handle($request->safe()->toArray());
-        return ProductCategoryResource::make($productCategory);
+        $productPrice = $productPriceCreator->handle($request->safe()->toArray());
+        return ProductPriceResource::make($productPrice);
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(ProductCategory $productCategory): ProductCategoryResource
+    public function show(ProductPrice $productPrice): ProductPriceResource
     {
-        return ProductCategoryResource::make($productCategory);
+        return ProductPriceResource::make($productPrice);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(ProductCategoryStoreRequest $request, ProductCategory $productCategory, UpdateProductCategory $productCategoryUpdater): ProductCategoryResource
+    public function update(ProductPriceStoreRequest $request, ProductPrice $productPrice, UpdateProductPrice $productPriceUpdater): ProductPriceResource
     {
-        $updatedProduct = $productCategoryUpdater->handle(product: $productCategory, data: $request->safe()->toArray());
-        return ProductCategoryResource::make($updatedProduct);
+        $updatedProduct = $productPriceUpdater->handle(product: $productPrice, data: $request->safe()->toArray());
+        return ProductPriceResource::make($updatedProduct);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(ProductCategory $product, RemoveProductCategory $productCategoryRemover): JsonResponse
+    public function destroy(ProductPrice $product, RemoveProductPrice $productPriceRemover): JsonResponse
     {
-        if ($productCategoryRemover->handle($product)) {
+        if ($productPriceRemover->handle($product)) {
             return response()->json([
-                'message' => 'Product category removed sucessfully.',
+                'message' => 'Product price removed sucessfully.',
             ]);
         }
 
         return response()->json([
-            'error' => 'An error occurred removing product category.'
+            'error' => 'An error occurred removing product price.'
         ]);
     }
 }
