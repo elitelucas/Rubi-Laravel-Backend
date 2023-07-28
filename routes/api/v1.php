@@ -60,7 +60,7 @@ Route::middleware('auth:api')->group(function () {
     Route::apiResource('order-statuses', OrderStatusController::class);
     Route::apiResource('product-categories', ProductCategoryController::class);
     Route::apiResource('spi-audit', SpiAuditController::class);
-    Route::apiResource('user.workspaces', WorkspaceController::class)->scoped();
+    Route::apiResource('workspaces', WorkspaceController::class)->scoped();
     Route::apiResource('workspace.keywords', WorkspaceKeywordController::class)->scoped();
     Route::apiResource('user.invitations', InvitationController::class)->scoped();
     Route::apiResource('price-types', PriceTypeController::class);
