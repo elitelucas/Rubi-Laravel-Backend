@@ -128,7 +128,7 @@ class UserSeeder extends Seeder
             'email' => 'luc@bitjarlabs.com',
             'email_verified_at' => now(),
             'username' => 'luc',
-            'password' => '1234567',
+            'password' => Hash::make('1234567'),
             'role' => 'collaborator',
             'status' => 'active',
             'country_id' => 1,

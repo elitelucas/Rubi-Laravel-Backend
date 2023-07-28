@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminModuleComponentController;
 use App\Http\Controllers\AdminModuleGeneratorController;
 use App\Http\Controllers\AdminSaveModulesController;
+use App\Http\Controllers\Auth\CustomAuthController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\CollaboratorRegisterController;
 use App\Http\Controllers\CollectionController;
@@ -40,8 +41,12 @@ use Laravel\Passport\Http\Controllers\AuthorizationController;
 |
 */
 
-// temporarily forcing non-superadmin login
-//Auth::loginUsingId(37);
+//// temporarily forcing non-superadmin login
+//Auth::guard('api')->loginUsingId(3);
+
+# cria uma rota de login que irá retornar um token de acesso
+Route::post('login', CustomAuthController::class);
+
 
 # All routes in this group will be protected
 Route::middleware('auth:api')->group(function () {
