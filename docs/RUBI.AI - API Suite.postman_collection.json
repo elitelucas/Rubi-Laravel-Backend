@@ -1,0 +1,2366 @@
+{
+	"info": {
+		"_postman_id": "c6d47efa-f5d0-4859-9b35-b3abbaa2c45e",
+		"name": "RUBI.AI - API Suite",
+		"description": "## **About the RUBI AI API Suite**\n\nThe RUBI API is organized around REST. Our API has predictable resource-oriented URLs, accepts form-encoded request bodies, returns JSON-encoded responses, and uses standard HTTP response codes, authentication, and verbs.\n\nThe RUBI API uses API keys to authenticate requests. You can view and manage your API keys in the RUBI Dashboard. Your API keys carry many privileges, so be sure to keep them secure! Do not share your secret API keys in publicly accessible areas such as GitHub, client-side code, and so forth.\n\n## **Getting Started**\n\nThe first step to getting started is to contact your Account Manager at FLEX Technology, so that they can enable some or all of the following APIs for some or all of your platforms (if applicable). In order for us to enable these APIs, we require the following:\n\nA request to be submitted to the Account Management team  \nA list of platforms for which these will be enabled  \nThe IP Addresses that will be used to make the requests.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "28314197"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var res = pm.response.json();",
+									"pm.environment.set('access_token', res.access_token);",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"client_id\": \"99bfda4b-a3e3-4c48-9261-4aecbe31c9af\",\n    \"client_secret\": \"xQSLVs3ygJdXF8UcJM4FTxeU4xLocay5iBvw8lw0\",\n    \"grant_type\": \"password\",\n    \"username\": \"root@bitjarlab.com\",\n    \"password\": \"123456\",\n    \"scopes\": \"*\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host_api}}/{{version_api}}/oauth/token",
+							"host": [
+								"{{host_api}}"
+							],
+							"path": [
+								"{{version_api}}",
+								"oauth",
+								"token"
+							]
+						},
+						"description": "## Customer Login\n\nThe Login process consists of two steps. The first is the request of the login token using both the client_id and the client_secret key. Once a token is requested from us, the next step is to redirect that user using the login token into the customer portal.\n\nDepending on the client’s business model, RUBI will grant access to either the login token API for single sign-on or the normal login token API. The normal login token API requires that RUBI validate the user password upon login, while the login token API for single sign-on does not validate the password and simply passes back a token if the user is an existing user in the RUBI system."
+					},
+					"response": []
+				},
+				{
+					"name": "Login Client",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var res = pm.response.json();",
+									"pm.environment.set('access_token', res.access_token);",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"client_id\": \"99bfdaa1-b377-4e95-95c6-509e459a1488\",\n    \"client_secret\": \"hMJcwB75U2LatLaiYRUA4LckcW76Oz2Qs4P8VZBt\",\n    \"grant_type\": \"client_credentials\",\n    \"username\": \"client2@example.com\",\n    \"password\": \"123456\",\n    \"scopes\": \"*\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host_api}}/{{version_api}}/oauth/token",
+							"host": [
+								"{{host_api}}"
+							],
+							"path": [
+								"{{version_api}}",
+								"oauth",
+								"token"
+							]
+						},
+						"description": "## Customer Login\n\nThe Login process consists of two steps. The first is the request of the login token using both the client_id and the client_secret key. Once a token is requested from us, the next step is to redirect that user using the login token into the customer portal.\n\nDepending on the client’s business model, RUBI will grant access to either the login token API for single sign-on or the normal login token API. The normal login token API requires that RUBI validate the user password upon login, while the login token API for single sign-on does not validate the password and simply passes back a token if the user is an existing user in the RUBI system."
+					},
+					"response": [
+						{
+							"name": "Authorization Code",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"client_id\": \"99afc3f0-aeea-4e2c-acd9-9208958940be\",\n    \"client_secret\": \"ZmecPxrogWEWNN6GsDBsbUPrKSTIDC4qTUnRM8IP\",\n    \"grant_type\": \"password\",\n    \"username\": \"robert@bitjarlab.com\",\n    \"password\": \"123456\",\n    \"scopes\": \"*\"\n}   ",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host_api}}/{{version_api}}/oauth/token",
+									"host": [
+										"{{host_api}}"
+									],
+									"path": [
+										"{{version_api}}",
+										"oauth",
+										"token"
+									]
+								}
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": null
+						},
+						{
+							"name": "Refresh Token",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"client_id\": \"99afc3f0-aeea-4e2c-acd9-9208958940be\",\n    \"client_secret\": \"ZmecPxrogWEWNN6GsDBsbUPrKSTIDC4qTUnRM8IP\",\n    \"grant_type\": \"refresh_token\",\n    \"username\": \"robert@bitjarlab.com\",\n    \"password\": \"123456\",\n    \"scopes\": \"*\"\n}   ",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host_api}}/{{version_api}}/oauth/token",
+									"host": [
+										"{{host_api}}"
+									],
+									"path": [
+										"{{version_api}}",
+										"oauth",
+										"token"
+									]
+								}
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": null
+						},
+						{
+							"name": "Login",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"client_id\": \"99afc3f0-aeea-4e2c-acd9-9208958940be\",\n    \"client_secret\": \"ZmecPxrogWEWNN6GsDBsbUPrKSTIDC4qTUnRM8IP\",\n    \"grant_type\": \"password\",\n    \"username\": \"robert@bitjarlab.com\",\n    \"password\": \"123456\",\n    \"scopes\": \"*\"\n}   ",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host_api}}/{{version_api}}/oauth/token",
+									"host": [
+										"{{host_api}}"
+									],
+									"path": [
+										"{{version_api}}",
+										"oauth",
+										"token"
+									]
+								}
+							},
+							"status": "Method Not Allowed",
+							"code": 405,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Sun, 23 Jul 2023 14:16:18 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Server",
+									"value": "nginx/1.22.0"
+								},
+								{
+									"key": "Allow",
+									"value": "POST"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"The GET method is not supported for route api/v1/oauth/token. Supported methods: POST.\",\n    \"exception\": \"Symfony\\\\Component\\\\HttpKernel\\\\Exception\\\\MethodNotAllowedHttpException\",\n    \"file\": \"/app/vendor/laravel/framework/src/Illuminate/Routing/AbstractRouteCollection.php\",\n    \"line\": 122,\n    \"trace\": [\n        {\n            \"file\": \"/app/vendor/laravel/framework/src/Illuminate/Routing/AbstractRouteCollection.php\",\n            \"line\": 107,\n            \"function\": \"requestMethodNotAllowed\",\n            \"class\": \"Illuminate\\\\Routing\\\\AbstractRouteCollection\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"/app/vendor/laravel/framework/src/Illuminate/Routing/AbstractRouteCollection.php\",\n            \"line\": 41,\n            \"function\": \"getRouteForMethods\",\n            \"class\": \"Illuminate\\\\Routing\\\\AbstractRouteCollection\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"/app/vendor/laravel/framework/src/Illuminate/Routing/CompiledRouteCollection.php\",\n            \"line\": 144,\n            \"function\": \"handleMatchedRoute\",\n            \"class\": \"Illuminate\\\\Routing\\\\AbstractRouteCollection\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php\",\n            \"line\": 754,\n            \"function\": \"match\",\n            \"class\": \"Illuminate\\\\Routing\\\\CompiledRouteCollection\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php\",\n            \"line\": 741,\n            \"function\": \"findRoute\",\n            \"class\": \"Illuminate\\\\Routing\\\\Router\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php\",\n            \"line\": 730,\n            \"function\": \"dispatchToRoute\",\n            \"class\": \"Illuminate\\\\Routing\\\\Router\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php\",\n            \"line\": 200,\n            \"function\": \"dispatch\",\n            \"class\": \"Illuminate\\\\Routing\\\\Router\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php\",\n            \"line\": 141,\n            \"function\": \"Illuminate\\\\Foundation\\\\Http\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Foundation\\\\Http\\\\Kernel\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php\",\n            \"line\": 21,\n            \"function\": \"Illuminate\\\\Pipeline\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Pipeline\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/ConvertEmptyStringsToNull.php\",\n            \"line\": 31,\n            \"function\": \"handle\",\n            \"class\": \"Illuminate\\\\Foundation\\\\Http\\\\Middleware\\\\TransformsRequest\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php\",\n            \"line\": 180,\n            \"function\": \"handle\",\n            \"class\": \"Illuminate\\\\Foundation\\\\Http\\\\Middleware\\\\ConvertEmptyStringsToNull\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php\",\n            \"line\": 21,\n            \"function\": \"Illuminate\\\\Pipeline\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Pipeline\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TrimStrings.php\",\n            \"line\": 40,\n            \"function\": \"handle\",\n            \"class\": \"Illuminate\\\\Foundation\\\\Http\\\\Middleware\\\\TransformsRequest\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php\",\n            \"line\": 180,\n            \"function\": \"handle\",\n            \"class\": \"Illuminate\\\\Foundation\\\\Http\\\\Middleware\\\\TrimStrings\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/ValidatePostSize.php\",\n            \"line\": 27,\n            \"function\": \"Illuminate\\\\Pipeline\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Pipeline\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php\",\n            \"line\": 180,\n            \"function\": \"handle\",\n            \"class\": \"Illuminate\\\\Foundation\\\\Http\\\\Middleware\\\\ValidatePostSize\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/PreventRequestsDuringMaintenance.php\",\n            \"line\": 86,\n            \"function\": \"Illuminate\\\\Pipeline\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Pipeline\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php\",\n            \"line\": 180,\n            \"function\": \"handle\",\n            \"class\": \"Illuminate\\\\Foundation\\\\Http\\\\Middleware\\\\PreventRequestsDuringMaintenance\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"/app/vendor/laravel/framework/src/Illuminate/Http/Middleware/HandleCors.php\",\n            \"line\": 62,\n            \"function\": \"Illuminate\\\\Pipeline\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Pipeline\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php\",\n            \"line\": 180,\n            \"function\": \"handle\",\n            \"class\": \"Illuminate\\\\Http\\\\Middleware\\\\HandleCors\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"/app/vendor/laravel/framework/src/Illuminate/Http/Middleware/TrustProxies.php\",\n            \"line\": 39,\n            \"function\": \"Illuminate\\\\Pipeline\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Pipeline\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php\",\n            \"line\": 180,\n            \"function\": \"handle\",\n            \"class\": \"Illuminate\\\\Http\\\\Middleware\\\\TrustProxies\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php\",\n            \"line\": 116,\n            \"function\": \"Illuminate\\\\Pipeline\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Pipeline\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php\",\n            \"line\": 175,\n            \"function\": \"then\",\n            \"class\": \"Illuminate\\\\Pipeline\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php\",\n            \"line\": 144,\n            \"function\": \"sendRequestThroughRouter\",\n            \"class\": \"Illuminate\\\\Foundation\\\\Http\\\\Kernel\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"/app/public/index.php\",\n            \"line\": 52,\n            \"function\": \"handle\",\n            \"class\": \"Illuminate\\\\Foundation\\\\Http\\\\Kernel\",\n            \"type\": \"->\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "User Info",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiI5OWJmYWQ3My0wYzU4LTQyZDQtOTQwNi02NTNhYzA0Yzc2Y2YiLCJqdGkiOiIxZTkwZWQwMTY5YjEzYjg2YTc0NTc4ZjBkYTlkZDY0Y2Q4YzBiYTdiN2Y4MmQwYzY3YTQzNmQ0YjQ5MjU1MmRjYjU4MzgzN2Q0Nzk4NDg3NyIsImlhdCI6MTY5MDQ4OTI0OC44NzcxNDIsIm5iZiI6MTY5MDQ4OTI0OC44NzcxNDYsImV4cCI6MTcyMjExMTY0OC44MDg1ODQsInN1YiI6IjQxIiwic2NvcGVzIjpbXX0.OpS-SmWYtlp9N2SehceW9fzFW6HW3pTfe7PXg58gfnSG_Y1M3n4B57tNUMrjSSl73gWD9Oj0CfWMls73Fr1UWT9oyut9Yg1LoHeRJ6YchqRil64N2GNI-OF3Rg32A5cLDTKomwuMn9VrJBkhU5m9tI8EFyS5pqFzUqunzh5h2SR0zvRe3XIE1-4JsXdeaBiQ-T2Kz_i3FCN_cQx-i1LKcYDTjr_2o7zcKv1S0ssVIGfWHKh5UkIEjo37QZcEX9LTFNrcSegnsolT5FZ4cNHx8xW3YePmHcXT6By4buEP2yg4EPJ6Hfuy399IoZvpGm1wI91575bRssIh7Pex_iCPdzHPweJ34zXBaLUYA3Gu-Bf-7_iBUhzytOVFCW3qtxFYr1QiQ1vRtJbe-5RzRgZ7fNFSspeEu3SZo_lok1SmIYCdi1_NQdJpig97N1dlztC2QXVMCwZnVw7IRB3veDmDYu3Vt2X-0SewVe5HmuYxix3Up1BoV5cMyQjSf0KDvj2sxjCi9HdW-wu3U_OGqfBlM0Gat3JwOYYyE8Og4pyfsq8tWjxp5nKsvPyO1YdidljhKljI-5i4tk2dpJjhpcH6-rqmkfy2uUgHtAophnXnRvLaFLuqkCn2T3--EFoftOd8isI7B8Q9tLVo2XjwL7FWsQQ5_6fI5FyUtCupHnXzp7M",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host_api}}/{{version_api}}/me",
+							"host": [
+								"{{host_api}}"
+							],
+							"path": [
+								"{{version_api}}",
+								"me"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "## **Authentication**\n\nAuthentication to the API is performed via HTTP Basic Auth. By providiing your client_id and your API client_secret key you will be granted access and permission to your the approved API connections.\n\nRUBI has developed various API’s to help clients quickly and effectively manage their user’s accounts and connect to the RUBI software. Whether it’s the initial creation of those users, the ability to update that information, create subscriptions, or orders, RUBI ensures that clients have the tools they need to do all of the above.\n\nClients may use these APIs in combination with their Client Admin portal to manage and analyze user data. In some cases, the use of these APIs will help eliminate any need to manually enter and/or download data from the RUBI system and then upload that data into the client’s system."
+		},
+		{
+			"name": "Create Client",
+			"item": [
+				{
+					"name": "Create",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"firstname\": \"John\",\n    \"lastname\": \"Doe\",\n    \"mobile\": \" 99999999\",\n    \"email\": \"client2@example.com\",\n    \"username\": \"client2\",\n    \"password\": \"123456\",\n    \"password_confirmation\": \"123456\",\n    \"role\": \"client-admin\",\n    \"country_id\": \"1\",\n    \"2fa_verified\": \"0\",\n    \"superadmin_id\": \"1\",\n    \"business_name\": \"Acme Inc.\",\n    \"domain\": \"acme.com\",\n    \"platform_id\": \"1\",\n    \"client_product_package_id\": \"1\",\n    \"redirect_url\": \"the url to redirect users after sso auth\",\n    \"address\": {\n        \"address_type_id\": 1,\n        \"address_line_1\": \"line 1\",\n        \"address_line_2\": \"line 2\",\n        \"city\": \"porto alegre\",\n        \"state\": \"rio grande do sul\",\n        \"postal_code\": \"93260040\",\n        \"country_id\": \"5\"\n    },\n    \"preferred_language_id\": 1,\n    \"date_of_birth\": \"1990-10-20\",\n    \"ip_address\": \"1.1.1.1\",\n    \"tin\": \"83-22334\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host_api}}/{{version_api}}/clients/",
+							"host": [
+								"{{host_api}}"
+							],
+							"path": [
+								"{{version_api}}",
+								"clients",
+								""
+							]
+						},
+						"description": "**Description of body variables:**\n\nfirstname: The user's first name.  \nlastname: The user's last name.  \nmobile: The user's mobile phone number.  \nemail: The user's email address.  \nusername: The customers username.  \npassword: The user's chosen password. city:  \npassword_confirmation: The confirmed match of password  \nrole: The role of the customer  \ncountry_id: The id of the country based on the table below  \n2fa_veified: Did the customer get 2fa verified (boolean)  \nclient_id: The client ID associated with the user.  \nsponsor_id: The sponsors username from the client’s platform  \nbirthdate: The user's date of birth.  \npreferred_language: The preferred language of the user.  \nsponsor_id: The id used to identify the sponsor in the client system for the user.  \nenrollment_date: Date the user enrolled in the client’s system."
+					},
+					"response": []
+				}
+			],
+			"description": "## Creating Clients\n\nThe Create Client API for RUBI offers a seamless and efficient solution that empowers Super Admin users to effortlessly create new clients through a user-friendly onboarding process. This powerful tool streamlines the client creation procedure, ensuring a hassle-free experience for Super Admin users. With just a few straightforward steps, Super admins can input essential client details, swiftly generate new client profiles, and initiate their engagement with RUBI. By providing an intuitive interface, the Create Client API simplifies the administrative tasks involved in client setup, freeing up valuable time and resources for Super Admin users to focus on delivering exceptional services and enhancing client satisfaction."
+		},
+		{
+			"name": "Create Customers",
+			"item": [
+				{
+					"name": "Create",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"firstname\": \"Jane\",\n    \"lastname\": \"Doe\",\n    \"mobile\": \"99999999\",\n    \"email\": \"jane@example.com\",\n    \"username\": \"jane.doe\",\n    \"password\": \"123456\",\n    \"password_confirmation\": \"123456\",\n    \"role\": \"client-customer\",\n    \"country_id\": \"1\",\n    \"2fa_verified\": \"0\",\n    \"client_id\": \"2\",\n    \"sponsor_id\": \"\",\n    \"address\": {\n        \"address_type_id\": 1,\n        \"address_line_1\": \"line 1\",\n        \"address_line_2\": \"line 2\",\n        \"city\": \"porto alegre\",\n        \"state\": \"rio grande do sul\",\n        \"postal_code\": \"93260040\",\n        \"country_id\": \"5\"\n    },\n    \"preferred_language_id\": 1,\n    \"date_of_birth\": \"1990-10-20\",\n    \"ip_address\": \"1.1.1.1\",\n    \"tin\": \"83-22334\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host_api}}/{{version_api}}/customers/",
+							"host": [
+								"{{host_api}}"
+							],
+							"path": [
+								"{{version_api}}",
+								"customers",
+								""
+							]
+						},
+						"description": "## **Description of body variables:**\n\nfirstname: The user's first name.  \nlastname: The user's last name.  \nmobile: The user's mobile phone number.  \nemail: The user's email address.  \nusername: The customers username.  \npassword: The user's chosen password. city:  \npassword_confirmation: The confirmed match of password  \nrole: The role of the customer  \ncountry_id: The id of the country based on the table below  \n2fa_veified: Did the customer get 2fa verified (boolean)  \nclient_id: The client ID associated with the user.  \nsponsor_id: The sponsors username from the client’s platform  \nbirthdate: The user's date of birth.  \npreferred_language: The preferred language of the user.  \nsponsor_id: The id used to identify the sponsor in the client system for the user.  \nenrollment_date: Date the user enrolled in the client’s system."
+					},
+					"response": []
+				}
+			],
+			"description": "**Creating Customers**  \nThe Create Customer API allows clients to create an account for a customer who has either been an existing user of the client’s program or a user who has been invited by the user a guest.  \nThe Create User API is a simple and straight forward api to create a user on the RUBI platform without concerns or manually entering or importing data."
+		},
+		{
+			"name": "Create Super Admin",
+			"item": [
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"firstname\": \"New\",\n    \"lastname\": \"Admin\",\n    \"mobile\": \"99999999\",\n    \"email\": \"diogo4@example.com\",\n    \"username\": \"diogo4\",\n    \"password\": \"123456\",\n    \"password_confirmation\": \"123456\",\n    \"role\": \"super-admin\",\n    \"country_id\": \"1\",\n    \"2fa_verified\": \"0\",\n    \"address\": {\n        \"address_type_id\": 1,\n        \"address_line_1\": \"line 1\",\n        \"address_line_2\": \"line 2\",\n        \"city\": \"porto alegre\",\n        \"state\": \"rio grande do sul\",\n        \"postal_code\": \"93260040\",\n        \"country_id\": \"5\"\n    },\n    \"preferred_language_id\": 1,\n    \"date_of_birth\": \"1990-10-20\",\n    \"ip_address\": \"1.1.1.1\",\n    \"tin\": \"83-22334\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host_api}}/{{version_api}}/super-admins/",
+							"host": [
+								"{{host_api}}"
+							],
+							"path": [
+								"{{version_api}}",
+								"super-admins",
+								""
+							]
+						},
+						"description": "## **Description of body variables:**\n\nfirstname: The user's first name.  \nlastname: The user's last name.  \nmobile: The user's mobile phone number.  \nemail: The user's email address.  \nusername: The customers username.  \npassword: The user's chosen password. city:  \npassword_confirmation: The confirmed match of password  \nrole: The role of the customer  \ncountry_id: The id of the country based on the table below  \n2fa_veified: Did the customer get 2fa verified (boolean)  \nclient_id: The client ID associated with the user.  \nsponsor_id: The sponsors username from the client’s platform  \nbirthdate: The user's date of birth.  \npreferred_language: The preferred language of the user.  \nsponsor_id: The id used to identify the sponsor in the client system for the user.  \nenrollment_date: Date the user enrolled in the client’s system."
+					},
+					"response": []
+				}
+			],
+			"description": "## Creating Superadmin\n\nThe Create Superadmin API allows superadimin to create another superadmin account . This is a private call."
+		},
+		{
+			"name": "Collection",
+			"item": [
+				{
+					"name": "List",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host_api}}/{{version_api}}/collections?order_col=name&order_dir=asc&search=eee&per_page=5",
+							"host": [
+								"{{host_api}}"
+							],
+							"path": [
+								"{{version_api}}",
+								"collections"
+							],
+							"query": [
+								{
+									"key": "order_col",
+									"value": "name",
+									"description": "Column to order"
+								},
+								{
+									"key": "order_dir",
+									"value": "asc",
+									"description": "Order direction"
+								},
+								{
+									"key": "search",
+									"value": "eee",
+									"description": "Search term"
+								},
+								{
+									"key": "per_page",
+									"value": "5",
+									"description": "Items per page (pagination)"
+								}
+							]
+						},
+						"description": "This API creates a list of the collections associated with RUBI. This list will show the collections of modules."
+					},
+					"response": []
+				},
+				{
+					"name": "Create",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Test collection\",\n    \"short_description\": \"TC\",\n    \"managed_by\": 1,\n    \"created_by\": 1,\n    \"icon\": \"icon\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host_api}}/{{version_api}}/collections",
+							"host": [
+								"{{host_api}}"
+							],
+							"path": [
+								"{{version_api}}",
+								"collections"
+							]
+						},
+						"description": "The create collections API allows superadmin users to create new collections form the superadmin gloabla settings area of the RUBI back office. The create collection requires the superadmin user to give the new collection a name, a short description, assign a superadmin manager and upload and store an icon used to represent the colllection."
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Updated collection\",\n    \"short_description\": \"UC\",\n    \"managed_by\": 1,\n    \"created_by\": 1,\n    \"icon\": \"icon updated\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host_api}}/{{version_api}}/collections/1",
+							"host": [
+								"{{host_api}}"
+							],
+							"path": [
+								"{{version_api}}",
+								"collections",
+								"1"
+							]
+						},
+						"description": "The Update Collections API allows the RUBI superadmin users to modify the collections Name, Description, assign a new manager from superadmin to manage and modify its icon."
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{host_api}}/{{version_api}}/collections/2",
+							"host": [
+								"{{host_api}}"
+							],
+							"path": [
+								"{{version_api}}",
+								"collections",
+								"2"
+							]
+						},
+						"description": "The delete collections API allows the superadmin user to delete the collection from the platform."
+					},
+					"response": []
+				}
+			],
+			"description": "The Collections API is a powerful tool designed to streamline the management of collections within the RUBI system. Collections serve as the categories used to organize and sort modules effectively, providing users with a more structured and intuitive way to access information.\n\nWith the Collections API, Superadmin user can perform a range of essential operations related to collections:\n\n1. **Creating New Collections:** The API enables users to effortlessly create new collections. By providing the necessary information, such as collection name, description, and other relevant metadata, users can quickly establish new categories to organize their modules efficiently.\n2. **Updating Collections:** Users can easily modify existing collections using the API. Whether it's updating the collection name, description, or other properties, the API facilitates seamless changes to adapt to evolving requirements.\n3. **Listing Collections:** The API allows users to retrieve a comprehensive list of all existing collections. This feature provides a clear overview of the available categories, helping users navigate and understand the organization of modules in the RUBI system.\n4. **Deleting Collections:** When collections are no longer needed or relevant, the Collections API permits users to remove them. By initiating a delete request, users can effectively declutter the system and maintain a clean and relevant collection structure.\n    \n\nThe Collections API serves as an essential tool for managing the categorization of modules within RUBI. It empowers users to create, update, list, and delete collections with ease, ensuring a well-organized and user-friendly experience. By leveraging the power of the Collections API, users can optimize their workflow and access the right information more efficiently, enhancing productivity and overall user satisfaction in the RUBI system."
+		},
+		{
+			"name": "Subscriptions",
+			"item": [
+				{
+					"name": "List",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host_api}}/{{version_api}}/subscriptions?order_col=name&order_dir=asc&per_page=5",
+							"host": [
+								"{{host_api}}"
+							],
+							"path": [
+								"{{version_api}}",
+								"subscriptions"
+							],
+							"query": [
+								{
+									"key": "order_col",
+									"value": "name",
+									"description": "Column to order"
+								},
+								{
+									"key": "order_dir",
+									"value": "asc",
+									"description": "Order direction"
+								},
+								{
+									"key": "search",
+									"value": "Test",
+									"description": "Search term",
+									"disabled": true
+								},
+								{
+									"key": "per_page",
+									"value": "5",
+									"description": "Items per page (pagination)"
+								}
+							]
+						},
+						"description": "This API lists the subscription plans and details of each."
+					},
+					"response": []
+				},
+				{
+					"name": "Create",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Test subscription\",\n    \"description\": \"Lorem ipsum dolor sit amet\",\n    \"created_by_user_id\": 1,\n    \"affiliate_price_monthly\": \"346047.67\",\n    \"retail_price_monthly\": \"678983.39\",\n    \"affiliate_annual\": \"819424.26\",\n    \"retail_annual\": \"390286.61\",\n    \"workspaces\": 968153,\n    \"collaborators\": 32,\n    \"words\": 88500763,\n    \"credits\": 90168894\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host_api}}/{{version_api}}/subscriptions",
+							"host": [
+								"{{host_api}}"
+							],
+							"path": [
+								"{{version_api}}",
+								"subscriptions"
+							]
+						},
+						"description": "To create a subscription plan the Client Admin will name the subscription, add a description, assign price points, assign volumes, number of workspaces allowed, number of collaborators permitted, number of words, and number of credits and storage amounts."
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Test subscription\",\n    \"description\": \"Lorem ipsum dolor sit amet\",\n    \"created_by_user_id\": 1,\n    \"affiliate_price_monthly\": \"346047.67\",\n    \"retail_price_monthly\": \"678983.39\",\n    \"affiliate_annual\": \"819424.26\",\n    \"retail_annual\": \"390286.61\",\n    \"workspaces\": 968153,\n    \"collaborators\": 32,\n    \"words\": 88500763,\n    \"credits\": 90168894\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host_api}}/{{version_api}}/subscriptions/1",
+							"host": [
+								"{{host_api}}"
+							],
+							"path": [
+								"{{version_api}}",
+								"subscriptions",
+								"1"
+							]
+						},
+						"description": "Updating a subscription plan is available to modify the existing subscription plans."
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{host_api}}/{{version_api}}/subscriptions/1",
+							"host": [
+								"{{host_api}}"
+							],
+							"path": [
+								"{{version_api}}",
+								"subscriptions",
+								"1"
+							]
+						},
+						"description": "Deleting a subscription plan is available to Client Admin but the subscription will only be soft deleted keeping subscription archived for historical reporting."
+					},
+					"response": []
+				}
+			],
+			"description": "The Subscriptions API is a powerful tool that facilitates the management of subscription packages within the RUBI platform. Designed to provide a seamless experience for companies and their customers, this API enables the creation of new subscription plans and the updating, listing, and deletion of existing plans.\n\n**Key Features:**\n\n1. **Creating New Subscription Plans:** With the Subscriptions API, Clients (companies) can effortlessly create new subscription plans tailored to their customers' needs. These packages are built based on the specific features, products, and collections of modules granted to the company by RUBI Super Admin. This ensures that clients have access to the right set of tools and functionalities that align with their requirements.\n2. **Updating Subscription Packages:** The API allows companies to modify and fine-tune their subscription packages as per evolving business needs. Whether it's adding new features, updating product offerings, or adjusting module collections, companies can easily make changes to optimize their customers' experience.\n3. **Listing Existing Subscriptions:** The Subscriptions API provides a convenient way for companies to view all existing subscriptions associated with their company. This feature empowers companies to gain insights into their clients' subscription preferences and usage patterns, aiding them in making data-driven decisions.\n4. **Deleting Subscriptions:** In cases where companies wish to delete a subscription plan, the API offers a straightforward process for deleting those subscription plans no longer being used or offered.\n    \n\n**Seamless Integration with RUBI:**\n\nThe Subscriptions API seamlessly integrates with the RUBI platform at the Client (Company) level. RUBI Super Admin grants access to various Features, Products, and Collections of Modules, which serve as the building blocks for creating personalized subscription packages for the compnay. This unique approach ensures that clients receive precisely the services and functionalities they require, fostering a tailored experience for each customer the company targets.\n\n**Empowering Companies and Customers:**\n\nBy leveraging the Subscriptions API, companies can effortlessly customize their subscription offerings, providing customers with a diverse range of subscription plans. The API's flexibility empowers companies to adapt swiftly to changing market demands and optimize their clients' experience with RUBI's versatile tools.\n\nThe Subscriptions API is an indispensable tool within the RUBI platform, allowing companies to manage, update, and tailor subscription packages for their customers seamlessly. With its integration at the Client (Company) level and alignment with granted Features, Products, and Collections of Modules from RUBI Super Admin, the API brings unparalleled efficiency and personalization to the subscription management process, benefiting both companies and their valued customers."
+		},
+		{
+			"name": "Products",
+			"item": [
+				{
+					"name": "List",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host_api}}/{{version_api}}/products?order_col=name&order_dir=asc&per_page=5",
+							"host": [
+								"{{host_api}}"
+							],
+							"path": [
+								"{{version_api}}",
+								"products"
+							],
+							"query": [
+								{
+									"key": "order_col",
+									"value": "name",
+									"description": "Column to order"
+								},
+								{
+									"key": "order_dir",
+									"value": "asc",
+									"description": "Order direction"
+								},
+								{
+									"key": "search",
+									"value": "Test",
+									"description": "Search term",
+									"disabled": true
+								},
+								{
+									"key": "per_page",
+									"value": "5",
+									"description": "Items per page (pagination)"
+								}
+							]
+						},
+						"description": "The Product List API retrieves a list of the products where they can be connected to the frontend in both the Super Admin and the Client Admin portals."
+					},
+					"response": []
+				},
+				{
+					"name": "Create",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": 2,\n    \"name\": \"Credits\",\n    \"description\": \"25 credits will be added to users credit account\",\n    \"category_id\": 1,\n    \"active\": true,\n    \"is_service\": false\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host_api}}/{{version_api}}/products",
+							"host": [
+								"{{host_api}}"
+							],
+							"path": [
+								"{{version_api}}",
+								"products"
+							]
+						},
+						"description": "The create products API allows the creation of oroducts on the RUBI Platform. The variables that are required in creating a product are:\n\nName, Description, Long Description, category_id, active (ture | false), pricing options, the recurring order capabilities and volumes and credits."
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": 2,\n    \"name\": \"Credits Updated\",\n    \"description\": \"25 credits will be added to users credit account\",\n    \"category_id\": 1,\n    \"active\": true,\n    \"is_service\": false\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host_api}}/{{version_api}}/products/:product",
+							"host": [
+								"{{host_api}}"
+							],
+							"path": [
+								"{{version_api}}",
+								"products",
+								":product"
+							],
+							"variable": [
+								{
+									"key": "product",
+									"value": "1"
+								}
+							]
+						},
+						"description": "THe Update Product API allows the Super Admin to adjust product variables through the admin portal or through API integrated dashboards."
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{host_api}}/{{version_api}}/products/5",
+							"host": [
+								"{{host_api}}"
+							],
+							"path": [
+								"{{version_api}}",
+								"products",
+								"5"
+							]
+						},
+						"description": "A Super Admin user can delete a product by using the api integrated into the portal or through integrating the api into an ecternal dashboard. The delete of products is a soft delete that archives the information for historical reporting."
+					},
+					"response": []
+				}
+			],
+			"description": "The Products API's List, Create, Update and Delete the products that exist within the RUBI platform. The Super Admin is the user type that has this access. These products are sold al-a-carte and can be include into subscription plans."
+		},
+		{
+			"name": "Products Categories",
+			"item": [
+				{
+					"name": "List",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host_api}}/{{version_api}}/product-categories?order_col=name&order_dir=asc&per_page=5",
+							"host": [
+								"{{host_api}}"
+							],
+							"path": [
+								"{{version_api}}",
+								"product-categories"
+							],
+							"query": [
+								{
+									"key": "order_col",
+									"value": "name",
+									"description": "Column to order"
+								},
+								{
+									"key": "order_dir",
+									"value": "asc",
+									"description": "Order direction"
+								},
+								{
+									"key": "search",
+									"value": "Test",
+									"description": "Search term",
+									"disabled": true
+								},
+								{
+									"key": "per_page",
+									"value": "5",
+									"description": "Items per page (pagination)"
+								}
+							]
+						},
+						"description": "List of the product categories"
+					},
+					"response": []
+				},
+				{
+					"name": "Create",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"New Category\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host_api}}/{{version_api}}/product-categories",
+							"host": [
+								"{{host_api}}"
+							],
+							"path": [
+								"{{version_api}}",
+								"product-categories"
+							]
+						},
+						"description": "Create product categories requires only a name."
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": 2,\n    \"name\": \"Credits Updated\",\n    \"description\": \"25 credits will be added to users credit account\",\n    \"long_description\": \"25 credits will be added to users credit account\",\n    \"category_id\": 1,\n    \"active\": true,\n    \"affiliate_price\": \"10.00\",\n    \"affiliate_monthly_price\": null,\n    \"affiliate_annual_price\": null,\n    \"retail_price\": \"12.00\",\n    \"retail_monthly_price\": null,\n    \"retail_annual_price\": null,\n    \"recurring\": false,\n    \"qv\": \"0.00\",\n    \"cv\": \"10.00\",\n    \"pv\": \"0.00\",\n    \"qc\": \"0.00\",\n    \"ac\": \"0.00\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host_api}}/{{version_api}}/product-categories/1",
+							"host": [
+								"{{host_api}}"
+							],
+							"path": [
+								"{{version_api}}",
+								"product-categories",
+								"1"
+							]
+						},
+						"description": "Update the product category name."
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{host_api}}/{{version_api}}/product-categories/5",
+							"host": [
+								"{{host_api}}"
+							],
+							"path": [
+								"{{version_api}}",
+								"product-categories",
+								"5"
+							]
+						},
+						"description": "delete of product caegories will be soft deleted and archived for historical reporting."
+					},
+					"response": []
+				}
+			],
+			"description": "The Product Categories API is a powerful tool that allows developers to  \naccess and manage product categories within the RUBI platform or  \nwebsites. With this API, you can easily create, retrieve, update, and  \ndelete product categories, providing seamless integration and  \norganization of your product data."
+		},
+		{
+			"name": "Price Types",
+			"item": [
+				{
+					"name": "List",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host_api}}/{{version_api}}/price-types?order_col=name&order_dir=asc&per_page=5",
+							"host": [
+								"{{host_api}}"
+							],
+							"path": [
+								"{{version_api}}",
+								"price-types"
+							],
+							"query": [
+								{
+									"key": "order_col",
+									"value": "name",
+									"description": "Column to order"
+								},
+								{
+									"key": "order_dir",
+									"value": "asc",
+									"description": "Order direction"
+								},
+								{
+									"key": "search",
+									"value": "Test",
+									"description": "Search term",
+									"disabled": true
+								},
+								{
+									"key": "per_page",
+									"value": "5",
+									"description": "Items per page (pagination)"
+								}
+							]
+						},
+						"description": "The Product List API retrieves a list of the products where they can be connected to the frontend in both the Super Admin and the Client Admin portals."
+					},
+					"response": []
+				},
+				{
+					"name": "Create",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": 2,\n    \"name\": \"some title here\",\n    \"description\": \"some text here\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host_api}}/{{version_api}}/price-types",
+							"host": [
+								"{{host_api}}"
+							],
+							"path": [
+								"{{version_api}}",
+								"price-types"
+							]
+						},
+						"description": "The create products API allows the creation of oroducts on the RUBI Platform. The variables that are required in creating a product are:\n\nName, Description, Long Description, category_id, active (ture | false), pricing options, the recurring order capabilities and volumes and credits."
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"some title here\",\n    \"description\": \"some text here\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host_api}}/{{version_api}}/price-types/:product",
+							"host": [
+								"{{host_api}}"
+							],
+							"path": [
+								"{{version_api}}",
+								"price-types",
+								":product"
+							],
+							"variable": [
+								{
+									"key": "product",
+									"value": "1"
+								}
+							]
+						},
+						"description": "THe Update Product API allows the Super Admin to adjust product variables through the admin portal or through API integrated dashboards."
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{host_api}}/{{version_api}}/price-types/:priceType",
+							"host": [
+								"{{host_api}}"
+							],
+							"path": [
+								"{{version_api}}",
+								"price-types",
+								":priceType"
+							],
+							"variable": [
+								{
+									"key": "priceType",
+									"value": "5"
+								}
+							]
+						},
+						"description": "A Super Admin user can delete a product by using the api integrated into the portal or through integrating the api into an ecternal dashboard. The delete of products is a soft delete that archives the information for historical reporting."
+					},
+					"response": []
+				}
+			],
+			"description": "The Product Price Types allows the Super Admin to List, Create, Update and Delete price types to be used for products. Example of Price Types would be Retail, Affilliate, Monthly, Annual, Quarterly, 7-Day Trial, etc."
+		},
+		{
+			"name": "Orders",
+			"item": [
+				{
+					"name": "List",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host_api}}/{{version_api}}/orders?per_page=5",
+							"host": [
+								"{{host_api}}"
+							],
+							"path": [
+								"{{version_api}}",
+								"orders"
+							],
+							"query": [
+								{
+									"key": "per_page",
+									"value": "5"
+								}
+							]
+						},
+						"description": "Description: Retrieve a list of all existing orders in the system."
+					},
+					"response": []
+				},
+				{
+					"name": "Create",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"user_id\": 1,\n    \"tax_total\": 10.5,\n    \"discount_total\": 100,\n    \"subtotal\": 100,\n    \"total\": 100,\n    \"order_status_id\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host_api}}/{{version_api}}/orders",
+							"host": [
+								"{{host_api}}"
+							],
+							"path": [
+								"{{version_api}}",
+								"orders"
+							]
+						},
+						"description": "Description: Create a new order in the system."
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"user_id\": 1,\n    \"client_id\": 1,\n    \"words_qty\": 200,\n    \"credit_qty\": 100,\n    \"storage_qty\": 100,\n    \"total\": 100\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host_api}}/{{version_api}}/orders/1",
+							"host": [
+								"{{host_api}}"
+							],
+							"path": [
+								"{{version_api}}",
+								"orders",
+								"1"
+							]
+						},
+						"description": "Description: Update an existing order in the system by providing the order ID."
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{host_api}}/{{version_api}}/orders/1",
+							"host": [
+								"{{host_api}}"
+							],
+							"path": [
+								"{{version_api}}",
+								"orders",
+								"1"
+							]
+						},
+						"description": "Description: Delete an existing order from the system by providing the order ID. The delete will soft delete the product leaving all historical data attached to the archived orders."
+					},
+					"response": []
+				}
+			],
+			"description": "The Orders Management API provides endpoints to create, list, update,  \nand delete orders in the system. This API allows clients to seamlessly  \nmanage their order data and streamline their order processing workflow."
+		},
+		{
+			"name": "Order Item",
+			"item": [
+				{
+					"name": "List",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host_api}}/{{version_api}}/orders/2/items?per_page=5",
+							"host": [
+								"{{host_api}}"
+							],
+							"path": [
+								"{{version_api}}",
+								"orders",
+								"2",
+								"items"
+							],
+							"query": [
+								{
+									"key": "per_page",
+									"value": "5"
+								}
+							]
+						},
+						"description": "Description: Get a list of all order items. Requires authentication and authorization."
+					},
+					"response": []
+				},
+				{
+					"name": "Create",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"product_id\": 1,\n    \"subscription_id\": 2,\n    \"quantity\": 100,\n    \"tax\": 10.5,\n    \"discount\": 10.5\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host_api}}/{{version_api}}/orders/2/items",
+							"host": [
+								"{{host_api}}"
+							],
+							"path": [
+								"{{version_api}}",
+								"orders",
+								"2",
+								"items"
+							]
+						},
+						"description": "Description: Create a new order item with the provided details. Requires authentication and authorization."
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"product_id\": 2,\n    \"subscription_id\": 2,\n    \"quantity\": 100,\n    \"tax\": 10.51,\n    \"discount\": 10.5\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host_api}}/{{version_api}}/orders/2/items/1",
+							"host": [
+								"{{host_api}}"
+							],
+							"path": [
+								"{{version_api}}",
+								"orders",
+								"2",
+								"items",
+								"1"
+							]
+						},
+						"description": "Description: Update an existing order item identified by {item_id} with  \nthe provided details. Requires authentication and authorization."
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{host_api}}/{{version_api}}/orders/2/items/1",
+							"host": [
+								"{{host_api}}"
+							],
+							"path": [
+								"{{version_api}}",
+								"orders",
+								"2",
+								"items",
+								"1"
+							]
+						},
+						"description": "Description: Delete an order item identified by {item_id}. Requires authentication and authorization."
+					},
+					"response": []
+				}
+			],
+			"description": "The Order Items Management API allows users to create, list, update, and  \ndelete order items for an e-commerce platform. This API provides  \nessential functionalities to handle individual items within an order,  \nenabling smooth and efficient order processing."
+		},
+		{
+			"name": "Order Status",
+			"item": [
+				{
+					"name": "List",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host_api}}/{{version_api}}/order-statuses?order_col=name&order_dir=asc&per_page=12",
+							"host": [
+								"{{host_api}}"
+							],
+							"path": [
+								"{{version_api}}",
+								"order-statuses"
+							],
+							"query": [
+								{
+									"key": "order_col",
+									"value": "name",
+									"description": "Column to order"
+								},
+								{
+									"key": "order_dir",
+									"value": "asc",
+									"description": "Order direction"
+								},
+								{
+									"key": "search",
+									"value": "Test",
+									"description": "Search term",
+									"disabled": true
+								},
+								{
+									"key": "per_page",
+									"value": "12",
+									"description": "Items per page (pagination)"
+								}
+							]
+						},
+						"description": "Description: Retrieve a list of all existing order statuses in the system."
+					},
+					"response": []
+				},
+				{
+					"name": "Create",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"New Status\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host_api}}/{{version_api}}/order-statuses",
+							"host": [
+								"{{host_api}}"
+							],
+							"path": [
+								"{{version_api}}",
+								"order-statuses"
+							]
+						},
+						"description": "Description: Create a new order status with the provided details."
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"New Status Updated\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host_api}}/{{version_api}}/order_statuses/:order_status",
+							"host": [
+								"{{host_api}}"
+							],
+							"path": [
+								"{{version_api}}",
+								"order_statuses",
+								":order_status"
+							],
+							"variable": [
+								{
+									"key": "order_status",
+									"value": "12"
+								}
+							]
+						},
+						"description": "Description: Update the details of a specific order status identified by its unique status ID."
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{host_api}}/{{version_api}}/order_statuses/:order_status",
+							"host": [
+								"{{host_api}}"
+							],
+							"path": [
+								"{{version_api}}",
+								"order_statuses",
+								":order_status"
+							],
+							"variable": [
+								{
+									"key": "order_status",
+									"value": "12"
+								}
+							]
+						},
+						"description": "Description: Remove a specific order status from the system based on its unique status ID."
+					},
+					"response": []
+				}
+			],
+			"description": "The Order Status Management API allows you to create, list, update, and  \ndelete order statuses in your system. This API is designed to streamline  \nthe process of managing order statuses and provide a seamless  \nexperience for your customers."
+		},
+		{
+			"name": "Plans",
+			"item": []
+		},
+		{
+			"name": "Countries",
+			"item": [
+				{
+					"name": "List All Countries",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host_api}}/{{version_api}}/countries",
+							"host": [
+								"{{host_api}}"
+							],
+							"path": [
+								"{{version_api}}",
+								"countries"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "The Countries API is a valuable resource that empowers developers and businesses to access the `country_id` necessary to match specific users accurately. Its user-friendly  \ninterface, real-time data updates, and broad scope of applications make  \nit an essential tool for creating dynamic, location-aware experiences in  \ntoday's interconnected world."
+		},
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "Update",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"firstname\": \"John\",\n    \"lastname\": \"Doe Updated\",\n    \"mobile\": \" 99999999\",\n    \"email\": \"johndoe1@example.com\",\n    \"username\": \"john.doe\",\n    \"password\": \"123456\",\n    \"password_confirmation\": \"123456\",\n    \"country_id\": \"1\",\n    \"preferred_language_id\": 1,\n    \"date_of_birth\": \"1990-10-20\",\n    \"ip_address\": \"1.1.1.1\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host_api}}/{{version_api}}/users/2",
+							"host": [
+								"{{host_api}}"
+							],
+							"path": [
+								"{{version_api}}",
+								"users",
+								"2"
+							]
+						},
+						"description": "Description:  \nThe Update User API allows users to update their profile information in  \nthe system. Users can modify their name, email address, password, and  \nother details through this endpoint. This API provides a secure and  \nconvenient way for users to keep their information up-to-date."
+					},
+					"response": []
+				}
+			],
+			"description": "The Update User API allows you to update user information in the system. It is used modify existing user data based on the provided user_id that is sent in the CreateUser call. Maintaining the synchronicity between the two platofrms is critical to user experience."
+		},
+		{
+			"name": "Language",
+			"item": [
+				{
+					"name": "List All Languages",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host_api}}/{{version_api}}/languages/",
+							"host": [
+								"{{host_api}}"
+							],
+							"path": [
+								"{{version_api}}",
+								"languages",
+								""
+							]
+						},
+						"description": "The Languages API enables clients to retrieve a comprehensive list of  \nlanguages and associate a unique language ID with their preferred  \nlanguage selection."
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Workspace",
+			"item": [
+				{
+					"name": "List",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host_api}}/{{version_api}}/user/:user/workspaces/",
+							"host": [
+								"{{host_api}}"
+							],
+							"path": [
+								"{{version_api}}",
+								"user",
+								":user",
+								"workspaces",
+								""
+							],
+							"query": [
+								{
+									"key": "order_col",
+									"value": "nickname",
+									"description": "Column to order",
+									"disabled": true
+								},
+								{
+									"key": "order_dir",
+									"value": "asc",
+									"description": "Ordering direction",
+									"disabled": true
+								},
+								{
+									"key": "search",
+									"value": "",
+									"description": "Search ",
+									"disabled": true
+								},
+								{
+									"key": "per_page",
+									"value": "10",
+									"description": "Pagination (if not sended, not paginate)",
+									"disabled": true
+								}
+							],
+							"variable": [
+								{
+									"key": "user",
+									"value": "d51ac0a0-b91e-4012-8826-1a526ec74c0e"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"customer_user_id\": 2,\n    \"user_subscription_id\": 1,\n    \"nickname\": \"New Workspace\",\n    \"short_description\": \"Create new Workspace\",\n    \"active\": true\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host_api}}/{{version_api}}/user/:user/workspaces",
+							"host": [
+								"{{host_api}}"
+							],
+							"path": [
+								"{{version_api}}",
+								"user",
+								":user",
+								"workspaces"
+							],
+							"variable": [
+								{
+									"key": "user",
+									"value": "d51ac0a0-b91e-4012-8826-1a526ec74c0e"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"customer_user_id\": 2,\n    \"user_subscription_id\": 1,\n    \"nickname\": \"New Workspace Updated\",\n    \"short_description\": \"Updated new Workspace\",\n    \"active\": true\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host_api}}/{{version_api}}/user/:user/workspaces/:workspace",
+							"host": [
+								"{{host_api}}"
+							],
+							"path": [
+								"{{version_api}}",
+								"user",
+								":user",
+								"workspaces",
+								":workspace"
+							],
+							"variable": [
+								{
+									"key": "user",
+									"value": "d51ac0a0-b91e-4012-8826-1a526ec74c0e"
+								},
+								{
+									"key": "workspace",
+									"value": "4"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{host_api}}/{{version_api}}/user/:user/workspaces/:workspace",
+							"host": [
+								"{{host_api}}"
+							],
+							"path": [
+								"{{version_api}}",
+								"user",
+								":user",
+								"workspaces",
+								":workspace"
+							],
+							"variable": [
+								{
+									"key": "user",
+									"value": "d51ac0a0-b91e-4012-8826-1a526ec74c0e"
+								},
+								{
+									"key": "workspace",
+									"value": "4"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "The Workspaces API is a powerful tool that allows developers to interact  \nwith and manage workspaces in the RUBI platform. Workspaces provide a  \ncollaborative environment for users to create, edit, and organize their  \ncontent projects seamlessly"
+		},
+		{
+			"name": "Workspace Keyword",
+			"item": [
+				{
+					"name": "List",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host_api}}/{{version_api}}/workspace/:workspace/keywords",
+							"host": [
+								"{{host_api}}"
+							],
+							"path": [
+								"{{version_api}}",
+								"workspace",
+								":workspace",
+								"keywords"
+							],
+							"query": [
+								{
+									"key": "order_col",
+									"value": "nickname",
+									"description": "Column to order",
+									"disabled": true
+								},
+								{
+									"key": "order_dir",
+									"value": "asc",
+									"description": "Ordering direction",
+									"disabled": true
+								},
+								{
+									"key": "search",
+									"value": "",
+									"description": "Search ",
+									"disabled": true
+								},
+								{
+									"key": "per_page",
+									"value": "10",
+									"description": "Pagination (if not sended, not paginate)",
+									"disabled": true
+								}
+							],
+							"variable": [
+								{
+									"key": "workspace",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"user_id\": 1,\n    \"keyword\": \"Updated\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host_api}}/{{version_api}}/workspace/:workspace/keywords",
+							"host": [
+								"{{host_api}}"
+							],
+							"path": [
+								"{{version_api}}",
+								"workspace",
+								":workspace",
+								"keywords"
+							],
+							"variable": [
+								{
+									"key": "workspace",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"user_id\": 1,\n    \"keyword\": \"Updated\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host_api}}/{{version_api}}/workspace/:workspace/keywords/:keyword",
+							"host": [
+								"{{host_api}}"
+							],
+							"path": [
+								"{{version_api}}",
+								"workspace",
+								":workspace",
+								"keywords",
+								":keyword"
+							],
+							"variable": [
+								{
+									"key": "workspace",
+									"value": "1"
+								},
+								{
+									"key": "keyword",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{host_api}}/{{version_api}}/workspace/:workspace/keywords/:keyword",
+							"host": [
+								"{{host_api}}"
+							],
+							"path": [
+								"{{version_api}}",
+								"workspace",
+								":workspace",
+								"keywords",
+								":keyword"
+							],
+							"variable": [
+								{
+									"key": "workspace",
+									"value": "1"
+								},
+								{
+									"key": "keyword",
+									"value": "5"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "The Workspaces API is a powerful tool that allows developers to interact  \nwith and manage workspaces in the RUBI platform. Workspaces provide a  \ncollaborative environment for users to create, edit, and organize their  \ncontent projects seamlessly"
+		},
+		{
+			"name": "Invitation",
+			"item": [
+				{
+					"name": "List",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host_api}}/{{version_api}}/user/:user/invitations?order_col=nickname&order_dir=asc&per_page=10",
+							"host": [
+								"{{host_api}}"
+							],
+							"path": [
+								"{{version_api}}",
+								"user",
+								":user",
+								"invitations"
+							],
+							"query": [
+								{
+									"key": "order_col",
+									"value": "nickname"
+								},
+								{
+									"key": "order_dir",
+									"value": "asc"
+								},
+								{
+									"key": "search",
+									"value": "Test",
+									"disabled": true
+								},
+								{
+									"key": "per_page",
+									"value": "10"
+								}
+							],
+							"variable": [
+								{
+									"key": "user",
+									"value": "d51ac0a0-b91e-4012-8826-1a526ec74c0e"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"firstname\": \"John\",\n    \"lastname\": \"Doe\",\n    \"email\": \"johndoe@example.com\",\n    \"mobile\": \"+55 35 999999999\",\n    \"workspace_id\": 2\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host_api}}/{{version_api}}/user/:user/invitations",
+							"host": [
+								"{{host_api}}"
+							],
+							"path": [
+								"{{version_api}}",
+								"user",
+								":user",
+								"invitations"
+							],
+							"variable": [
+								{
+									"key": "user",
+									"value": "d51ac0a0-b91e-4012-8826-1a526ec74c0e"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Collaborator",
+			"item": [
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{host_api}}/{{version_api}}/register?invitation=4&signature=0b90e4f5fe68e333e08953333e4bc66173be61825fb3845ee1be0d15a3a35814",
+							"host": [
+								"{{host_api}}"
+							],
+							"path": [
+								"{{version_api}}",
+								"register"
+							],
+							"query": [
+								{
+									"key": "invitation",
+									"value": "4"
+								},
+								{
+									"key": "signature",
+									"value": "0b90e4f5fe68e333e08953333e4bc66173be61825fb3845ee1be0d15a3a35814"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					"pm.request.headers.add({",
+					"  key: \"Accept\",",
+					"  value: \"application/json\"",
+					"});"
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
