@@ -17,7 +17,6 @@ use App\Http\Controllers\PersonasController;
 use App\Http\Controllers\PriceTypeController;
 use App\Http\Controllers\ProductCategoryController;
 use App\Http\Controllers\ProductController;
-use App\Http\Controllers\ProductPriceController;
 use App\Http\Controllers\SpiAuditController;
 use App\Http\Controllers\SubscriptionController;
 use App\Http\Controllers\SuperAdminController;
@@ -60,11 +59,10 @@ Route::middleware('auth:api')->group(function () {
     Route::apiResource('order-statuses', OrderStatusController::class);
     Route::apiResource('product-categories', ProductCategoryController::class);
     Route::apiResource('spi-audit', SpiAuditController::class);
-    Route::apiResource('workspaces', WorkspaceController::class)->scoped();
+    Route::apiResource('user.workspaces', WorkspaceController::class)->scoped();
     Route::apiResource('workspace.keywords', WorkspaceKeywordController::class)->scoped();
     Route::apiResource('user.invitations', InvitationController::class)->scoped();
     Route::apiResource('price-types', PriceTypeController::class);
-    Route::apiResource('product-prices', ProductPriceController::class);
 
     // test route for user details
     Route::get('/me', function (Request $request) {

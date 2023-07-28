@@ -20,17 +20,17 @@ class WorkspaceController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(Request $request, ListAllWorkspaces $listAllWorkspaces): AnonymousResourceCollection
+    public function index(User $user, Request $request, ListAllWorkspaces $listAllWorkspaces): AnonymousResourceCollection
     {
-        return WorkspaceResource::collection($listAllWorkspaces->handle(request: $request));
+        return WorkspaceResource::collection($listAllWorkspaces->handle(user: $user, request: $request));
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(WorkspaceStoreRequest $request, CreateWorkspace $workspaceCreator): WorkspaceResource
+    public function store(User $user, WorkspaceStoreRequest $request, CreateWorkspace $workspaceCreator): WorkspaceResource
     {
-        $workspace = $workspaceCreator->handle(data: $request->safe()->toArray());
+        $workspace = $workspaceCreator->handle(user: $user, data: $request->safe()->toArray());
         return WorkspaceResource::make($workspace);
     }
 
@@ -45,7 +45,7 @@ class WorkspaceController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Workspace $workspace, WorkspaceUpdateRequest $request, UpdateWorkspace $workspaceUpdater): WorkspaceResource
+    public function update(User $user, Workspace $workspace, WorkspaceUpdateRequest $request, UpdateWorkspace $workspaceUpdater): WorkspaceResource
     {
         $updatedWorkspace = $workspaceUpdater->handle(workspace: $workspace, data: $request->safe()->toArray());
         return WorkspaceResource::make($updatedWorkspace);
@@ -54,7 +54,7 @@ class WorkspaceController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Workspace $workspace, RemoveWorkspace $workspaceRemover): JsonResponse
+    public function destroy(User $user, Workspace $workspace, RemoveWorkspace $workspaceRemover): JsonResponse
     {
         if ($workspaceRemover->handle($workspace)) {
             return response()->json([
