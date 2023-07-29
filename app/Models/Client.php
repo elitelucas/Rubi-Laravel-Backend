@@ -9,7 +9,14 @@ class Client extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['user_id', 'superadmin_id', 'business_name', 'domain', 'platform_id', 'client_product_package_id'];
+    protected $fillable = [
+        'user_id',
+        'superadmin_id',
+        'domain',
+        'platform_id',
+        'client_product_package_id'
+    ];
+
     public function user(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo(User::class, 'user_id');

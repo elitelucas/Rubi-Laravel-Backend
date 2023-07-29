@@ -18,7 +18,6 @@ class ClientResource extends JsonResource
             'id' => $this->id,
             'user' => UserResource::make($this->whenLoaded('user')),
             'superadmin' => $this->superAdmin->name,
-            'business_name' => $this->business_name,
             'domain' => $this->domain,
             'platform_id' => $this->plaform_id,
             'client_product_package_id' => $this->client_product_package_id

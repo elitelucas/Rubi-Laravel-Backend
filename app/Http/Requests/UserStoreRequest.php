@@ -28,6 +28,7 @@ class UserStoreRequest extends FormRequest
             'lastname' => ['required', 'string', 'max:255'],
             'mobile' => ['required', 'integer'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'business_name' => ['nullable', 'string', 'max:255'],
             'username' => ['required', 'string', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'max:255', 'confirmed'],
             'role' => ['required', 'string', new Enum(RoleEnum::class)],

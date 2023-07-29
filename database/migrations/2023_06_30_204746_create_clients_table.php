@@ -17,7 +17,6 @@ return new class extends Migration
             $table->id();
             $table->integer('user_id')->nullable();
             $table->integer('superadmin_id')->nullable();
-            $table->string('business_name')->nullable();
             $table->string('domain')->nullable();
             $table->integer('platform_id')->nullable();
             $table->integer('client_product_package_id')->nullable();

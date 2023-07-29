@@ -24,7 +24,6 @@ class ClientStoreRequest extends FormRequest
     {
         $rules = [
             "superadmin_id" => ["required", "integer", "exists:users,id"],
-            "business_name" => ["required", "string", "max:255"],
             "domain" => ["required", "string", "max:255"],
             "platform_id" => ["required", "integer"],
             "client_product_package_id" => ["required", "integer"],
