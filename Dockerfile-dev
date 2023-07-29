@@ -36,5 +36,5 @@ RUN composer install --no-interaction --optimize-autoloader  --no-scripts
 RUN chown -R application:application .
 
 
-COPY init-rubi.sh /opt/docker/provision/entrypoint.d/
-RUN chmod +x /opt/docker/provision/entrypoint.d/init-rubi.sh
+COPY init-rubi-dev.sh /opt/docker/provision/entrypoint.d/
+RUN chmod +x /opt/docker/provision/entrypoint.d/init-rubi-dev.sh
