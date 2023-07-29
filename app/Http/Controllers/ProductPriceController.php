@@ -2,14 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Actions\ProductPrice\ListAllProductsPrice;
 use App\Actions\ProductPrice\CreateProductPrice;
 use App\Actions\ProductPrice\RemoveProductPrice;
 use App\Actions\ProductPrice\UpdateProductPrice;
-use App\Actions\ProductPrice\ListAllProductsCategory;
 use App\Http\Requests\ProductPriceStoreRequest;
 use App\Http\Requests\ProductStoreRequest;
 use App\Http\Resources\ProductPriceResource;
 use App\Http\Resources\ProductResource;
+use App\Models\ProductPrice;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
@@ -24,7 +25,7 @@ class ProductPriceController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(Request $request, ListAllProductsCategory $listAllProductCategories): AnonymousResourceCollection
+    public function index(Request $request, ListAllProductsPrice $listAllProductCategories): AnonymousResourceCollection
     {
         return ProductPriceResource::collection($listAllProductCategories->handle(request: $request));
     }

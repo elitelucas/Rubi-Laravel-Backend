@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Actions\ProductCategory;
+namespace App\Actions\ProductPrice;
 
 use App\Models\ProductCategory;
 use App\Traits\PaginatesAndSearches;
