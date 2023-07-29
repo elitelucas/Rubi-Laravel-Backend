@@ -44,8 +44,8 @@ use Laravel\Passport\Http\Controllers\AuthorizationController;
 //// temporarily forcing non-superadmin login
 //Auth::guard('api')->loginUsingId(3);
 
-# cria uma rota de login que irá retornar um token de acesso
-Route::post('login', CustomAuthController::class);
+//# cria uma rota de login que irá retornar um token de acesso
+//Route::post('login', CustomAuthController::class);
 
 
 # All routes in this group will be protected
