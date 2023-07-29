@@ -19,7 +19,7 @@ return [
 
     'allowed_methods' => ['*'],
 
-    'allowed_origins' => ['*', 'http://rubi-dev.loca.lt'],
+    'allowed_origins' => ['*', 'https://rubi-dev.loca.lt'],
 
     'allowed_origins_patterns' => [],
 
