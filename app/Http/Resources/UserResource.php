@@ -6,6 +6,7 @@ use App\Enums\RoleEnum;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
+use Spatie\Permission\Models\Permission;
 
 /**
  * @mixin User
@@ -42,6 +43,9 @@ class UserResource extends JsonResource
                     'client_secret' => $this->clients()->first()->secret,
                 ]
             ),
+            // mock for front
+            'permissions' => Permission::get()->pluck('name'),
+            // 'permissions' => $this->getAllPermissions()
         ];
     }
 }

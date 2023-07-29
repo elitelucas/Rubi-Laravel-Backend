@@ -16,7 +16,7 @@ composer dump-autoload
 
 /usr/local/bin/php /app/artisan migrate:fresh --seed --force
 
-/usr/local/bin/php /app/artisan passport:install
+/usr/local/bin/php /app/artisan passport:install --uuids
 
 
 # /usr/local/bin/php /app/artisan migrate:fresh --seed
