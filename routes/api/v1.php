@@ -45,7 +45,7 @@ use Laravel\Passport\Http\Controllers\AuthorizationController;
 //Auth::guard('api')->loginUsingId(3);
 
 //# cria uma rota de login que irá retornar um token de acesso
-//Route::post('login', CustomAuthController::class);
+Route::post('login', CustomAuthController::class);
 
 
 # All routes in this group will be protected
