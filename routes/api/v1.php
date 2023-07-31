@@ -50,11 +50,11 @@ Route::post('login', CustomAuthController::class);
 
 # All routes in this group will be protected
 Route::middleware('auth:api')->group(function () {
-    Route::apiResource('clients', ClientController::class)->only(['index', 'store']);
+    Route::apiResource('clients', ClientController::class)->only(['index', 'show', 'store']);
     Route::apiResource('customers', CustomerController::class)->only(['index', 'store']);
     Route::apiResource('countries', CountryController::class)->only('index');
     Route::apiResource('super-admins', SuperAdminController::class)->only(['index', 'store']);
-    Route::apiResource('users', UserController::class)->only('update');
+    Route::apiResource('users', UserController::class)->only('show', 'update');
     Route::apiResource('languages', LanguageController::class)->only('index');
     Route::apiResource('collections', CollectionController::class);
     Route::apiResource('subscriptions', SubscriptionController::class);

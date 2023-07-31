@@ -23,4 +23,12 @@ class UserController extends Controller
         $updatedUser = $userUpdater->handle($user, $request->safe()->toArray());
         return UserResource::make($updatedUser);
     }
+
+    /**
+     * Display the specified user.
+     */
+    public function show(User $user): UserResource
+    {
+        return UserResource::make($user);
+    }
 }
