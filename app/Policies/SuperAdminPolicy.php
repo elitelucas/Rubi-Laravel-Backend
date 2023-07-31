@@ -12,7 +12,7 @@ class SuperAdminPolicy
      */
     public function viewAny(User $user): bool
     {
-        return false;
+        return $user->can('list-super-admin');
     }
 
     /**
@@ -20,7 +20,7 @@ class SuperAdminPolicy
      */
     public function view(User $user, SuperAdmin $superAdmin): bool
     {
-        return false;
+        return $user->can('list-super-admin');
     }
 
     /**

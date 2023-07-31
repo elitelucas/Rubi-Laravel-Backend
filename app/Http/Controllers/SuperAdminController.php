@@ -19,6 +19,12 @@ class SuperAdminController extends Controller
         // Authorize the resource
         $this->authorizeResource(SuperAdmin::class);
     }
+
+    public function index()
+    {
+        return UserResource::collection(SuperAdmin::with(['addresses', 'preferredLanguage'])->get());
+    }
+
     public function store(SuperAdminStoreRequest $request, CreateUser $userCreator, CreateAddressUser $addressUserCreator, CreateSuperAdmin $superAdminCreator)
     {
         return DB::transaction(function () use ($request, $userCreator, $addressUserCreator, $superAdminCreator) {
