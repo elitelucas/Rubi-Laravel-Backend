@@ -21,9 +21,9 @@ class UserSubscription extends Model
         'subscription_id',
         'nickname',
         'short_description',
-        'activation_date',
-        'expiration_date',
-        'renewal_date',
+        'activated_at',
+        'expiration_at',
+        'renewal_at',
         'active',
     ];
 
@@ -36,9 +36,9 @@ class UserSubscription extends Model
         'id' => 'integer',
         'user_id' => 'integer',
         'subscription_id' => 'integer',
-        'activation_date' => 'datetime',
-        'expiration_date' => 'datetime',
-        'renewal_date' => 'datetime',
+        'activated_at' => 'datetime',
+        'expiration_at' => 'datetime',
+        'renewal_at' => 'datetime',
         'active' => 'boolean',
     ];
 
