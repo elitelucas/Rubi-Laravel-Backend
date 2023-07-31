@@ -7,7 +7,7 @@ use Exception;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
-class AcceptedInvitationException extends Exception
+class UserSubscriptionException extends Exception
 {
     use ReturnErrorResponse;
     /**
@@ -15,6 +15,6 @@ class AcceptedInvitationException extends Exception
      */
     public function render(Request $request): JsonResponse
     {
-        return $this->error(error: 'This invitation has already been accepted.', status: 422);
+        return $this->error(error: $this->message, status: 422);
     }
 }

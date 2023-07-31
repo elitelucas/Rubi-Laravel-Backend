@@ -2,11 +2,9 @@
 
 namespace Database\Seeders;
 
-use App\Enums\RoleEnum;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Schema;
 use Spatie\Permission\Models\Permission;
-use Spatie\Permission\Models\Role;
 
 class PermissionSeeder extends Seeder
 {
@@ -15,63 +13,71 @@ class PermissionSeeder extends Seeder
      */
     public function run(): void
     {
-        Permission::truncate();
+        Schema::disableForeignKeyConstraints();
+
+        Permission::query()->truncate();
 
         # super admin can do everything
-        Permission::create(['name' => 'create-super-admin']);
-        Permission::create(['name' => 'update-super-admin']);
-        Permission::create(['name' => 'delete-super-admin']);
-        Permission::create(['name' => 'list-super-admin']);
+        Permission::query()->firstOrCreate(['name' => 'create-super-admin']);
+        Permission::query()->firstOrCreate(['name' => 'update-super-admin']);
+        Permission::query()->firstOrCreate(['name' => 'delete-super-admin']);
+        Permission::query()->firstOrCreate(['name' => 'list-super-admin']);
 
-        Permission::create(['name' => 'create-client-admin']);
-        Permission::create(['name' => 'update-client-admin']);
-        Permission::create(['name' => 'delete-client-admin']);
-        Permission::create(['name' => 'list-client-admin']);
+        Permission::query()->firstOrCreate(['name' => 'create-client-admin']);
+        Permission::query()->firstOrCreate(['name' => 'update-client-admin']);
+        Permission::query()->firstOrCreate(['name' => 'delete-client-admin']);
+        Permission::query()->firstOrCreate(['name' => 'list-client-admin']);
 
-        Permission::create(['name' => 'create-client-customer']);
-        Permission::create(['name' => 'update-client-customer']);
-        Permission::create(['name' => 'delete-client-customer']);
-        Permission::create(['name' => 'list-client-customer']);
+        Permission::query()->firstOrCreate(['name' => 'create-client-customer']);
+        Permission::query()->firstOrCreate(['name' => 'update-client-customer']);
+        Permission::query()->firstOrCreate(['name' => 'delete-client-customer']);
+        Permission::query()->firstOrCreate(['name' => 'list-client-customer']);
 
-        Permission::create(['name' => 'create-collaborator']);
-        Permission::create(['name' => 'update-collaborator']);
-        Permission::create(['name' => 'delete-collaborator']);
-        Permission::create(['name' => 'list-collaborator']);
+        Permission::query()->firstOrCreate(['name' => 'create-collaborator']);
+        Permission::query()->firstOrCreate(['name' => 'update-collaborator']);
+        Permission::query()->firstOrCreate(['name' => 'delete-collaborator']);
+        Permission::query()->firstOrCreate(['name' => 'list-collaborator']);
 
-        Permission::create(['name' => 'create-order']);
-        Permission::create(['name' => 'update-order']);
-        Permission::create(['name' => 'delete-order']);
-        Permission::create(['name' => 'list-order']);
+        Permission::query()->firstOrCreate(['name' => 'create-order']);
+        Permission::query()->firstOrCreate(['name' => 'update-order']);
+        Permission::query()->firstOrCreate(['name' => 'delete-order']);
+        Permission::query()->firstOrCreate(['name' => 'list-order']);
 
-        Permission::create(['name' => 'create-workspace']);
-        Permission::create(['name' => 'update-workspace']);
-        Permission::create(['name' => 'delete-workspace']);
-        Permission::create(['name' => 'list-workspace']);
+        Permission::query()->firstOrCreate(['name' => 'create-workspace']);
+        Permission::query()->firstOrCreate(['name' => 'update-workspace']);
+        Permission::query()->firstOrCreate(['name' => 'delete-workspace']);
+        Permission::query()->firstOrCreate(['name' => 'list-workspace']);
 
-        Permission::create(['name' => 'create-invitation']);
-        Permission::create(['name' => 'update-invitation']);
-        Permission::create(['name' => 'delete-invitation']);
-        Permission::create(['name' => 'list-invitation']);
+        Permission::query()->firstOrCreate(['name' => 'create-invitation']);
+        Permission::query()->firstOrCreate(['name' => 'update-invitation']);
+        Permission::query()->firstOrCreate(['name' => 'delete-invitation']);
+        Permission::query()->firstOrCreate(['name' => 'list-invitation']);
 
-        Permission::create(['name' => 'create-product-category']);
-        Permission::create(['name' => 'update-product-category']);
-        Permission::create(['name' => 'delete-product-category']);
-        Permission::create(['name' => 'list-product-category']);
+        Permission::query()->firstOrCreate(['name' => 'create-product-category']);
+        Permission::query()->firstOrCreate(['name' => 'update-product-category']);
+        Permission::query()->firstOrCreate(['name' => 'delete-product-category']);
+        Permission::query()->firstOrCreate(['name' => 'list-product-category']);
 
-        Permission::create(['name' => 'create-product']);
-        Permission::create(['name' => 'update-product']);
-        Permission::create(['name' => 'delete-product']);
-        Permission::create(['name' => 'list-product']);
+        Permission::query()->firstOrCreate(['name' => 'create-product']);
+        Permission::query()->firstOrCreate(['name' => 'update-product']);
+        Permission::query()->firstOrCreate(['name' => 'delete-product']);
+        Permission::query()->firstOrCreate(['name' => 'list-product']);
 
-        Permission::create(['name' => 'create-price-type']);
-        Permission::create(['name' => 'update-price-type']);
-        Permission::create(['name' => 'delete-price-type']);
-        Permission::create(['name' => 'list-price-type']);
+        Permission::query()->firstOrCreate(['name' => 'create-price-type']);
+        Permission::query()->firstOrCreate(['name' => 'update-price-type']);
+        Permission::query()->firstOrCreate(['name' => 'delete-price-type']);
+        Permission::query()->firstOrCreate(['name' => 'list-price-type']);
 
-        Permission::create(['name' => 'create-product-price']);
-        Permission::create(['name' => 'update-product-price']);
-        Permission::create(['name' => 'delete-product-price']);
-        Permission::create(['name' => 'list-product-price']);
+        Permission::query()->firstOrCreate(['name' => 'create-product-price']);
+        Permission::query()->firstOrCreate(['name' => 'update-product-price']);
+        Permission::query()->firstOrCreate(['name' => 'delete-product-price']);
+        Permission::query()->firstOrCreate(['name' => 'list-product-price']);
 
+        Permission::query()->firstOrCreate(['name' => 'create-user-subscription']);
+        Permission::query()->firstOrCreate(['name' => 'update-user-subscription']);
+        Permission::query()->firstOrCreate(['name' => 'delete-user-subscription']);
+        Permission::query()->firstOrCreate(['name' => 'list-user-subscription']);
+
+        Schema::enableForeignKeyConstraints();
     }
 }

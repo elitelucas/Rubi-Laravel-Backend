@@ -19,9 +19,9 @@ class UserSubscriptionResource extends JsonResource
             'subscription' => SubscriptionResource::make($this->whenLoaded('subscription')),
             'nickname' => $this->nickname,
             'short_description' => $this->short_description,
-            'activation_date' => $this->activation_date,
-            'expiration_date' => $this->expiration_date,
-            'renewal_date' => $this->renewal_date,
+            'activated_at' => $this->activated_at,
+            'expiration_at' => $this->expiration_at,
+            'renewal_at' => $this->renewal_at,
             'active' => $this->active
         ];
     }

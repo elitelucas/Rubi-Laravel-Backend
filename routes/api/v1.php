@@ -22,6 +22,7 @@ use App\Http\Controllers\SpiAuditController;
 use App\Http\Controllers\SubscriptionController;
 use App\Http\Controllers\SuperAdminController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\UserSubscriptionController;
 use App\Http\Controllers\WorkspaceController;
 use App\Http\Controllers\WorkspaceKeywordController;
 use App\Http\Middleware\ValidateSignature;
@@ -68,6 +69,7 @@ Route::middleware('auth:api')->group(function () {
     Route::apiResource('workspace.keywords', WorkspaceKeywordController::class)->scoped();
     Route::apiResource('user.invitations', InvitationController::class)->scoped();
     Route::apiResource('price-types', PriceTypeController::class);
+    Route::apiResource('user-subscriptions', UserSubscriptionController::class);
 
     // test route for user details
     Route::get('/me', function (Request $request) {

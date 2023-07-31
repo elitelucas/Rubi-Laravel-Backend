@@ -174,4 +174,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Invitation::class);
     }
+
+    public function subscriptions(): HasMany
+    {
+        return $this->hasMany(UserSubscription::class);
+    }
 }
