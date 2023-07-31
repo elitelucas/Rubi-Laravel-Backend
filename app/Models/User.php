@@ -157,7 +157,7 @@ class User extends Authenticatable
      */
     public function addresses(): HasMany
     {
-        return $this->hasMany(AddressUser::class);
+        return $this->hasMany(AddressUser::class, 'user_id');
     }
 
     public function preferredLanguage(): BelongsTo

@@ -13,7 +13,6 @@ composer dump-autoload
 
 # moment
 # /usr/local/bin/php /app/artisan telescope:install
-
 /usr/local/bin/php /app/artisan migrate:fresh --seed --force
 
 /usr/local/bin/php /app/artisan passport:install --uuids

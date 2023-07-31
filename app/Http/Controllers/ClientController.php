@@ -18,6 +18,11 @@ class ClientController extends Controller
         $this->authorizeResource(Client::class);
     }
 
+    public function index()
+    {
+        return ClientResource::collection(Client::with(['user', 'user.addresses', 'user.preferredLanguage'])->paginate());
+    }
+
     public function store(ClientStoreRequest $request, CreateUser $userCreator, CreateClient $clientCreator, CreateAddressUser $addressUserCreator, CreatePassportClient $createPassportClient)
     {
         return DB::transaction(function () use ($request, $userCreator, $clientCreator, $addressUserCreator, $createPassportClient) {
