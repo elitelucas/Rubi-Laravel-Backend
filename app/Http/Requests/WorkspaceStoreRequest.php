@@ -22,11 +22,11 @@ class WorkspaceStoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            // 'customer_user_id' => ['required', 'integer', 'exists:users,id'],
             'user_subscription_id' => ['required', 'integer', 'exists:user_subscriptions,id'],
             'nickname' => ['required', 'string'],
             'short_description' => ['required', 'string'],
-            'active' => ['required', 'boolean']
+            'active' => ['required', 'boolean'],
+            'keywords' => ['array'],
         ];
     }
 }

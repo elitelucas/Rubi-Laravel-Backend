@@ -22,9 +22,9 @@ class WorkspaceResource extends JsonResource
             'short_description' => $this->short_description,
             'active' => $this->active,
             'created_at' => $this->created_at,
-            'collaborators'=> 1,
-            'usage' => 1023,
-            'keywords' => ['hot','cool']
+            'collaborators' => 1,
+            'usage' => 1023,            
+            'keywords' => WorkspaceKeywordResource::collection($this->keywords),
         ];
     }
 }
