@@ -40,7 +40,10 @@ class CustomAuthController extends Controller
         return response()->json([
             'access_token' => $tokenResult->accessToken,
             'token_type' => 'Bearer',
-            'expires_at' => \Carbon\Carbon::parse($tokenResult->token->expires_at)->toDateTimeString()
+            'expires_at' => \Carbon\Carbon::parse($tokenResult->token->expires_at)->toDateTimeString(),
+            'uuid' => $user->uuid,
+            'username' => $user->username,
+            'email' => $user->email,
         ]);
     }
 
