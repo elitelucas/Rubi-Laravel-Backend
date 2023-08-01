@@ -75,6 +75,9 @@ Route::middleware('auth:api')->group(function () {
     Route::get('/me', function (Request $request) {
         return new UserResource($request->user());
     });
+
+    Route::patch('user-subscriptions/{usersubscription}/avatar-upload', [UserSubscriptionController::class, 'uploadAvatar']);
+
 });
 
 Route::middleware(ValidateSignature::class)

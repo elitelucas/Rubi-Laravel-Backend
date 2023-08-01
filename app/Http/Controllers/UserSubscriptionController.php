@@ -6,8 +6,10 @@ use App\Actions\UserSubscription\CreateUserSubscription;
 use App\Actions\UserSubscription\ListAllUserSubscriptions;
 use App\Actions\UserSubscription\RemoveUserSubscription;
 use App\Actions\UserSubscription\UpdateUserSubscription;
+use App\Actions\UserSubscription\UploadAvatar;
 use App\Http\Requests\UserSubscriptionStoreRequest;
 use App\Http\Requests\UserSubscriptionUpdateRequest;
+use App\Http\Requests\UserSubscriptionUploadAvatarRequest;
 use App\Http\Resources\UserSubscriptionResource;
 use App\Models\UserSubscription;
 use Illuminate\Http\JsonResponse;
@@ -19,7 +21,7 @@ class UserSubscriptionController extends Controller
 {
     public function __construct()
     {
-        $this->authorizeResource(UserSubscription::class);
+        // $this->authorizeResource(UserSubscription::class);
     }
 
     /**
@@ -77,5 +79,18 @@ class UserSubscriptionController extends Controller
         return response()->json([
             'error' => 'An error occurred cancelling user subscription.'
         ]);
+    }
+
+    public function uploadAvatar(UserSubscriptionUploadAvatarRequest $request, UserSubscription $usersubscription, UploadAvatar $uploadAvatar): JsonResponse
+    {
+        if ($uploadAvatar->handle($usersubscription, $request)) {
+            return response()->json([
+                'message' => 'Avatar uploaded sucessfully.',
+            ]);
+        } else {
+            return response()->json([
+                'error' => 'Can not upload avatar',
+            ]);
+        }
     }
 }
