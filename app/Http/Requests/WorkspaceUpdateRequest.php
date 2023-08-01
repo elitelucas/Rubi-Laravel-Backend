@@ -21,6 +21,10 @@ class WorkspaceUpdateRequest extends FormRequest
      */
     public function rules(): array
     {
-        return (new WorkspaceStoreRequest())->rules();
+        return [
+            'nickname' => ['required', 'string'],
+            'short_description' => ['required', 'string'],
+            'active' => ['required', 'boolean']
+        ];
     }
 }
