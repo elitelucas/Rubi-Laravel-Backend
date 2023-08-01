@@ -165,9 +165,9 @@ class User extends Authenticatable
         return $this->belongsTo(Language::class, 'preferred_language_id');
     }
 
-    public function workspaces(): BelongsToMany
+    public function workspaces(): hasMany
     {
-        return $this->belongsToMany(Workspace::class);
+        return $this->hasMany(Workspace::class, 'customer_user_id');
     }
 
     public function invitations(): hasMany
