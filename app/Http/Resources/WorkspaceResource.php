@@ -22,7 +22,7 @@ class WorkspaceResource extends JsonResource
             'short_description' => $this->short_description,
             'active' => $this->active,
             'created_at' => $this->created_at,
-            'collaborators' => UserWorkspaceResource::collection($this->collaborators),
+            'collaborators' => UserWorkspaceResource::collection($this->activeCollaborators),
             'usage' => 123,  //fake          
             'keywords' => WorkspaceKeywordResource::collection($this->keywords),
         ];

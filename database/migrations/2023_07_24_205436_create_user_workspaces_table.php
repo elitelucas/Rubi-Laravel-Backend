@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::disableForeignKeyConstraints();
 
-        Schema::create('user_workspace', function (Blueprint $table) {
+        Schema::create('user_workspaces', function (Blueprint $table) {
             $table->foreignId('user_id');
             $table->foreignId('workspace_id');
             $table->boolean('active')->default(false);
@@ -27,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('user_workspace');
+        Schema::dropIfExists('user_workspaces');
     }
 };

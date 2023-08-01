@@ -16,9 +16,9 @@ class UserWorkspaceSeeder extends Seeder
     {
         Schema::disableForeignKeyConstraints();
 
-        DB::table('user_workspace')->truncate();
+        DB::table('user_workspaces')->truncate();
 
-        DB::table('user_workspace')->insert([
+        DB::table('user_workspaces')->insert([
             ['user_id' => 1, 'workspace_id' => 1, 'active' => true],
             ['user_id' => 2, 'workspace_id' => 1, 'active' => false],
             ['user_id' => 3, 'workspace_id' => 1, 'active' => true],

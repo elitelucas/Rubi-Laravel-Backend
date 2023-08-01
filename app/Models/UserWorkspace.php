@@ -13,8 +13,6 @@ class UserWorkspace extends Model
 {
     use HasFactory;
 
-    protected $table = 'user_workspace';
-
     /**
      * The attributes that are mass assignable.
      *
@@ -41,5 +39,10 @@ class UserWorkspace extends Model
     public function workspace(): BelongsTo
     {
         return $this->belongsTo(WorkSpace::class);
+    }
+
+    public function scopeActive($query)
+    {
+        return $query->where('active', true);
     }
 }
