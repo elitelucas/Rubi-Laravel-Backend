@@ -59,4 +59,10 @@ class UserSubscription extends Model
     {
         return $this->belongsTo(Subscription::class);
     }
+
+    
+    public function scopeActive($query)
+    {
+        return $query->where('active', true);
+    }
 }
