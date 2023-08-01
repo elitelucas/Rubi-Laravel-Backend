@@ -26,7 +26,8 @@ class RoleSeeder extends Seeder
         $superAdminRole->givePermissionTo(Permission::all());
         // Assign client permissions
         $clientAdminRole->givePermissionTo([
-            'list-user-subscription'
+            'list-user-subscription',
+            'delete-user-subscription'
         ]);
 
         Schema::enableForeignKeyConstraints();

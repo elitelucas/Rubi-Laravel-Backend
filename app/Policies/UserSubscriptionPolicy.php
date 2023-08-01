@@ -43,8 +43,12 @@ class UserSubscriptionPolicy
     /**
      * Determine whether the user can delete the model.
      */
-    public function delete(User $user, UserSubscription $userSubscription): bool
+    public function delete(User $user, UserSubscription $userSubscription): bool|Response
     {
+        if (!$userSubscription->active) {
+            return Response::deny('This subscription is already cancelled.');
+        }
+
         return $user->can('delete-user-subscription');
     }
 
