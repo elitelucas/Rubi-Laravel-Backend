@@ -22,6 +22,17 @@ class UserSubscriptionSeeder extends Seeder
                 'activated_at' => '2023-07-20',
                 'expiration_at' => '2023-08-19 11:59:59',
                 'renewal_at' => '2023-08-20',
+                'primary' => true,
+                'active' => true,
+            ],
+            [
+                'user_id' => '2',
+                'subscription_id' => '2',
+                'nickname' => 'BitJar - Diamond',
+                'short_description' => 'RUBI Product account',
+                'activated_at' => '2023-07-20',
+                'expiration_at' => '2023-08-19 11:59:59',
+                'renewal_at' => '2023-08-20',
                 'active' => true,
             ],
             [

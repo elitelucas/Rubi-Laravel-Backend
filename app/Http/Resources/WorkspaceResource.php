@@ -20,7 +20,11 @@ class WorkspaceResource extends JsonResource
             'subscription' => UserSubscriptionResource::make($this->whenLoaded('userSubscription')),
             'nickname' => $this->nickname,
             'short_description' => $this->short_description,
-            'active' => $this->active
+            'active' => $this->active,
+            'created_at' => $this->created_at,
+            'collaborators'=> 1,
+            'usage' => 1023,
+            'keywords' => ['hot','cool']
         ];
     }
 }

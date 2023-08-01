@@ -19,7 +19,7 @@ class ListAllUserSubscriptions
     {
         return $this->addPaginationAndSearch(
             request: $request,
-            query: UserSubscription::query()->with(['user', 'subscription']),
+            query: UserSubscription::query()->where('active', true)->with(['user', 'subscription']),
             fieldsToSearch: ['nickname', 'short_description']
         );
     }

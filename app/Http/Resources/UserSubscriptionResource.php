@@ -15,6 +15,7 @@ class UserSubscriptionResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
+            'id' => $this->id,
             'user' => UserResource::make($this->whenLoaded('user')),
             'subscription' => SubscriptionResource::make($this->whenLoaded('subscription')),
             'nickname' => $this->nickname,
@@ -22,7 +23,8 @@ class UserSubscriptionResource extends JsonResource
             'activated_at' => $this->activated_at,
             'expiration_at' => $this->expiration_at,
             'renewal_at' => $this->renewal_at,
-            'active' => $this->active
+            'primary' => $this->primary,
+            'active' => $this->active       
         ];
     }
 }

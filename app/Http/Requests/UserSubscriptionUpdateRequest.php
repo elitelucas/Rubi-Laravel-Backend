@@ -26,6 +26,7 @@ class UserSubscriptionUpdateRequest extends FormRequest
             array: Arr::collapse([
                 (new UserSubscriptionStoreRequest())->rules(),
                 ['active' => ['required', 'boolean']],
+                ['primary' => ['required', 'boolean']],
             ]),
             keys: ['user_id', 'subscription_id']
         );

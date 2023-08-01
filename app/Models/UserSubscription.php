@@ -25,6 +25,7 @@ class UserSubscription extends Model
         'activated_at',
         'expiration_at',
         'renewal_at',
+        'primary',
         'active',
     ];
 
@@ -40,6 +41,7 @@ class UserSubscription extends Model
         'activated_at' => 'datetime',
         'expiration_at' => 'datetime',
         'renewal_at' => 'datetime',
+        'primary' => 'boolean',
         'active' => 'boolean',
     ];
 

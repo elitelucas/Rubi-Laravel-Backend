@@ -22,7 +22,8 @@ return new class extends Migration
             $table->timestamp('activation_date');
             $table->timestamp('expiration_date');
             $table->timestamp('renewal_date');
-            $table->boolean('active')->default(false);
+            $table->boolean('primary')->default(false);
+            $table->boolean('active')->default(false);           
             $table->timestamps();
         });
 
