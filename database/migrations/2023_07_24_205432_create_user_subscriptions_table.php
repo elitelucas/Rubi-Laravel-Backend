@@ -17,13 +17,14 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained();
             $table->foreignId('subscription_id')->constrained();
-            $table->string('nickname');
+            $table->string('nickname');           
             $table->string('short_description');
             $table->timestamp('activation_date');
             $table->timestamp('expiration_date');
             $table->timestamp('renewal_date');
             $table->boolean('primary')->default(false);
-            $table->boolean('active')->default(false);           
+            $table->boolean('active')->default(false);   
+            $table->string('avatar')->nullable();        
             $table->timestamps();
         });
 

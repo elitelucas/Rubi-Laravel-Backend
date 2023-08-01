@@ -24,7 +24,8 @@ class UserSubscriptionResource extends JsonResource
             'expiration_at' => $this->expiration_at,
             'renewal_at' => $this->renewal_at,
             'primary' => $this->primary,
-            'active' => $this->active       
+            'active' => $this->active,       
+            'avatar' => $this->avatar       
         ];
     }
 }

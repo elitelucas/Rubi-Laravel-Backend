@@ -61,4 +61,9 @@ class Workspace extends Model
     {
         return $this->belongsTo(UserSubscription::class);
     }
+
+    public function collaborators(): HasMany
+    {
+        return $this->hasMany(UserWorkspace::class)->where('active', true);
+    }
 }

@@ -16,23 +16,32 @@ class UploadAvatar
     public function handle(UserSubscription $userSubscription, Request $request): bool
     {
         if ($request->hasFile('avatar')) {
-            $file = $request->file('avatar');
+            try {
+                $file = $request->file('avatar');
 
-            //upload file to S3
-            $fileContent = file_get_contents($file->getRealPath());
+                //upload file to S3
+                $fileContent = file_get_contents($file->getRealPath());
 
-            $originalFilename = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
-            $extension = $file->getClientOriginalExtension();
+                $originalFilename = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
 
-            $timestamp = time();
-            $randomNumber = rand(1, 10000);
-            $filename = $timestamp . '_' . $randomNumber . '.' . $extension;
+                $extension = $file->getClientOriginalExtension();
 
-            Storage::disk('s3')->put($filename, $fileContent);
+                $timestamp = time();
+                $randomNumber = rand(1, 10000);
+                $filename = $timestamp . '_' . $randomNumber . '.' . $extension;
 
-            //save filename to usersubscription talbe
+                $path = 'subscription_avatars/' . $filename;
+                Storage::disk('s3')->put($path, $fileContent);
+                $url = Storage::cloud()->url($path);
 
-            return true;
+                $userSubscription->updateOrFail(
+                    ['avatar' => $url]
+                );
+
+                return true;
+            } catch (\Throwable $th) {
+                return false;
+            }
         } else {
             return false;
         }

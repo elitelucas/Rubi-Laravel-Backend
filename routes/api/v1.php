@@ -76,7 +76,7 @@ Route::middleware('auth:api')->group(function () {
         return new UserResource($request->user());
     });
 
-    Route::patch('user-subscriptions/{usersubscription}/avatar-upload', [UserSubscriptionController::class, 'uploadAvatar']);
+    Route::post('user-subscriptions/{usersubscription}/avatar-upload', [UserSubscriptionController::class, 'uploadAvatar']);
 
 });
 

@@ -27,6 +27,7 @@ class UserSubscription extends Model
         'renewal_at',
         'primary',
         'active',
+        'avatar',
     ];
 
     /**
