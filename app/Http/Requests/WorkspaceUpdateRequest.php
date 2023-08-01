@@ -24,7 +24,8 @@ class WorkspaceUpdateRequest extends FormRequest
         return [
             'nickname' => ['required', 'string'],
             'short_description' => ['required', 'string'],
-            'active' => ['required', 'boolean']
+            'active' => ['required', 'boolean'],
+            'keywords' => ['array'],
         ];
     }
 }
