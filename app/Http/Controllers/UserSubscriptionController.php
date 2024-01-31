@@ -21,7 +21,7 @@ class UserSubscriptionController extends Controller
 {
     public function __construct()
     {
-        $this->authorizeResource(UserSubscription::class);
+        // $this->authorizeResource(UserSubscription::class);
     }
 
     /**
